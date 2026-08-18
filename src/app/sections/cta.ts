@@ -2,9 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RevealDirective } from '../shared/reveal.directive';
 import { IconComponent } from '../shared/icon';
 import { I18nService } from '../core/i18n/i18n.service';
-
-const REPO_URL = 'https://github.com/juanitourquiza/shipframe';
-const DOCS_URL = 'https://github.com/juanitourquiza/shipframe#readme';
+import { SITE } from '../core/site.config';
 
 @Component({
   selector: 'app-cta',
@@ -56,6 +54,6 @@ const DOCS_URL = 'https://github.com/juanitourquiza/shipframe#readme';
 export class CtaComponent {
   private readonly i18n = inject(I18nService);
   protected readonly c = () => this.i18n.content().cta;
-  protected readonly repo = REPO_URL;
-  protected readonly docs = DOCS_URL;
+  protected readonly repo = SITE.repo;
+  protected readonly docs = SITE.docs;
 }

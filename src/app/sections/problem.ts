@@ -11,7 +11,7 @@ import { I18nService } from '../core/i18n/i18n.service';
     <section class="bg-bg-subtle border-border-soft border-y py-20 sm:py-28">
       <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-2xl text-center" appReveal>
-          <p class="text-brand-500 text-sm font-semibold tracking-widest uppercase">
+          <p class="text-brand-600 dark:text-brand-400 text-sm font-semibold tracking-widest uppercase">
             {{ c().eyebrow }}
           </p>
           <h2 class="text-fg mt-3 text-3xl font-bold tracking-tight text-balance sm:text-4xl">

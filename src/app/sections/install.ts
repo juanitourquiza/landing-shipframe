@@ -12,7 +12,7 @@ import { I18nService } from '../core/i18n/i18n.service';
     <section id="install" class="bg-bg-subtle border-border-soft scroll-mt-20 border-y py-20 sm:py-28">
       <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-2xl text-center" appReveal>
-          <p class="text-brand-500 text-sm font-semibold tracking-widest uppercase">
+          <p class="text-brand-600 dark:text-brand-400 text-sm font-semibold tracking-widest uppercase">
             {{ c().eyebrow }}
           </p>
           <h2 class="text-fg mt-3 text-3xl font-bold tracking-tight text-balance sm:text-4xl">
@@ -35,7 +35,7 @@ import { I18nService } from '../core/i18n/i18n.service';
                   class="rounded-lg px-4 py-2 text-sm font-semibold transition-colors"
                   [class]="
                     active() === tab.id
-                      ? 'bg-brand-500/10 text-brand-500'
+                      ? 'bg-brand-500/10 text-brand-600 dark:text-brand-400'
                       : 'text-fg-muted hover:text-fg hover:bg-surface-2'
                   "
                 >

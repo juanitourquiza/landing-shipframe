@@ -1,9 +1,10 @@
 import { DOCUMENT, Injectable, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Content, Lang } from '../i18n/content.model';
+import { SITE } from '../site.config';
 
-export const SITE_URL = 'https://shipframe.hackeruna.com';
-const OG_IMAGE = `${SITE_URL}/og-image.png`;
+export const SITE_URL = SITE.url;
+const OG_IMAGE = SITE.ogImage;
 
 @Injectable({ providedIn: 'root' })
 export class SeoService {
@@ -99,16 +100,16 @@ export class SeoService {
       license: 'https://opensource.org/licenses/MIT',
       author: {
         '@type': 'Organization',
-        name: 'hackeruna',
-        url: 'https://hackeruna.com',
-        email: 'j@hackeruna.com',
+        name: SITE.author.name,
+        url: SITE.author.url,
+        email: SITE.author.email,
       },
       offers: {
         '@type': 'Offer',
         price: '0',
         priceCurrency: 'USD',
       },
-      codeRepository: 'https://github.com/juanitourquiza/shipframe',
+      codeRepository: SITE.repo,
     };
 
     const faqPage = {

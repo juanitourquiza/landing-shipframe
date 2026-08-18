@@ -13,8 +13,7 @@ import { I18nService } from '../core/i18n/i18n.service';
 import { ThemeService } from '../core/theme/theme.service';
 import { IconComponent } from '../shared/icon';
 import { LogoComponent } from './logo';
-
-const REPO_URL = 'https://github.com/juanitourquiza/shipframe';
+import { SITE } from '../core/site.config';
 
 @Component({
   selector: 'app-header',
@@ -129,7 +128,7 @@ export class HeaderComponent {
   protected readonly theme = inject(ThemeService);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
-  protected readonly repo = REPO_URL;
+  protected readonly repo = SITE.repo;
   protected readonly scrolled = signal(false);
   protected readonly menuOpen = signal(false);
 

@@ -3,10 +3,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { I18nService } from '../core/i18n/i18n.service';
 import { IconComponent } from '../shared/icon';
 import { LogoComponent } from './logo';
-
-const REPO_URL = 'https://github.com/juanitourquiza/shipframe';
-const CONTACT_EMAIL = 'j@hackeruna.com';
-const HACKERUNA_URL = 'https://hackeruna.com';
+import { SITE } from '../core/site.config';
 
 @Component({
   selector: 'app-footer',
@@ -87,9 +84,9 @@ const HACKERUNA_URL = 'https://hackeruna.com';
 export class FooterComponent {
   private readonly i18n = inject(I18nService);
 
-  protected readonly repo = REPO_URL;
-  protected readonly email = CONTACT_EMAIL;
-  protected readonly hackeruna = HACKERUNA_URL;
+  protected readonly repo = SITE.repo;
+  protected readonly email = SITE.author.email;
+  protected readonly hackeruna = SITE.author.url;
   protected readonly year = new Date().getFullYear();
 
   protected readonly footer = () => this.i18n.content().footer;

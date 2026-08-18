@@ -23,6 +23,7 @@ import { IconComponent } from './icon';
       <app-icon [name]="copied() ? 'check' : 'copy'" [size]="14" />
       {{ copied() ? copiedLabel() : label() }}
     </button>
+    <span aria-live="polite" class="sr-only">{{ copied() ? copiedLabel() : '' }}</span>
   `,
 })
 export class CopyButtonComponent {

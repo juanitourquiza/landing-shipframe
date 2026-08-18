@@ -2,10 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { IconComponent } from '../shared/icon';
 import { CopyButtonComponent } from '../shared/copy-button';
 import { I18nService } from '../core/i18n/i18n.service';
-
-const REPO_URL = 'https://github.com/juanitourquiza/shipframe';
-const INSTALL_CMD =
-  'curl -fsSL https://raw.githubusercontent.com/juanitourquiza/shipframe/main/install.sh | bash';
+import { SITE } from '../core/site.config';
 
 @Component({
   selector: 'app-hero',
@@ -136,8 +133,8 @@ const INSTALL_CMD =
 export class HeroComponent {
   private readonly i18n = inject(I18nService);
   protected readonly hero = () => this.i18n.content().hero;
-  protected readonly repo = REPO_URL;
-  protected readonly cmd = INSTALL_CMD;
+  protected readonly repo = SITE.repo;
+  protected readonly cmd = SITE.installCmd;
 
   protected readonly logLines = [
     { text: '✔ Detected Claude Code, Codex CLI, OpenCode', cls: 'text-green-400/90' },

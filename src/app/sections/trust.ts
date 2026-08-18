@@ -10,13 +10,13 @@ import { I18nService } from '../core/i18n/i18n.service';
         <p class="text-fg-subtle text-center text-xs font-semibold tracking-widest uppercase">
           {{ runsWith() }}
         </p>
-        <div
+        <ul
           class="text-fg-muted mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 sm:gap-x-12"
         >
           @for (tool of tools; track tool) {
-            <span class="text-base font-semibold tracking-tight opacity-80">{{ tool }}</span>
+            <li class="text-base font-semibold tracking-tight opacity-80">{{ tool }}</li>
           }
-        </div>
+        </ul>
       </div>
     </section>
   `,
