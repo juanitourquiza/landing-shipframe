@@ -4,18 +4,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
 >
   <url>
-    <loc>https://shipframe.hackeruna.com/en/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://shipframe.hackeruna.com/en/" />
+    <loc>https://shipframe.hackeruna.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://shipframe.hackeruna.com/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://shipframe.hackeruna.com/es/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://shipframe.hackeruna.com/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://shipframe.hackeruna.com/" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://shipframe.hackeruna.com/es/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://shipframe.hackeruna.com/en/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://shipframe.hackeruna.com/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://shipframe.hackeruna.com/es/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://shipframe.hackeruna.com/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://shipframe.hackeruna.com/" />
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>

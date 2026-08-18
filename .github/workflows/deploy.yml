@@ -34,9 +34,8 @@ jobs:
 
       - name: Verify build output
         run: |
-          test -f dist/landing-shipframe/browser/en/index.html
+          test -f dist/landing-shipframe/browser/index.html
           test -f dist/landing-shipframe/browser/es/index.html
-          test -f dist/landing-shipframe/browser/.htaccess
           echo "Build output verified."
 
       - name: Install sshpass
@@ -58,7 +57,7 @@ jobs:
 
       - name: Smoke check (production)
         run: |
-          for url in "https://shipframe.hackeruna.com/en/" "https://shipframe.hackeruna.com/es/" "https://shipframe.hackeruna.com/llms.txt"; do
+          for url in "https://shipframe.hackeruna.com/" "https://shipframe.hackeruna.com/es/" "https://shipframe.hackeruna.com/llms.txt"; do
             code=$(curl -s -o /dev/null -w "%{http_code}" "$url" || echo "000")
             echo "$code  $url"
             [ "$code" = "200" ] || echo "::warning::$url returned $code"

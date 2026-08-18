@@ -12,9 +12,14 @@ export class SeoService {
   private readonly meta = inject(Meta);
   private readonly document = inject(DOCUMENT);
 
+  /** English is served at the root; Spanish at /es/. */
+  private urlFor(lang: Lang): string {
+    return lang === 'es' ? `${SITE_URL}/es/` : `${SITE_URL}/`;
+  }
+
   update(lang: Lang, content: Content): void {
     const { seo } = content;
-    const url = `${SITE_URL}/${lang}/`;
+    const url = this.urlFor(lang);
 
     this.title.setTitle(seo.title);
     this.document.documentElement.setAttribute('lang', lang);
@@ -71,9 +76,9 @@ export class SeoService {
       .forEach((el) => el.remove());
 
     const alternates: { hreflang: string; href: string }[] = [
-      { hreflang: 'en', href: `${SITE_URL}/en/` },
+      { hreflang: 'en', href: `${SITE_URL}/` },
       { hreflang: 'es', href: `${SITE_URL}/es/` },
-      { hreflang: 'x-default', href: `${SITE_URL}/en/` },
+      { hreflang: 'x-default', href: `${SITE_URL}/` },
     ];
 
     for (const alt of alternates) {
@@ -86,7 +91,7 @@ export class SeoService {
   }
 
   private setJsonLd(lang: Lang, content: Content): void {
-    const url = `${SITE_URL}/${lang}/`;
+    const url = this.urlFor(lang);
 
     const softwareApp = {
       '@context': 'https://schema.org',

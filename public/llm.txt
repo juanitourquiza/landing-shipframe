@@ -36,7 +36,7 @@ ShipFrame provides reusable skills, agent workflows, templates and project profi
 - [Repository & README](https://github.com/juanitourquiza/shipframe): source, full documentation, installer and skills.
 - [Releases](https://github.com/juanitourquiza/shipframe/releases): stable versions tagged `vX.Y.Z`.
 - [MIT License](https://github.com/juanitourquiza/shipframe/blob/main/LICENSE): licensing terms.
-- [Landing — English](https://shipframe.hackeruna.com/en/): product overview, lifecycle, features, install and FAQ.
+- [Landing — English](https://shipframe.hackeruna.com/): product overview, lifecycle, features, install and FAQ.
 - [Landing — Español](https://shipframe.hackeruna.com/es/): resumen del producto, ciclo, funciones, instalación y preguntas frecuentes.
 
 ## Frequently asked questions

@@ -8,21 +8,19 @@
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # Root: redirect to a language folder (Spanish browsers → /es/, everyone else → /en/)
-  RewriteCond %{HTTP:Accept-Language} ^es [NC]
-  RewriteRule ^$ /es/ [R=302,L]
-  RewriteRule ^$ /en/ [R=302,L]
+  # Legacy /en → root (English is served at /)
+  RewriteRule ^en/?$ / [R=301,L]
 
-  # Normalize /en and /es to trailing slash
-  RewriteRule ^(en|es)$ /$1/ [R=301,L]
+  # Normalize /es to trailing slash
+  RewriteRule ^es$ /es/ [R=301,L]
 
   # Serve existing files/directories as-is
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # Unknown paths → default language home
-  RewriteRule ^ /en/ [R=302,L]
+  # Unknown paths → English home
+  RewriteRule ^ / [R=302,L]
 </IfModule>
 
 # Compression

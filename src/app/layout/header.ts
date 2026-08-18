@@ -36,7 +36,7 @@ import { SITE } from '../core/site.config';
       <div
         class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8"
       >
-        <a [routerLink]="'/' + lang()" class="shrink-0" aria-label="ShipFrame home">
+        <a [routerLink]="i18n.homePath()" class="shrink-0" aria-label="ShipFrame home">
           <app-logo />
         </a>
 
@@ -53,7 +53,7 @@ import { SITE } from '../core/site.config';
 
         <div class="flex items-center gap-1.5">
           <a
-            [routerLink]="'/' + i18n.otherLang()"
+            [routerLink]="i18n.otherPath()"
             class="text-fg-muted hover:text-fg hover:border-brand-400/60 rounded-lg border border-transparent px-2.5 py-1.5 text-sm font-semibold uppercase transition-colors"
             [attr.aria-label]="'Switch language to ' + i18n.otherLang()"
           >
@@ -132,7 +132,6 @@ export class HeaderComponent {
   protected readonly scrolled = signal(false);
   protected readonly menuOpen = signal(false);
 
-  protected readonly lang = this.i18n.lang;
   protected readonly nav = () => this.i18n.content().nav;
 
   @HostListener('window:scroll')

@@ -21,6 +21,17 @@ export class I18nService {
   /** The "other" language, for the language toggle. */
   readonly otherLang = computed<Lang>(() => (this.lang() === 'en' ? 'es' : 'en'));
 
+  /** Router path for a locale. English is served at the root; Spanish at /es. */
+  static pathFor(lang: Lang): string {
+    return lang === 'es' ? '/es' : '/';
+  }
+
+  /** Router path for the current language's home. */
+  readonly homePath = computed<string>(() => I18nService.pathFor(this.lang()));
+
+  /** Router path for the other language (language toggle target). */
+  readonly otherPath = computed<string>(() => I18nService.pathFor(this.otherLang()));
+
   setLang(lang: Lang): void {
     this.lang.set(lang);
   }
