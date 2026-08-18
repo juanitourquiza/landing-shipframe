@@ -1,1 +1,113 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles + theme-aware design tokens */
+
+:root {
+  /* Light theme (default) */
+  --bg: #ffffff;
+  --bg-subtle: #f6f7fb;
+  --surface: #ffffff;
+  --surface-2: #f1f3fa;
+  --fg: #0d1220;
+  --fg-muted: #47506a;
+  --fg-subtle: #6b7488;
+  --border-soft: #e6e8f0;
+
+  --grid-line: rgba(99, 102, 241, 0.06);
+  --glow: rgba(99, 102, 241, 0.16);
+
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #070a14;
+  --bg-subtle: #0a0e1b;
+  --surface: #0f1524;
+  --surface-2: #151d31;
+  --fg: #e8ebf5;
+  --fg-muted: #9aa4bd;
+  --fg-subtle: #6b7488;
+  --border-soft: #1d2740;
+
+  --grid-line: rgba(129, 140, 248, 0.07);
+  --glow: rgba(99, 102, 241, 0.22);
+
+  color-scheme: dark;
+}
+
+* {
+  border-color: var(--border-soft);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+::selection {
+  background: rgba(99, 102, 241, 0.28);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-soft);
+  border-radius: 999px;
+  border: 3px solid var(--bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--fg-subtle);
+}
+
+/* Reveal-on-scroll utility */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Gradient text helper */
+.text-gradient {
+  background: linear-gradient(100deg, #818cf8 0%, #6366f1 40%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}

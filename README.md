@@ -1,59 +1,121 @@
-# LandingShipframe
+# ShipFrame — Landing Page
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.3.
+Marketing landing page for **[ShipFrame](https://github.com/juanitourquiza/shipframe)**, the open-source AI coding workflow toolkit for teams that *plan, prove & ship*.
 
-## Development server
+🌐 **Live:** https://shipframe.hackeruna.com
 
-To start a local development server, run:
+Built with **Angular 22** (standalone, signals, zoneless), **Tailwind CSS v4**, and prerendered to **static HTML (SSG)** for fast, SEO-friendly hosting.
 
-```bash
-ng serve
-```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## ✨ Features
 
-## Code scaffolding
+- **Bilingual** — English (`/en`) and Spanish (`/es`) on separate, indexable URLs with `hreflang` alternates.
+- **Dark & light mode** — respects `prefers-color-scheme`, persists choice in `localStorage`, and supports a `?theme=dark|light` deep-link override.
+- **Fully responsive** — mobile-first, no horizontal overflow.
+- **SEO / AEO / GEO optimized:**
+  - Per-locale `<title>`, meta description, keywords, canonical and `hreflang`.
+  - Open Graph + Twitter Card metadata with a generated OG image.
+  - JSON-LD structured data: `SoftwareApplication`, `Organization` and a full `FAQPage` (great for answer/generative engines).
+  - `sitemap.xml`, `robots.txt` (explicitly allowing AI crawlers: GPTBot, ClaudeBot, PerplexityBot, etc.).
+  - Prerendered static HTML so crawlers and LLMs get complete content with zero JS.
+- **Accessible** — semantic landmarks, skip link, keyboard-friendly, reduced-motion aware, native `<details>` FAQ.
+- **Zero external runtime deps in the UI** — icons are inline SVGs; only Google Fonts is loaded.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## 🧱 Tech stack
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+| Area | Choice |
+|---|---|
+| Framework | Angular 22 (standalone components, signals, zoneless, OnPush) |
+| Styling | Tailwind CSS v4 + CSS custom-property design tokens |
+| Rendering | Static Site Generation (prerender, `outputMode: "static"`) |
+| i18n | Signal-based dictionaries + locale-prefixed routes (`/en`, `/es`) |
+| Fonts | Inter + JetBrains Mono |
 
-```bash
-ng generate --help
-```
+---
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## 🚀 Local development
 
 ```bash
-ng test
+npm install
+npm start          # dev server at http://localhost:4200 (redirects to /en)
 ```
 
-## Running end-to-end tests
+Available locales while developing: `http://localhost:4200/en` and `http://localhost:4200/es`.
 
-For end-to-end (e2e) testing, run:
+## 🏗️ Production build (static)
 
 ```bash
-ng e2e
+npm run build
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+The prerendered site is emitted to:
 
-## Additional Resources
+```
+dist/landing-shipframe/browser/
+├── index.html          # root — redirects to /en/
+├── en/index.html       # English (prerendered)
+├── es/index.html       # Spanish (prerendered)
+├── og-image.png
+├── robots.txt
+├── sitemap.xml
+├── site.webmanifest
+├── .htaccess           # Apache/Cloudways routing + caching
+└── *.js / *.css        # hashed assets
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Preview the exact static output locally:
+
+```bash
+npm run preview        # builds and serves at http://localhost:4300
+```
+
+---
+
+## ☁️ Deploy to Cloudways (`shipframe.hackeruna.com`)
+
+The site is static, so no Node runtime is required on the server.
+
+1. Build locally: `npm run build`.
+2. Upload the **contents of `dist/landing-shipframe/browser/`** (including the hidden `.htaccess`) to the application's web root on Cloudways (e.g. `public_html/`).
+   - Via SFTP/SCP:
+     ```bash
+     scp -r dist/landing-shipframe/browser/. user@server:/path/to/public_html/
+     ```
+   - Or zip and extract on the server. Make sure the dotfile `.htaccess` is included.
+3. Point the subdomain `shipframe.hackeruna.com` to that application in Cloudways and enable the free Let's Encrypt SSL.
+4. The bundled `.htaccess` handles: HTTPS redirect, root → language redirect (Spanish browsers → `/es/`, everyone else → `/en/`), trailing-slash normalization, gzip compression and long-lived asset caching.
+
+> Tip: after DNS resolves, validate rich results with Google's [Rich Results Test](https://search.google.com/test/rich-results) and submit `https://shipframe.hackeruna.com/sitemap.xml` in Google Search Console.
+
+---
+
+## 📁 Project structure
+
+```
+src/
+├── app/
+│   ├── core/
+│   │   ├── i18n/        # content.model + content.en + content.es + i18n.service
+│   │   ├── seo/         # SeoService (meta, canonical, hreflang, JSON-LD)
+│   │   └── theme/       # ThemeService (dark/light)
+│   ├── layout/          # header, footer, logo
+│   ├── sections/        # hero, trust, lifecycle, problem, features, install, audience, faq, cta
+│   ├── shared/          # icon, copy-button, reveal directive
+│   └── pages/home/      # page composing all sections
+├── index.html
+└── styles.scss          # global tokens + theme variables
+design/og-image.svg      # source for the Open Graph image
+```
+
+To edit copy, change [`src/app/core/i18n/content.en.ts`](src/app/core/i18n/content.en.ts) and [`content.es.ts`](src/app/core/i18n/content.es.ts) — both share the `Content` interface so translations stay in sync.
+
+---
+
+## 📄 License
+
+MIT © [hackeruna](https://hackeruna.com) — contact: **j@hackeruna.com**
+
+Landing for [ShipFrame](https://github.com/juanitourquiza/shipframe) (also MIT).

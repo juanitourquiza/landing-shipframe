@@ -1,0 +1,12 @@
+{
+  "name": "ShipFrame",
+  "short_name": "ShipFrame",
+  "description": "AI coding workflows for teams that plan, prove and ship.",
+  "start_url": "/en/",
+  "display": "standalone",
+  "background_color": "#070a14",
+  "theme_color": "#6366f1",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
