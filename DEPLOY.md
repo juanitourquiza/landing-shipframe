@@ -1,82 +1,71 @@
 # Deploy — Cloudways (automatic via GitHub Actions)
 
 Every push to `main` builds the static site and syncs it to Cloudways over SSH/rsync.
-Workflow: [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). You can also trigger it manually from the **Actions** tab (`workflow_dispatch`).
+Workflow: [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). You can also trigger it
+manually from the **Actions** tab (`workflow_dispatch`).
 
-## One-time setup
+> The Cloudways **application SSH/SFTP user is jailed** (its home `~/.ssh` is not writable), so
+> key-based auth is not available for it. The workflow therefore uses **password auth** via
+> `sshpass`, with the password stored as an encrypted GitHub secret.
 
-### 1. Create a dedicated deploy SSH key (locally)
+## One-time setup — GitHub repository secrets
 
-```bash
-ssh-keygen -t ed25519 -C "github-actions-shipframe" -f ~/.ssh/cloudways_shipframe -N ""
-```
+Add these under **Settings → Secrets and variables → Actions**, or with the `gh` CLI:
 
-This creates:
-- `~/.ssh/cloudways_shipframe`     ← **private** key → goes into a GitHub secret
-- `~/.ssh/cloudways_shipframe.pub` ← **public** key → goes into Cloudways
-
-### 2. Add the PUBLIC key to Cloudways
-
-In the Cloudways console: **Server → Settings & Packages → SSH Public Keys** (or **Server Management → SSH Public Keys**), add the contents of `~/.ssh/cloudways_shipframe.pub`.
-
-> Prefer adding it at the **Master user** level. You can also append it to the application user's `~/.ssh/authorized_keys` if you use an app-level SSH user.
-
-### 3. Gather the connection details from Cloudways
-
-- **Host** — the server's public IP (Server → Master Credentials, or the app's SSH/SFTP access details).
-- **User** — the Master username (e.g. `master_xxxxx`) or the application SFTP user.
-- **Port** — `22` (default).
-- **Remote path** — the app web root, typically:
-  ```
-  /home/master/applications/<APP_ID>/public_html
-  ```
-  Find `<APP_ID>` under **Application → Access Details**. This is the folder the subdomain `shipframe.hackeruna.com` serves.
-
-### 4. Add the GitHub repository secrets
-
-Via the GitHub UI (**Settings → Secrets and variables → Actions → New repository secret**) or the `gh` CLI:
+| Secret | Value | Example |
+|---|---|---|
+| `CLOUDWAYS_SSH_HOST` | Server public IP | `159.203.136.40` |
+| `CLOUDWAYS_SSH_USER` | Application SSH/SFTP user | `shipframe` |
+| `CLOUDWAYS_SSH_PASSWORD` | That user's password | `••••••••` |
+| `CLOUDWAYS_REMOTE_PATH` | App web root (relative to home) | `public_html` |
+| `CLOUDWAYS_SSH_PORT` | SSH port (optional) | `22` |
 
 ```bash
-gh secret set CLOUDWAYS_SSH_HOST    --repo juanitourquiza/landing-shipframe --body "YOUR_SERVER_IP"
-gh secret set CLOUDWAYS_SSH_USER    --repo juanitourquiza/landing-shipframe --body "master_xxxxx"
-gh secret set CLOUDWAYS_REMOTE_PATH --repo juanitourquiza/landing-shipframe --body "/home/master/applications/APP_ID/public_html"
-gh secret set CLOUDWAYS_SSH_PORT    --repo juanitourquiza/landing-shipframe --body "22"
-gh secret set CLOUDWAYS_SSH_KEY     --repo juanitourquiza/landing-shipframe < ~/.ssh/cloudways_shipframe
+gh secret set CLOUDWAYS_SSH_HOST     --repo juanitourquiza/landing-shipframe --body "159.203.136.40"
+gh secret set CLOUDWAYS_SSH_USER     --repo juanitourquiza/landing-shipframe --body "shipframe"
+gh secret set CLOUDWAYS_REMOTE_PATH  --repo juanitourquiza/landing-shipframe --body "public_html"
+gh secret set CLOUDWAYS_SSH_PORT     --repo juanitourquiza/landing-shipframe --body "22"
+gh secret set CLOUDWAYS_SSH_PASSWORD --repo juanitourquiza/landing-shipframe   # prompts, paste the password
 ```
 
-| Secret | Value |
-|---|---|
-| `CLOUDWAYS_SSH_HOST` | Server public IP |
-| `CLOUDWAYS_SSH_USER` | Master or app SSH user |
-| `CLOUDWAYS_SSH_KEY` | **Private** key contents (`cloudways_shipframe`) |
-| `CLOUDWAYS_REMOTE_PATH` | App `public_html` absolute path |
-| `CLOUDWAYS_SSH_PORT` | `22` (optional; defaults to 22) |
+> **Security:** the password lives only in GitHub's encrypted secrets and is masked in logs.
+> If you rotate it in Cloudways, update the `CLOUDWAYS_SSH_PASSWORD` secret to match.
+> For fully keyless CI, add an SSH key at the Cloudways **Master** user level instead and switch
+> the deploy step back to key auth.
 
 ## How it works
 
 1. `npm ci` → `npm run build` produces `dist/landing-shipframe/browser/`.
 2. The output (including the hidden `.htaccess`) is synced with:
    ```
-   rsync -avz --delete --exclude='.well-known' ... browser/ user@host:REMOTE_PATH/
+   rsync -rlvz --delete --exclude='.well-known' \
+     -e "sshpass -e ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no" \
+     dist/landing-shipframe/browser/ user@host:public_html/
    ```
-   `--delete` keeps the web root clean (removes stale files); `.well-known` is preserved for SSL/ACME.
+   `--delete` keeps the web root clean; `.well-known` is preserved for SSL/ACME.
 3. A production smoke check hits `/en/`, `/es/` and `/llms.txt` and warns if any is not `200`.
 
-## First run
+## Cloudways notes (important)
 
-1. Complete the setup above.
-2. Push to `main` (or run the workflow manually from the Actions tab).
-3. Watch the run under **Actions → Deploy to Cloudways**.
+- Cloudways serves static files through **nginx**, so an Apache `.htaccess` in the web root is
+  **ignored**. The bundled `.htaccess` is kept for portability (Apache hosts) but has no effect here.
+- **Force HTTPS:** enable it in the Cloudways console — **Application → SSL Certificate →
+  "Force HTTPS Redirection"**. (The `.htaccess` HTTPS rule does not apply under nginx.)
+- **Root → language redirect** works via the `index.html` meta-refresh to `/en/` (served at `/`),
+  independent of `.htaccess`.
+- Security headers / custom cache rules from `.htaccess` won't apply; nginx already sends
+  long-lived caching for hashed assets. Add nginx-level rules via Cloudways if you need the headers.
 
-## Manual fallback (no CI)
+## Manual deploy (no CI)
 
 ```bash
 npm run build
-rsync -avz --delete dist/landing-shipframe/browser/ user@host:/path/to/public_html/
+# with an SSH key on your machine, or type the password when prompted:
+rsync -rlvz --delete dist/landing-shipframe/browser/ shipframe@159.203.136.40:public_html/
 ```
 
-## Notes
+## First run
 
-- The site is fully static — no Node runtime is needed on Cloudways.
-- Enable the free **Let's Encrypt SSL** for `shipframe.hackeruna.com` in Cloudways (the `.htaccess` already forces HTTPS).
-- If `rsync` is unavailable for the app user, switch the deploy step to `scp -r` or SFTP; the artifact is identical.
+1. Add the secrets above.
+2. Push to `main` (or run the workflow manually from the Actions tab).
+3. Watch it under **Actions → Deploy to Cloudways**; the smoke step confirms production `200`s.

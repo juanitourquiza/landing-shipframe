@@ -39,29 +39,22 @@ jobs:
           test -f dist/landing-shipframe/browser/.htaccess
           echo "Build output verified."
 
-      - name: Configure SSH
-        env:
-          SSH_KEY: ${{ secrets.CLOUDWAYS_SSH_KEY }}
-          SSH_HOST: ${{ secrets.CLOUDWAYS_SSH_HOST }}
-          SSH_PORT: ${{ secrets.CLOUDWAYS_SSH_PORT }}
-        run: |
-          mkdir -p ~/.ssh
-          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -p "${SSH_PORT:-22}" -H "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+      - name: Install sshpass
+        run: sudo apt-get update && sudo apt-get install -y sshpass
 
-      - name: Deploy via rsync
+      - name: Deploy via rsync (password auth)
         env:
+          SSHPASS: ${{ secrets.CLOUDWAYS_SSH_PASSWORD }}
           SSH_HOST: ${{ secrets.CLOUDWAYS_SSH_HOST }}
           SSH_USER: ${{ secrets.CLOUDWAYS_SSH_USER }}
           SSH_PORT: ${{ secrets.CLOUDWAYS_SSH_PORT }}
           REMOTE_PATH: ${{ secrets.CLOUDWAYS_REMOTE_PATH }}
         run: |
-          rsync -avz --delete \
+          rsync -rlvz --delete \
             --exclude='.well-known' \
-            -e "ssh -i ~/.ssh/deploy_key -p ${SSH_PORT:-22} -o StrictHostKeyChecking=yes" \
+            -e "sshpass -e ssh -p ${SSH_PORT:-22} -o StrictHostKeyChecking=accept-new -o PreferredAuthentications=password -o PubkeyAuthentication=no" \
             dist/landing-shipframe/browser/ \
-            "${SSH_USER}@${SSH_HOST}:${REMOTE_PATH}/"
+            "${SSH_USER}@${SSH_HOST}:${REMOTE_PATH:-public_html}/"
 
       - name: Smoke check (production)
         run: |
@@ -70,7 +63,3 @@ jobs:
             echo "$code  $url"
             [ "$code" = "200" ] || echo "::warning::$url returned $code"
           done
-
-      - name: Cleanup SSH key
-        if: always()
-        run: rm -f ~/.ssh/deploy_key
