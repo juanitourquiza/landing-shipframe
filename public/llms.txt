@@ -1,0 +1,48 @@
+# ShipFrame
+
+> ShipFrame is an open-source AI coding workflow toolkit for teams that plan, prove and ship software changes with discipline. It turns natural-language development requests into a repeatable delivery lifecycle and works with Claude Code, Codex CLI and OpenCode. Released under the MIT License.
+
+ShipFrame provides reusable skills, agent workflows, templates and project profiles. The core lifecycle is: Refresh context → Discover requirements → Plan work → Implement → Verify → Review → Release evidence → PR/MR. It is built for teams that work from tickets, Git branches and pull/merge requests, and that require concrete release evidence before declaring work complete.
+
+## Key facts
+
+- **Name:** ShipFrame
+- **What it is:** AI coding workflow toolkit / developer tool
+- **Supported tools:** Claude Code (plugin + agents + hooks), Codex CLI (routing table in AGENTS.md), OpenCode (symlinked skills + converted agents)
+- **License:** MIT (free for personal and commercial use)
+- **Platforms:** macOS, Linux
+- **Repository:** https://github.com/juanitourquiza/shipframe
+- **Landing page:** https://shipframe.hackeruna.com
+- **Maintainer:** hackeruna — contact j@hackeruna.com
+- **Optional memory:** integrates with Engram for persistent cross-session memory
+
+## Install
+
+- One-line: `curl -fsSL https://raw.githubusercontent.com/juanitourquiza/shipframe/main/install.sh | bash`
+- Homebrew: `brew tap juanitourquiza/shipframe && brew install shipframe && shipframe install --codex`
+- Targets: `./install.sh --claude`, `--codex`, `--opencode`, or `--all`
+
+## What's inside
+
+- **Core workflow:** init-project, project-memory-refresh, feature-discovery, plan-expert, implement-task, code-review, create-task, create-issue, create-pr
+- **Engineering discipline:** domain-modeling, codebase-design, tdd, bug-diagnosis, research, handoff
+- **Release & evidence:** project-profile, project-release, release-checklist, frontend-release, backend-release, deploy-evidence
+- **Integration & product:** mcp-debugging, client-copy-review, a11y-auditor (WCAG 2.2), design-expert, design-system-docs, design-system-setup
+- **Knowledge wiki:** wiki-init, wiki-query, wiki-sync, wiki-forge
+- **Project profiles:** generic core plus opt-in per-repo rules (release process, smoke-test routes, version policy, i18n, client copy). Starter packs for Angular, Laravel and MCP.
+
+## Docs and pages
+
+- [Repository & README](https://github.com/juanitourquiza/shipframe): source, full documentation, installer and skills.
+- [Releases](https://github.com/juanitourquiza/shipframe/releases): stable versions tagged `vX.Y.Z`.
+- [MIT License](https://github.com/juanitourquiza/shipframe/blob/main/LICENSE): licensing terms.
+- [Landing — English](https://shipframe.hackeruna.com/en/): product overview, lifecycle, features, install and FAQ.
+- [Landing — Español](https://shipframe.hackeruna.com/es/): resumen del producto, ciclo, funciones, instalación y preguntas frecuentes.
+
+## Frequently asked questions
+
+- **What is ShipFrame?** An open-source AI coding workflow toolkit that gives AI agents a repeatable delivery lifecycle so teams plan, prove and ship with discipline instead of ad-hoc prompting.
+- **Which AI tools does it support?** Claude Code, Codex CLI and OpenCode. One install can target one, several or all of them.
+- **Is it free?** Yes, it is open source under the MIT License.
+- **Does it work with GitHub and GitLab?** Yes — Draft Pull Requests on GitHub (gh CLI) and Draft Merge Requests on GitLab (glab CLI); the provider is auto-detected from the origin remote.
+- **Do I have to change my workflow?** No — it is designed around tickets, Git branches and pull/merge requests, and you adopt only the skills you want.
