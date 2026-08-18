@@ -1,0 +1,76 @@
+name: Deploy to Cloudways
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+# Never run two production deploys at once; newer push wins.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (static prerender)
+        run: npm run build
+
+      - name: Verify build output
+        run: |
+          test -f dist/landing-shipframe/browser/en/index.html
+          test -f dist/landing-shipframe/browser/es/index.html
+          test -f dist/landing-shipframe/browser/.htaccess
+          echo "Build output verified."
+
+      - name: Configure SSH
+        env:
+          SSH_KEY: ${{ secrets.CLOUDWAYS_SSH_KEY }}
+          SSH_HOST: ${{ secrets.CLOUDWAYS_SSH_HOST }}
+          SSH_PORT: ${{ secrets.CLOUDWAYS_SSH_PORT }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "${SSH_PORT:-22}" -H "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Deploy via rsync
+        env:
+          SSH_HOST: ${{ secrets.CLOUDWAYS_SSH_HOST }}
+          SSH_USER: ${{ secrets.CLOUDWAYS_SSH_USER }}
+          SSH_PORT: ${{ secrets.CLOUDWAYS_SSH_PORT }}
+          REMOTE_PATH: ${{ secrets.CLOUDWAYS_REMOTE_PATH }}
+        run: |
+          rsync -avz --delete \
+            --exclude='.well-known' \
+            -e "ssh -i ~/.ssh/deploy_key -p ${SSH_PORT:-22} -o StrictHostKeyChecking=yes" \
+            dist/landing-shipframe/browser/ \
+            "${SSH_USER}@${SSH_HOST}:${REMOTE_PATH}/"
+
+      - name: Smoke check (production)
+        run: |
+          for url in "https://shipframe.hackeruna.com/en/" "https://shipframe.hackeruna.com/es/" "https://shipframe.hackeruna.com/llms.txt"; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "$url" || echo "000")
+            echo "$code  $url"
+            [ "$code" = "200" ] || echo "::warning::$url returned $code"
+          done
+
+      - name: Cleanup SSH key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key

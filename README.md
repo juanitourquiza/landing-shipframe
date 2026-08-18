@@ -78,6 +78,10 @@ npm run preview        # builds and serves at http://localhost:4300
 
 The site is static, so no Node runtime is required on the server.
 
+> **Automatic deploy:** every push to `main` builds and syncs to Cloudways via GitHub Actions
+> ([`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)). One-time SSH key + secrets
+> setup is documented in **[DEPLOY.md](DEPLOY.md)**. The steps below are the manual fallback.
+
 1. Build locally: `npm run build`.
 2. Upload the **contents of `dist/landing-shipframe/browser/`** (including the hidden `.htaccess`) to the application's web root on Cloudways (e.g. `public_html/`).
    - Via SFTP/SCP:
