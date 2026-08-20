@@ -159,7 +159,7 @@ export const ES: Content = {
     eyebrow: 'Instalación',
     title: 'Funcionando con un solo comando',
     subtitle:
-      'Se instala globalmente para tu usuario en Claude Code, Codex CLI y OpenCode, con comandos de doctor, repair y uninstall para un rollout seguro.',
+      'Instala una vez. Abre /skills. Usa los workflows de ShipFrame directamente en Claude Code, Codex CLI y OpenCode, con doctor, repair y uninstall para un rollout seguro.',
     tabs: [
       { id: 'curl', label: 'Una línea', code: 'curl -fsSL https://raw.githubusercontent.com/juanitourquiza/shipframe/main/install.sh | bash' },
       { id: 'brew', label: 'Homebrew', code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --doctor --repo-only' },
@@ -167,14 +167,14 @@ export const ES: Content = {
     ],
     copy: 'Copiar',
     copied: '¡Copiado!',
-    targetsTitle: 'Elige tu herramienta',
-    targetsHead: { tool: 'Herramienta', skills: 'Skills', orchestration: 'Orquestación' },
+    targetsTitle: 'Úsalo desde tu skills picker',
+    targetsHead: { tool: 'Herramienta', skills: 'Discovery después de instalar', orchestration: 'Ejecuta un workflow' },
     targets: [
-      { tool: 'Claude Code', skills: 'Marketplace de plugins / plugin local', orchestration: 'Agentes + hooks gestionados por el plugin' },
-      { tool: 'OpenCode', skills: 'Skills enlazados', orchestration: 'Agentes convertidos; hereda el modelo global/default' },
-      { tool: 'Codex CLI', skills: 'Skills enlazados', orchestration: 'Tabla de routing en AGENTS.md; config.toml queda del usuario' },
+      { tool: 'Claude Code', skills: 'Namespace del plugin', orchestration: '/shipframe:code-review' },
+      { tool: 'Codex CLI', skills: 'Picker /skills', orchestration: '$code-review' },
+      { tool: 'OpenCode', skills: 'Discovery nativo de skills', orchestration: 'Herramienta skill de OpenCode' },
     ],
-    note: 'Usa --doctor --repo-only en CI o antes del rollout; --repair restaura bloques gestionados y --uninstall elimina artefactos gestionados por ShipFrame.',
+    note: 'Sin prometer marketplace oficial: ShipFrame instala skills locales en la ruta de discovery de cada host y deja modelos/configuración en manos del usuario.',
   },
   audience: {
     eyebrow: 'Para quién es',
@@ -199,6 +199,11 @@ export const ES: Content = {
       {
         q: '¿Qué herramientas de IA soporta ShipFrame?',
         a: 'ShipFrame funciona con Claude Code (agentes y hooks gestionados por el plugin), Codex CLI (tabla de routing en AGENTS.md sin modificar tu config.toml) y OpenCode (skills enlazados y agentes convertidos que heredan tu modelo global/default salvo que lo sobrescribas). Una sola instalación puede apuntar a una, varias o todas.',
+      },
+
+      {
+        q: '¿Las skills de ShipFrame aparecen en /skills?',
+        a: 'Sí en Codex después de shipframe install --codex: abre /skills y ejecuta workflows con $code-review, $plan-expert y las demás skills instaladas. Claude Code usa el namespace /shipframe:<skill>, por ejemplo /shipframe:code-review. OpenCode las carga con su herramienta nativa skill después de shipframe install --opencode.',
       },
       {
         q: '¿ShipFrame es gratis y open source?',
