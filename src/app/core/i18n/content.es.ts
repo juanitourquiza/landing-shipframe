@@ -174,7 +174,7 @@ export const ES: Content = {
       { tool: 'Codex CLI', skills: 'Picker /skills', orchestration: '$code-review' },
       { tool: 'OpenCode', skills: 'Discovery nativo de skills', orchestration: 'Herramienta skill de OpenCode' },
     ],
-    note: 'Sin prometer marketplace oficial: ShipFrame instala skills locales en la ruta de discovery de cada host y deja modelos/configuración en manos del usuario.',
+    note: 'Discovery nativo, sin lock-in: soporte de marketplace en Claude, /skills en Codex y skill discovery en OpenCode.',
   },
   audience: {
     eyebrow: 'Para quién es',

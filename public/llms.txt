@@ -24,7 +24,7 @@ Install once. Open `/skills`. Use ShipFrame workflows directly.
 - Homebrew: `brew tap juanitourquiza/shipframe && brew install shipframe && shipframe install --codex`
 - Targets: `./install.sh --claude`, `--codex`, `--opencode`, or `--all`
 - Safe checks and maintenance: `./install.sh --doctor --repo-only`, `./install.sh --repair --all`, `./install.sh --uninstall --all --yes`
-- Skills picker usage: Claude Code `/shipframe:code-review`; Codex CLI `/skills` then `$code-review`; OpenCode native skill discovery after `shipframe install --opencode`.
+- Native discovery, no lock-in: Claude plugin marketplace support with `/shipframe:code-review`, Codex CLI `/skills` then `$code-review`, and OpenCode native skill discovery after `shipframe install --opencode`.
 
 ## What's inside
 
