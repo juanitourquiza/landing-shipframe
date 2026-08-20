@@ -159,22 +159,22 @@ export const EN: Content = {
     eyebrow: 'Installation',
     title: 'Up and running in one command',
     subtitle:
-      'Installs globally for your user across Claude Code, Codex CLI and OpenCode. Project rules stay in each repo.',
+      'Installs globally for your user across Claude Code, Codex CLI and OpenCode, with doctor, repair and uninstall commands for safe rollout.',
     tabs: [
       { id: 'curl', label: 'One-line', code: 'curl -fsSL https://raw.githubusercontent.com/juanitourquiza/shipframe/main/install.sh | bash' },
-      { id: 'brew', label: 'Homebrew', code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex' },
-      { id: 'clone', label: 'Local clone', code: 'git clone https://github.com/juanitourquiza/shipframe ~/tools/shipframe\ncd ~/tools/shipframe\n./install.sh --claude' },
+      { id: 'brew', label: 'Homebrew', code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --doctor --repo-only' },
+      { id: 'clone', label: 'Local clone', code: 'git clone https://github.com/juanitourquiza/shipframe ~/tools/shipframe\ncd ~/tools/shipframe\n./install.sh --all\n./install.sh --repair --all\n./install.sh --uninstall --all --yes' },
     ],
     copy: 'Copy',
     copied: 'Copied!',
     targetsTitle: 'Choose your tool',
     targetsHead: { tool: 'Tool', skills: 'Skills', orchestration: 'Orchestration' },
     targets: [
-      { tool: 'Claude Code', skills: 'Plugin marketplace / local plugin', orchestration: 'Agents + hooks' },
-      { tool: 'OpenCode', skills: 'Symlinked skills', orchestration: 'Converted agents' },
-      { tool: 'Codex CLI', skills: 'Symlinked skills', orchestration: 'Routing table in AGENTS.md' },
+      { tool: 'Claude Code', skills: 'Plugin marketplace / local plugin', orchestration: 'Plugin-managed agents + hooks' },
+      { tool: 'OpenCode', skills: 'Symlinked skills', orchestration: 'Converted agents; inherits global/default model' },
+      { tool: 'Codex CLI', skills: 'Symlinked skills', orchestration: 'Routing table in AGENTS.md; config.toml stays user-owned' },
     ],
-    note: 'Optional persistent memory with Engram lets agents remember decisions, fixes and conventions across sessions.',
+    note: 'Use --doctor --repo-only in CI or before rollout; --repair restores managed blocks, and --uninstall removes ShipFrame-managed artifacts.',
   },
   audience: {
     eyebrow: 'Who it’s for',
@@ -198,7 +198,7 @@ export const EN: Content = {
       },
       {
         q: 'Which AI tools does ShipFrame support?',
-        a: 'ShipFrame works with Claude Code (as a plugin with agents and hooks), Codex CLI (via a routing table in AGENTS.md) and OpenCode (symlinked skills and converted agents). A single install can target one, several or all of them.',
+        a: 'ShipFrame works with Claude Code (plugin-managed agents and hooks), Codex CLI (a routing table in AGENTS.md without changing your config.toml) and OpenCode (symlinked skills plus converted agents that inherit your global/default model unless you override it). A single install can target one, several or all of them.',
       },
       {
         q: 'Is ShipFrame free and open source?',
@@ -206,7 +206,7 @@ export const EN: Content = {
       },
       {
         q: 'How do I install ShipFrame?',
-        a: 'Run the one-line installer with curl, install via Homebrew (brew tap juanitourquiza/shipframe && brew install shipframe), or clone the repository and run ./install.sh with --claude, --codex, --opencode or --all.',
+        a: 'Run the one-line installer with curl, install via Homebrew (brew tap juanitourquiza/shipframe && brew install shipframe), or clone the repository and run ./install.sh with --claude, --codex, --opencode or --all. Validate safely with --doctor --repo-only, restore managed files with --repair, and remove ShipFrame-managed artifacts with --uninstall.',
       },
       {
         q: 'Do I have to change my existing workflow?',

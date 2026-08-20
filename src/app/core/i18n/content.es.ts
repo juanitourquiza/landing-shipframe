@@ -159,22 +159,22 @@ export const ES: Content = {
     eyebrow: 'Instalación',
     title: 'Funcionando con un solo comando',
     subtitle:
-      'Se instala globalmente para tu usuario en Claude Code, Codex CLI y OpenCode. Las reglas del proyecto viven en cada repo.',
+      'Se instala globalmente para tu usuario en Claude Code, Codex CLI y OpenCode, con comandos de doctor, repair y uninstall para un rollout seguro.',
     tabs: [
       { id: 'curl', label: 'Una línea', code: 'curl -fsSL https://raw.githubusercontent.com/juanitourquiza/shipframe/main/install.sh | bash' },
-      { id: 'brew', label: 'Homebrew', code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex' },
-      { id: 'clone', label: 'Clon local', code: 'git clone https://github.com/juanitourquiza/shipframe ~/tools/shipframe\ncd ~/tools/shipframe\n./install.sh --claude' },
+      { id: 'brew', label: 'Homebrew', code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --doctor --repo-only' },
+      { id: 'clone', label: 'Clon local', code: 'git clone https://github.com/juanitourquiza/shipframe ~/tools/shipframe\ncd ~/tools/shipframe\n./install.sh --all\n./install.sh --repair --all\n./install.sh --uninstall --all --yes' },
     ],
     copy: 'Copiar',
     copied: '¡Copiado!',
     targetsTitle: 'Elige tu herramienta',
     targetsHead: { tool: 'Herramienta', skills: 'Skills', orchestration: 'Orquestación' },
     targets: [
-      { tool: 'Claude Code', skills: 'Marketplace de plugins / plugin local', orchestration: 'Agentes + hooks' },
-      { tool: 'OpenCode', skills: 'Skills enlazados', orchestration: 'Agentes convertidos' },
-      { tool: 'Codex CLI', skills: 'Skills enlazados', orchestration: 'Tabla de routing en AGENTS.md' },
+      { tool: 'Claude Code', skills: 'Marketplace de plugins / plugin local', orchestration: 'Agentes + hooks gestionados por el plugin' },
+      { tool: 'OpenCode', skills: 'Skills enlazados', orchestration: 'Agentes convertidos; hereda el modelo global/default' },
+      { tool: 'Codex CLI', skills: 'Skills enlazados', orchestration: 'Tabla de routing en AGENTS.md; config.toml queda del usuario' },
     ],
-    note: 'La memoria persistente opcional con Engram permite que los agentes recuerden decisiones, fixes y convenciones entre sesiones.',
+    note: 'Usa --doctor --repo-only en CI o antes del rollout; --repair restaura bloques gestionados y --uninstall elimina artefactos gestionados por ShipFrame.',
   },
   audience: {
     eyebrow: 'Para quién es',
@@ -198,7 +198,7 @@ export const ES: Content = {
       },
       {
         q: '¿Qué herramientas de IA soporta ShipFrame?',
-        a: 'ShipFrame funciona con Claude Code (como plugin con agentes y hooks), Codex CLI (mediante una tabla de routing en AGENTS.md) y OpenCode (skills enlazados y agentes convertidos). Una sola instalación puede apuntar a una, varias o todas.',
+        a: 'ShipFrame funciona con Claude Code (agentes y hooks gestionados por el plugin), Codex CLI (tabla de routing en AGENTS.md sin modificar tu config.toml) y OpenCode (skills enlazados y agentes convertidos que heredan tu modelo global/default salvo que lo sobrescribas). Una sola instalación puede apuntar a una, varias o todas.',
       },
       {
         q: '¿ShipFrame es gratis y open source?',
@@ -206,7 +206,7 @@ export const ES: Content = {
       },
       {
         q: '¿Cómo instalo ShipFrame?',
-        a: 'Ejecuta el instalador de una línea con curl, instálalo con Homebrew (brew tap juanitourquiza/shipframe && brew install shipframe), o clona el repositorio y corre ./install.sh con --claude, --codex, --opencode o --all.',
+        a: 'Ejecuta el instalador de una línea con curl, instálalo con Homebrew (brew tap juanitourquiza/shipframe && brew install shipframe), o clona el repositorio y corre ./install.sh con --claude, --codex, --opencode o --all. Valida de forma segura con --doctor --repo-only, restaura archivos gestionados con --repair y elimina artefactos de ShipFrame con --uninstall.',
       },
       {
         q: '¿Tengo que cambiar mi flujo de trabajo actual?',

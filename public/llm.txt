@@ -8,7 +8,7 @@ ShipFrame provides reusable skills, agent workflows, templates and project profi
 
 - **Name:** ShipFrame
 - **What it is:** AI coding workflow toolkit / developer tool
-- **Supported tools:** Claude Code (plugin + agents + hooks), Codex CLI (routing table in AGENTS.md), OpenCode (symlinked skills + converted agents)
+- **Supported tools:** Claude Code (plugin-managed agents + hooks), Codex CLI (routing table in AGENTS.md without changing user-owned config.toml), OpenCode (symlinked skills + converted agents that inherit the global/default model unless overridden)
 - **License:** MIT (free for personal and commercial use)
 - **Platforms:** macOS, Linux
 - **Repository:** https://github.com/juanitourquiza/shipframe
@@ -21,6 +21,7 @@ ShipFrame provides reusable skills, agent workflows, templates and project profi
 - One-line: `curl -fsSL https://raw.githubusercontent.com/juanitourquiza/shipframe/main/install.sh | bash`
 - Homebrew: `brew tap juanitourquiza/shipframe && brew install shipframe && shipframe install --codex`
 - Targets: `./install.sh --claude`, `--codex`, `--opencode`, or `--all`
+- Safe checks and maintenance: `./install.sh --doctor --repo-only`, `./install.sh --repair --all`, `./install.sh --uninstall --all --yes`
 
 ## What's inside
 
@@ -42,7 +43,7 @@ ShipFrame provides reusable skills, agent workflows, templates and project profi
 ## Frequently asked questions
 
 - **What is ShipFrame?** An open-source AI coding workflow toolkit that gives AI agents a repeatable delivery lifecycle so teams plan, prove and ship with discipline instead of ad-hoc prompting.
-- **Which AI tools does it support?** Claude Code, Codex CLI and OpenCode. One install can target one, several or all of them.
+- **Which AI tools does it support?** Claude Code, Codex CLI and OpenCode. Claude hooks are plugin-managed, Codex keeps config.toml user-owned, and OpenCode inherits the global/default model by default.
 - **Is it free?** Yes, it is open source under the MIT License.
 - **Does it work with GitHub and GitLab?** Yes — Draft Pull Requests on GitHub (gh CLI) and Draft Merge Requests on GitLab (glab CLI); the provider is auto-detected from the origin remote.
 - **Do I have to change my workflow?** No — it is designed around tickets, Git branches and pull/merge requests, and you adopt only the skills you want.

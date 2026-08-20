@@ -139,7 +139,7 @@ export class HeroComponent {
   protected readonly logLines = [
     { text: '✔ Detected Claude Code, Codex CLI, OpenCode', cls: 'text-green-400/90' },
     { text: '✔ Linked 30+ skills', cls: 'text-green-400/90' },
-    { text: '✔ Configured agents + hooks', cls: 'text-green-400/90' },
+    { text: '✔ Configured agents + plugin-managed hooks', cls: 'text-green-400/90' },
     { text: 'ℹ Add a project profile to customize per repo', cls: 'text-fg-subtle' },
   ];
 }
