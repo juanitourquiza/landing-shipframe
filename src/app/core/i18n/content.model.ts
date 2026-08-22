@@ -94,6 +94,7 @@ export interface CtaContent {
   subtitle: string;
   primary: string;
   secondary: string;
+  plugin: string;
 }
 
 export interface FooterContent {

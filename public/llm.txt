@@ -1,6 +1,6 @@
 # ShipFrame
 
-> ShipFrame is an open-source AI coding workflow toolkit for teams that plan, prove and ship software changes with discipline. It turns natural-language development requests into a repeatable delivery lifecycle and works with Claude Code, Codex CLI and OpenCode. Released under the MIT License.
+> ShipFrame is an open-source AI coding workflow toolkit for teams that plan, prove and ship software changes with discipline. It turns natural-language development requests into a repeatable delivery lifecycle and works with Claude Code, Codex CLI, the curated ChatGPT/Codex plugin and OpenCode. Released under the MIT License.
 
 ShipFrame provides reusable skills, agent workflows, templates and project profiles. The core lifecycle is: Refresh context → Discover requirements → Plan work → Implement → Verify → Review → Release evidence → PR/MR. It is built for teams that work from tickets, Git branches and pull/merge requests, and that require concrete release evidence before declaring work complete.
 
@@ -8,10 +8,11 @@ ShipFrame provides reusable skills, agent workflows, templates and project profi
 
 - **Name:** ShipFrame
 - **What it is:** AI coding workflow toolkit / developer tool
-- **Supported tools:** Claude Code (plugin-managed agents + hooks and /shipframe:<skill> commands), Codex CLI (/skills picker with $skill invocation and a routing table in AGENTS.md without changing user-owned config.toml), OpenCode (native skill discovery plus converted agents that inherit the global/default model unless overridden)
+- **Supported tools:** Claude Code (plugin-managed agents + hooks and /shipframe:<skill> commands), Codex CLI (/skills picker with $skill invocation and a routing table in AGENTS.md without changing user-owned config.toml), ChatGPT/Codex plugin (22 curated public skills), OpenCode (native skill discovery plus converted agents that inherit the global/default model unless overridden)
 - **License:** MIT (free for personal and commercial use)
 - **Platforms:** macOS, Linux
 - **Repository:** https://github.com/juanitourquiza/shipframe
+- **ChatGPT/Codex plugin:** https://chatgpt.com/plugins/plugins_6a88e6256bb48191a343d39dace5e05c
 - **Landing page:** https://shipframe.hackeruna.com
 - **Maintainer:** hackeruna — contact j@hackeruna.com
 - **Optional memory:** integrates with Engram for persistent cross-session memory
@@ -24,7 +25,7 @@ Install once. Open `/skills`. Use ShipFrame workflows directly.
 - Homebrew: `brew tap juanitourquiza/shipframe && brew install shipframe && shipframe install --codex`
 - Targets: `./install.sh --claude`, `--codex`, `--opencode`, or `--all`
 - Safe checks and maintenance: `./install.sh --doctor --repo-only`, `./install.sh --repair --all`, `./install.sh --uninstall --all --yes`
-- Native discovery, no lock-in: Claude plugin marketplace support with `/shipframe:code-review`, Codex CLI `/skills` then `$code-review`, and OpenCode native skill discovery after `shipframe install --opencode`.
+- Native discovery, no lock-in: Claude plugin marketplace support with `/shipframe:code-review`, Codex CLI `/skills` then `$code-review`, the public ChatGPT/Codex plugin with 22 curated workflows, and OpenCode native skill discovery after `shipframe install --opencode`.
 
 ## What's inside
 
@@ -38,6 +39,7 @@ Install once. Open `/skills`. Use ShipFrame workflows directly.
 ## Docs and pages
 
 - [Repository & README](https://github.com/juanitourquiza/shipframe): source, full documentation, installer and skills.
+- [ChatGPT/Codex plugin](https://chatgpt.com/plugins/plugins_6a88e6256bb48191a343d39dace5e05c): curated 22-skill plugin distribution.
 - [Releases](https://github.com/juanitourquiza/shipframe/releases): stable versions tagged `vX.Y.Z`.
 - [MIT License](https://github.com/juanitourquiza/shipframe/blob/main/LICENSE): licensing terms.
 - [Landing — English](https://shipframe.hackeruna.com/): product overview, lifecycle, features, install and FAQ.
@@ -46,7 +48,7 @@ Install once. Open `/skills`. Use ShipFrame workflows directly.
 ## Frequently asked questions
 
 - **What is ShipFrame?** An open-source AI coding workflow toolkit that gives AI agents a repeatable delivery lifecycle so teams plan, prove and ship with discipline instead of ad-hoc prompting.
-- **Which AI tools does it support?** Claude Code, Codex CLI and OpenCode. Claude hooks are plugin-managed, Codex keeps config.toml user-owned, and OpenCode inherits the global/default model by default.
+- **Which AI tools does it support?** Claude Code, Codex CLI, the ChatGPT/Codex plugin and OpenCode. Claude hooks are plugin-managed, Codex keeps config.toml user-owned, the public plugin includes 22 curated skills, and OpenCode inherits the global/default model by default.
 - **Do ShipFrame skills appear in /skills?** Yes in Codex after `shipframe install --codex`; Claude uses `/shipframe:<skill>` commands such as `/shipframe:code-review`; OpenCode loads skills through its native skill tool.
 - **Is it free?** Yes, it is open source under the MIT License.
 - **Does it work with GitHub and GitLab?** Yes — Draft Pull Requests on GitHub (gh CLI) and Draft Merge Requests on GitLab (glab CLI); the provider is auto-detected from the origin remote.

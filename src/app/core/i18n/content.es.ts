@@ -4,9 +4,9 @@ export const ES: Content = {
   seo: {
     title: 'ShipFrame — Flujos de trabajo de IA para equipos que planifican, prueban y publican',
     description:
-      'ShipFrame es un toolkit open source de flujos de trabajo con IA para Claude Code, Codex CLI y OpenCode. Convierte peticiones en lenguaje natural en un ciclo repetible: planificar, implementar, verificar, revisar y publicar con evidencia real de release.',
+      'ShipFrame es un toolkit open source de flujos de trabajo con IA para Claude Code, Codex CLI, plugin ChatGPT/Codex y OpenCode. Convierte peticiones en lenguaje natural en un ciclo repetible: planificar, implementar, verificar, revisar y publicar con evidencia real de release.',
     keywords:
-      'flujo de trabajo IA, Claude Code, Codex CLI, OpenCode, agentes de IA, desarrollo con agentes, evidencia de release, herramientas para desarrolladores, MCP, desarrollo guiado por especificación',
+      'flujo de trabajo IA, Claude Code, Codex CLI, plugin ChatGPT, OpenCode, agentes de IA, desarrollo con agentes, evidencia de release, herramientas para desarrolladores, MCP, desarrollo guiado por especificación',
     ogAlt: 'ShipFrame — flujos de trabajo de IA para equipos que planifican, prueban y publican',
   },
   nav: {
@@ -22,7 +22,7 @@ export const ES: Content = {
     themeDark: 'Cambiar a modo oscuro',
   },
   hero: {
-    badge: 'Open source · MIT · Claude Code · Codex · OpenCode',
+    badge: 'Open source · MIT · plugin ChatGPT/Codex · Claude Code · OpenCode',
     titleLead: 'Flujos de trabajo de IA para equipos que ',
     titleHighlight: 'planifican, prueban y publican',
     titleTail: '.',
@@ -35,7 +35,7 @@ export const ES: Content = {
     runsWith: 'Funciona con',
     metrics: [
       { value: '30+', label: 'Skills reutilizables' },
-      { value: '3', label: 'Herramientas de IA' },
+      { value: '22', label: 'Skills curadas del plugin' },
       { value: '8', label: 'Etapas del ciclo' },
       { value: 'MIT', label: 'Open source' },
     ],
@@ -172,9 +172,10 @@ export const ES: Content = {
     targets: [
       { tool: 'Claude Code', skills: 'Namespace del plugin', orchestration: '/shipframe:code-review' },
       { tool: 'Codex CLI', skills: 'Picker /skills', orchestration: '$code-review' },
+      { tool: 'Plugin ChatGPT/Codex', skills: 'Plugin público curado', orchestration: 'Abrir plugin en ChatGPT' },
       { tool: 'OpenCode', skills: 'Discovery nativo de skills', orchestration: 'Herramienta skill de OpenCode' },
     ],
-    note: 'Discovery nativo, sin lock-in: soporte de marketplace en Claude, /skills en Codex y skill discovery en OpenCode.',
+    note: 'Discovery nativo, sin lock-in: el toolkit completo por GitHub/Homebrew incluye 30+ skills; el plugin ChatGPT/Codex empaqueta 22 workflows curados para uso público.'
   },
   audience: {
     eyebrow: 'Para quién es',
@@ -198,12 +199,12 @@ export const ES: Content = {
       },
       {
         q: '¿Qué herramientas de IA soporta ShipFrame?',
-        a: 'ShipFrame funciona con Claude Code (agentes y hooks gestionados por el plugin), Codex CLI (tabla de routing en AGENTS.md sin modificar tu config.toml) y OpenCode (skills enlazados y agentes convertidos que heredan tu modelo global/default salvo que lo sobrescribas). Una sola instalación puede apuntar a una, varias o todas.',
+        a: 'ShipFrame funciona con Claude Code (agentes y hooks gestionados por el plugin), Codex CLI (tabla de routing en AGENTS.md sin modificar tu config.toml), el plugin público ChatGPT/Codex (22 workflows curados) y OpenCode (skills enlazados y agentes convertidos que heredan tu modelo global/default salvo que lo sobrescribas). Una sola instalación puede apuntar a una, varias o todas.',
       },
 
       {
         q: '¿Las skills de ShipFrame aparecen en /skills?',
-        a: 'Sí en Codex después de shipframe install --codex: abre /skills y ejecuta workflows con $code-review, $plan-expert y las demás skills instaladas. Claude Code usa el namespace /shipframe:<skill>, por ejemplo /shipframe:code-review. OpenCode las carga con su herramienta nativa skill después de shipframe install --opencode.',
+        a: 'Sí en Codex después de shipframe install --codex: abre /skills y ejecuta workflows con $code-review, $plan-expert y las demás skills instaladas. Claude Code usa el namespace /shipframe:<skill>, por ejemplo /shipframe:code-review. ChatGPT puede abrir el plugin público curado, y OpenCode las carga con su herramienta nativa skill después de shipframe install --opencode.',
       },
       {
         q: '¿ShipFrame es gratis y open source?',
@@ -233,9 +234,10 @@ export const ES: Content = {
   },
   cta: {
     title: 'Dale a tus agentes de IA un proceso digno de confianza',
-    subtitle: 'Instala ShipFrame y convierte cada petición en un plan, un cambio verificado y evidencia real de release.',
+    subtitle: 'Instala ShipFrame o abre el plugin curado de ChatGPT/Codex, y convierte cada petición en un plan, un cambio verificado y evidencia real de release.',
     primary: 'Empezar ahora',
     secondary: 'Leer la documentación',
+    plugin: 'Abrir plugin ChatGPT',
   },
   footer: {
     tagline: 'Flujos de trabajo de IA para equipos que planifican, prueban y publican.',
@@ -257,6 +259,7 @@ export const ES: Content = {
         links: [
           { label: 'Repositorio en GitHub', href: 'https://github.com/juanitourquiza/shipframe', external: true },
           { label: 'README y docs', href: 'https://github.com/juanitourquiza/shipframe#readme', external: true },
+          { label: 'Plugin ChatGPT', href: 'https://chatgpt.com/plugins/plugins_6a88e6256bb48191a343d39dace5e05c', external: true },
           { label: 'Releases', href: 'https://github.com/juanitourquiza/shipframe/releases', external: true },
           { label: 'Licencia MIT', href: 'https://github.com/juanitourquiza/shipframe/blob/main/LICENSE', external: true },
         ],
