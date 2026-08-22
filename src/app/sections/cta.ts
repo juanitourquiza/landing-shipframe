@@ -38,6 +38,15 @@ import { SITE } from '../core/site.config';
               <app-icon name="arrow" [size]="18" />
             </a>
             <a
+              [href]="plugin"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="border-accent-400/60 text-fg hover:bg-accent-400/10 inline-flex w-full items-center justify-center gap-2 rounded-xl border px-6 py-3.5 text-base font-semibold transition-colors sm:w-auto"
+            >
+              {{ c().plugin }}
+              <app-icon name="arrow" [size]="18" />
+            </a>
+            <a
               [href]="docs"
               target="_blank"
               rel="noopener noreferrer"
@@ -56,4 +65,5 @@ export class CtaComponent {
   protected readonly c = () => this.i18n.content().cta;
   protected readonly repo = SITE.repo;
   protected readonly docs = SITE.docs;
+  protected readonly plugin = SITE.plugin;
 }

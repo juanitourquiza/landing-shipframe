@@ -5,6 +5,7 @@ export const SITE = {
   repo: 'https://github.com/juanitourquiza/shipframe',
   docs: 'https://github.com/juanitourquiza/shipframe#readme',
   releases: 'https://github.com/juanitourquiza/shipframe/releases',
+  plugin: 'https://chatgpt.com/plugins/plugins_6a88e6256bb48191a343d39dace5e05c',
   license: 'https://github.com/juanitourquiza/shipframe/blob/main/LICENSE',
   installCmd:
     'curl -fsSL https://raw.githubusercontent.com/juanitourquiza/shipframe/main/install.sh | bash',
