@@ -25,7 +25,7 @@ Install once. Open `/skills`. Use ShipFrame workflows directly.
 - Homebrew: `brew tap juanitourquiza/shipframe && brew install shipframe && shipframe install --codex`
 - Targets: `./install.sh --claude`, `--codex`, `--opencode`, or `--all`
 - Safe checks and maintenance: `./install.sh --doctor --repo-only`, `./install.sh --repair --all`, `./install.sh --uninstall --all --yes`
-- Native discovery, no lock-in: Claude plugin marketplace support with `/shipframe:code-review`, Codex CLI `/skills` then `$code-review`, the public ChatGPT/Codex plugin with 22 curated workflows, and OpenCode native skill discovery after `shipframe install --opencode`.
+- Native discovery, no lock-in: Claude plugin marketplace support with `/shipframe:code-review`, Codex CLI `/skills` then `$code-review`, the public ChatGPT/Codex plugin with 23 curated workflows, and OpenCode native skill discovery after `shipframe install --opencode`.
 
 ## What's inside
 
@@ -53,3 +53,7 @@ Install once. Open `/skills`. Use ShipFrame workflows directly.
 - **Is it free?** Yes, it is open source under the MIT License.
 - **Does it work with GitHub and GitLab?** Yes — Draft Pull Requests on GitHub (gh CLI) and Draft Merge Requests on GitLab (glab CLI); the provider is auto-detected from the origin remote.
 - **Do I have to change my workflow?** No — it is designed around tickets, Git branches and pull/merge requests, and you adopt only the skills you want.
+
+## Current reach snapshot
+
+As of 2026-09-03, private GitHub traffic metrics showed 193 rolling 14-day clones, 86 rolling 14-day views, and 2 stars across the ShipFrame and Homebrew repositories. These are reach/interest signals only: they are not installs, active users, retention, or landing analytics.

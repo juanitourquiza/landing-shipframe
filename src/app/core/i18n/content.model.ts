@@ -75,6 +75,17 @@ export interface InstallContent {
   note: string;
 }
 
+export interface ReachContent {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  snapshotLabel: string;
+  sourceLabel: string;
+  metrics: { value: string; label: string; note: string }[];
+  categories: { title: string; desc: string }[];
+  disclaimer: string;
+}
+
 export interface AudienceContent {
   eyebrow: string;
   title: string;
@@ -122,6 +133,7 @@ export interface Content {
   problem: ProblemContent;
   features: FeaturesContent;
   install: InstallContent;
+  reach: ReachContent;
   audience: AudienceContent;
   faq: FaqContent;
   cta: CtaContent;

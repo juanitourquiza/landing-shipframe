@@ -14,6 +14,7 @@ export const ES: Content = {
       { id: 'lifecycle', label: 'Ciclo' },
       { id: 'features', label: 'Funciones' },
       { id: 'install', label: 'Instalación' },
+      { id: 'reach', label: 'Alcance' },
       { id: 'faq', label: 'FAQ' },
     ],
     github: 'Estrella en GitHub',
@@ -175,7 +176,27 @@ export const ES: Content = {
       { tool: 'Plugin ChatGPT/Codex', skills: 'Plugin público curado', orchestration: 'Abrir plugin en ChatGPT' },
       { tool: 'OpenCode', skills: 'Discovery nativo de skills', orchestration: 'Herramienta skill de OpenCode' },
     ],
-    note: 'Discovery nativo, sin lock-in: el toolkit completo por GitHub/Homebrew incluye 30+ skills; el plugin ChatGPT/Codex empaqueta 22 workflows curados para uso público.'
+    note: 'Discovery nativo, sin lock-in: el toolkit completo por GitHub/Homebrew incluye 30+ skills; el plugin ChatGPT/Codex empaqueta 23 workflows curados para uso público.'
+  },
+  reach: {
+    eyebrow: 'Alcance actual',
+    title: 'Interés público, comunicado con honestidad',
+    subtitle:
+      'Estas son señales de alcance de GitHub tomadas del snapshot privado de métricas. Ayudan a medir interés, pero no son instalaciones, usuarios activos ni telemetry.',
+    snapshotLabel: 'Snapshot',
+    sourceLabel: 'Fuente',
+    metrics: [
+      { value: '193', label: 'Clones rolling 14 días', note: 'Entre shipframe y homebrew-shipframe; puede incluir CI, bots, contributors e intentos de instalación.' },
+      { value: '86', label: 'Views rolling 14 días', note: 'Vistas de repositorio desde GitHub traffic, no analytics de la landing.' },
+      { value: '2', label: 'Stars en GitHub', note: 'Stars públicos del repositorio al momento del snapshot.' },
+    ],
+    categories: [
+      { title: 'Reach', desc: 'Clones, views y stars de GitHub muestran discovery e interés público.' },
+      { title: 'Possible usage signal', desc: 'El movimiento de clones puede sugerir intentos de instalación, pero también incluye tráfico automatizado y de contributors.' },
+      { title: 'Not measured', desc: 'ShipFrame no mide usuarios activos, retención, workflows completados ni visitas a la landing.' },
+    ],
+    disclaimer:
+      'Los cloners y visitantes únicos son valores rolling por repositorio, por eso no se suman aquí. No se agregó telemetry del instalador en este release.',
   },
   audience: {
     eyebrow: 'Para quién es',
