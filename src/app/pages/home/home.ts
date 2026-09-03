@@ -5,6 +5,7 @@ import { LifecycleComponent } from '../../sections/lifecycle';
 import { ProblemComponent } from '../../sections/problem';
 import { FeaturesComponent } from '../../sections/features';
 import { InstallComponent } from '../../sections/install';
+import { CurrentReachComponent } from '../../sections/current-reach';
 import { AudienceComponent } from '../../sections/audience';
 import { FaqComponent } from '../../sections/faq';
 import { CtaComponent } from '../../sections/cta';
@@ -19,6 +20,7 @@ import { CtaComponent } from '../../sections/cta';
     ProblemComponent,
     FeaturesComponent,
     InstallComponent,
+    CurrentReachComponent,
     AudienceComponent,
     FaqComponent,
     CtaComponent,
@@ -30,6 +32,7 @@ import { CtaComponent } from '../../sections/cta';
     <app-problem />
     <app-features />
     <app-install />
+    <app-current-reach />
     <app-audience />
     <app-faq />
     <app-cta />

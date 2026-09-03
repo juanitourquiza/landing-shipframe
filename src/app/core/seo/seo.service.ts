@@ -101,7 +101,7 @@ export class SeoService {
       url,
       applicationCategory: 'DeveloperApplication',
       operatingSystem: 'macOS, Linux',
-      softwareVersion: '0.2.0',
+      softwareVersion: SITE.version,
       license: 'https://opensource.org/licenses/MIT',
       author: {
         '@type': 'Organization',
