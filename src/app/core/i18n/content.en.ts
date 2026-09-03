@@ -36,7 +36,7 @@ export const EN: Content = {
     runsWith: 'Runs with',
     metrics: [
       { value: '30+', label: 'Reusable skills' },
-      { value: '22', label: 'Curated plugin skills' },
+      { value: '23', label: 'Curated plugin skills' },
       { value: '8', label: 'Lifecycle stages' },
       { value: 'MIT', label: 'Open source' },
     ],
@@ -221,7 +221,7 @@ export const EN: Content = {
       },
       {
         q: 'Which AI tools does ShipFrame support?',
-        a: 'ShipFrame works with Claude Code (plugin-managed agents and hooks), Codex CLI (a routing table in AGENTS.md without changing your config.toml), the public ChatGPT/Codex plugin (22 curated workflows) and OpenCode (symlinked skills plus converted agents that inherit your global/default model unless you override it). A single install can target one, several or all of them.',
+        a: 'ShipFrame works with Claude Code (plugin-managed agents and hooks), Codex CLI (a routing table in AGENTS.md without changing your config.toml), the public ChatGPT/Codex plugin (23 curated workflows) and OpenCode (symlinked skills plus converted agents that inherit your global/default model unless you override it). A single install can target one, several or all of them.',
       },
 
       {
