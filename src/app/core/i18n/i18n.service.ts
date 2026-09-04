@@ -32,6 +32,11 @@ export class I18nService {
   /** Router path for the other language (language toggle target). */
   readonly otherPath = computed<string>(() => I18nService.pathFor(this.otherLang()));
 
+  /** Same-page section href for the current localized route. */
+  sectionPath(sectionId: string): string {
+    return `${this.homePath()}#${sectionId}`;
+  }
+
   setLang(lang: Lang): void {
     this.lang.set(lang);
   }

@@ -18,7 +18,7 @@ import { FooterComponent } from './layout/footer';
 export class App {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
-  private readonly i18n = inject(I18nService);
+  protected readonly i18n = inject(I18nService);
   private readonly seo = inject(SeoService);
   private readonly theme = inject(ThemeService);
 

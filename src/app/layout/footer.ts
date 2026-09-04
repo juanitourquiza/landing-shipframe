@@ -45,7 +45,7 @@ import { SITE } from '../core/site.config';
                 @for (link of col.links; track link.label) {
                   <li>
                     <a
-                      [href]="link.href"
+                      [href]="linkHref(link.href)"
                       [attr.target]="link.external ? '_blank' : null"
                       [attr.rel]="link.external ? 'noopener noreferrer' : null"
                       class="text-fg-muted hover:text-fg text-sm transition-colors"
@@ -90,4 +90,8 @@ export class FooterComponent {
   protected readonly year = new Date().getFullYear();
 
   protected readonly footer = () => this.i18n.content().footer;
+
+  protected linkHref(href: string): string {
+    return href.startsWith('#') ? this.i18n.sectionPath(href.slice(1)) : href;
+  }
 }

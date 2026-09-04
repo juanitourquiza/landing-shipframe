@@ -43,7 +43,7 @@ import { SITE } from '../core/site.config';
         <nav class="hidden items-center gap-1 lg:flex" aria-label="Primary">
           @for (link of nav().links; track link.id) {
             <a
-              [href]="'#' + link.id"
+              [href]="i18n.sectionPath(link.id)"
               class="text-fg-muted hover:text-fg rounded-lg px-3 py-2 text-sm font-medium transition-colors"
             >
               {{ link.label }}
@@ -80,7 +80,7 @@ import { SITE } from '../core/site.config';
           </a>
 
           <a
-            [href]="'#install'"
+            [href]="i18n.sectionPath('install')"
             class="from-brand-500 to-brand-600 shadow-brand-500/25 hover:shadow-brand-500/40 ml-1 hidden rounded-lg bg-gradient-to-b px-4 py-2 text-sm font-semibold text-white shadow-lg transition-shadow sm:inline-block"
           >
             {{ nav().install }}
@@ -103,7 +103,7 @@ import { SITE } from '../core/site.config';
           <nav class="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6" aria-label="Mobile">
             @for (link of nav().links; track link.id) {
               <a
-                [href]="'#' + link.id"
+                [href]="i18n.sectionPath(link.id)"
                 (click)="menuOpen.set(false)"
                 class="text-fg hover:bg-surface-2 rounded-lg px-3 py-2.5 text-sm font-medium"
               >
@@ -111,7 +111,7 @@ import { SITE } from '../core/site.config';
               </a>
             }
             <a
-              [href]="'#install'"
+              [href]="i18n.sectionPath('install')"
               (click)="menuOpen.set(false)"
               class="from-brand-500 to-brand-600 mt-2 rounded-lg bg-gradient-to-b px-3 py-2.5 text-center text-sm font-semibold text-white"
             >
