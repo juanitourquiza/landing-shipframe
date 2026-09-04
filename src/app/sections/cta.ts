@@ -31,7 +31,7 @@ import { SITE } from '../core/site.config';
 
           <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
-              [href]="'#install'"
+              [href]="i18n.sectionPath('install')"
               class="from-brand-500 to-brand-600 shadow-brand-500/30 hover:shadow-brand-500/50 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-b px-6 py-3.5 text-base font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5 sm:w-auto"
             >
               {{ c().primary }}
@@ -61,7 +61,7 @@ import { SITE } from '../core/site.config';
   `,
 })
 export class CtaComponent {
-  private readonly i18n = inject(I18nService);
+  protected readonly i18n = inject(I18nService);
   protected readonly c = () => this.i18n.content().cta;
   protected readonly repo = SITE.repo;
   protected readonly docs = SITE.docs;
