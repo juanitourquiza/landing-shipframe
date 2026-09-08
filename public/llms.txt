@@ -8,7 +8,7 @@ ShipFrame provides reusable skills, agent workflows, templates and project profi
 
 - **Name:** ShipFrame
 - **What it is:** AI coding workflow toolkit / developer tool
-- **Supported tools:** Claude Code (plugin-managed agents + hooks and /shipframe:<skill> commands), Codex CLI (/skills picker with $skill invocation and a routing table in AGENTS.md without changing user-owned config.toml), ChatGPT/Codex plugin (23 curated public skills), OpenCode (native skill discovery plus converted agents that inherit the global/default model unless overridden)
+- **Supported tools:** Claude Code (plugin-managed agents + hooks and /shipframe:<skill> commands), Codex CLI (/skills picker with $skill invocation and a routing table in AGENTS.md without changing user-owned config.toml), ChatGPT/Codex plugin (24 curated public skills), OpenCode (native skill discovery plus converted agents that inherit the global/default model unless overridden)
 - **License:** MIT (free for personal and commercial use)
 - **Platforms:** macOS, Linux
 - **Repository:** https://github.com/juanitourquiza/shipframe
@@ -25,13 +25,13 @@ Install once. Open `/skills`. Use ShipFrame workflows directly.
 - Homebrew: `brew tap juanitourquiza/shipframe && brew install shipframe && shipframe install --codex`
 - Targets: `./install.sh --claude`, `--codex`, `--opencode`, or `--all`
 - Safe checks and maintenance: `./install.sh --doctor --repo-only`, `./install.sh --repair --all`, `./install.sh --uninstall --all --yes`
-- Native discovery, no lock-in: Claude plugin marketplace support with `/shipframe:code-review`, Codex CLI `/skills` then `$code-review`, the public ChatGPT/Codex plugin with 23 curated workflows, and OpenCode native skill discovery after `shipframe install --opencode`.
+- Native discovery, no lock-in: Claude plugin marketplace support with `/shipframe:code-review`, Codex CLI `/skills` then `$code-review`, the public ChatGPT/Codex plugin with 24 curated workflows, and OpenCode native skill discovery after `shipframe install --opencode`.
 
 ## What's inside
 
 - **Core workflow:** init-project, project-memory-refresh, feature-discovery, plan-expert, implement-task, code-review, create-task, create-issue, create-pr
 - **Engineering discipline:** domain-modeling, codebase-design, tdd, bug-diagnosis, research, handoff
-- **Release & evidence:** project-profile, project-release, release-checklist, frontend-release, backend-release, deploy-evidence
+- **Release & evidence:** project-profile, project-release, release-checklist, frontend-release, backend-release, deploy-evidence, evidence-audit, proof-runner
 - **Integration & product:** mcp-debugging, client-copy-review, a11y-auditor (WCAG 2.2), design-expert, design-system-docs, design-system-setup
 - **Knowledge wiki:** wiki-init, wiki-query, wiki-sync, wiki-forge
 - **Project profiles:** generic core plus opt-in per-repo rules (release process, smoke-test routes, version policy, i18n, client copy). Starter packs for Angular, Laravel and MCP.
@@ -39,7 +39,7 @@ Install once. Open `/skills`. Use ShipFrame workflows directly.
 ## Docs and pages
 
 - [Repository & README](https://github.com/juanitourquiza/shipframe): source, full documentation, installer and skills.
-- [ChatGPT/Codex plugin](https://chatgpt.com/plugins/plugins_6a88e6256bb48191a343d39dace5e05c): curated 23-skill plugin distribution.
+- [ChatGPT/Codex plugin](https://chatgpt.com/plugins/plugins_6a88e6256bb48191a343d39dace5e05c): curated 24-skill plugin distribution.
 - [Releases](https://github.com/juanitourquiza/shipframe/releases): stable versions tagged `vX.Y.Z`.
 - [MIT License](https://github.com/juanitourquiza/shipframe/blob/main/LICENSE): licensing terms.
 - [Landing — English](https://shipframe.hackeruna.com/): product overview, lifecycle, features, install and FAQ.
@@ -48,12 +48,14 @@ Install once. Open `/skills`. Use ShipFrame workflows directly.
 ## Frequently asked questions
 
 - **What is ShipFrame?** An open-source AI coding workflow toolkit that gives AI agents a repeatable delivery lifecycle so teams plan, prove and ship with discipline instead of ad-hoc prompting.
-- **Which AI tools does it support?** Claude Code, Codex CLI, the ChatGPT/Codex plugin and OpenCode. Claude hooks are plugin-managed, Codex keeps config.toml user-owned, the public plugin includes 23 curated skills, and OpenCode inherits the global/default model by default.
+- **Which AI tools does it support?** Claude Code, Codex CLI, the ChatGPT/Codex plugin and OpenCode. Claude hooks are plugin-managed, Codex keeps config.toml user-owned, the public plugin includes 24 curated skills, and OpenCode inherits the global/default model by default.
 - **Do ShipFrame skills appear in /skills?** Yes in Codex after `shipframe install --codex`; Claude uses `/shipframe:<skill>` commands such as `/shipframe:code-review`; OpenCode loads skills through its native skill tool.
 - **Is it free?** Yes, it is open source under the MIT License.
 - **Does it work with GitHub and GitLab?** Yes — Draft Pull Requests on GitHub (gh CLI) and Draft Merge Requests on GitLab (glab CLI); the provider is auto-detected from the origin remote.
 - **Do I have to change my workflow?** No — it is designed around tickets, Git branches and pull/merge requests, and you adopt only the skills you want.
 
-## Current reach snapshot
+## Proof before claims
 
-As of 2026-09-03, private GitHub traffic metrics showed 193 rolling 14-day clones, 86 rolling 14-day views, and 2 stars across the ShipFrame and Homebrew repositories. These are reach/interest signals only: they are not installs, active users, retention, or landing analytics.
+ShipFrame emphasizes concrete verification over volatile public metrics. The optional `proof-runner` skill reads checklist items with explicit `Verify:` commands, defaults to dry-run, requires approval before execution, and treats a step as proven only when the command exits 0. Steps without `Verify:` remain unverifiable instead of being claimed as done.
+
+Private GitHub traffic or dashboard metrics can remain private operational signals; they should not be presented publicly as installs, active users, adoption, retention or telemetry. ShipFrame does not add telemetry, analytics or user tracking.

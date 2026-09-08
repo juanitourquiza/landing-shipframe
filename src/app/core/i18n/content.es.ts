@@ -14,7 +14,7 @@ export const ES: Content = {
       { id: 'lifecycle', label: 'Ciclo' },
       { id: 'features', label: 'Funciones' },
       { id: 'install', label: 'Instalación' },
-      { id: 'reach', label: 'Alcance' },
+      { id: 'proof', label: 'Pruebas' },
       { id: 'faq', label: 'FAQ' },
     ],
     github: 'Estrella en GitHub',
@@ -36,7 +36,7 @@ export const ES: Content = {
     runsWith: 'Funciona con',
     metrics: [
       { value: '30+', label: 'Skills reutilizables' },
-      { value: '23', label: 'Skills curadas del plugin' },
+      { value: '24', label: 'Skills curadas del plugin' },
       { value: '8', label: 'Etapas del ciclo' },
       { value: 'MIT', label: 'Open source' },
     ],
@@ -176,27 +176,27 @@ export const ES: Content = {
       { tool: 'Plugin ChatGPT/Codex', skills: 'Plugin público curado', orchestration: 'Abrir plugin en ChatGPT' },
       { tool: 'OpenCode', skills: 'Discovery nativo de skills', orchestration: 'Herramienta skill de OpenCode' },
     ],
-    note: 'Discovery nativo, sin lock-in: el toolkit completo por GitHub/Homebrew incluye 30+ skills; el plugin ChatGPT/Codex empaqueta 23 workflows curados para uso público.'
+    note: 'Discovery nativo, sin lock-in: el toolkit completo por GitHub/Homebrew incluye 30+ skills; el plugin ChatGPT/Codex empaqueta 24 workflows curados para uso público.'
   },
-  reach: {
-    eyebrow: 'Alcance actual',
-    title: 'Interés público, comunicado con honestidad',
+  proof: {
+    eyebrow: 'Pruebas antes de prometer',
+    title: 'Ejecuta comandos de verificación antes de decir listo',
     subtitle:
-      'Estas son señales de alcance de GitHub tomadas del snapshot privado de métricas. Ayudan a medir interés, pero no son instalaciones, usuarios activos ni telemetry.',
-    snapshotLabel: 'Snapshot',
-    sourceLabel: 'Fuente',
-    metrics: [
-      { value: '193', label: 'Clones rolling 14 días', note: 'Entre shipframe y homebrew-shipframe; puede incluir CI, bots, contributors e intentos de instalación.' },
-      { value: '86', label: 'Views rolling 14 días', note: 'Vistas de repositorio desde GitHub traffic, no analytics de la landing.' },
-      { value: '2', label: 'Stars en GitHub', note: 'Stars públicos del repositorio al momento del snapshot.' },
+      'ShipFrame mantiene los claims públicos atados a evidencia. La skill opcional proof-runner lee checklists con comandos Verify explícitos, ejecuta solo comandos aprobados y reporta exactamente qué pasó.',
+    commandsTitle: 'Qué valida proof-runner',
+    commands: [
+      { title: 'Comandos explícitos', desc: 'Los pasos del checklist usan Verify: `comando` para que el agente sepa qué prueba exacta debe ejecutar.' },
+      { title: 'Dry-run primero', desc: 'Los comandos se listan antes de ejecutarse, con aprobación separada para deploys riesgosos, proveedores pagos, emails o mutaciones de producción.' },
+      { title: 'Solo exit-zero cuenta', desc: 'Un paso se marca como probado solo si el comando termina en 0; los fallos y pasos sin Verify quedan visibles.' },
     ],
-    categories: [
-      { title: 'Reach', desc: 'Clones, views y stars de GitHub muestran discovery e interés público.' },
-      { title: 'Possible usage signal', desc: 'El movimiento de clones puede sugerir intentos de instalación, pero también incluye tráfico automatizado y de contributors.' },
-      { title: 'Not measured', desc: 'ShipFrame no mide usuarios activos, retención, workflows completados ni visitas a la landing.' },
+    useCasesTitle: 'Dónde ayuda',
+    useCases: [
+      { title: 'Cambios de alto riesgo', desc: 'Haz explícita la verificación antes de tocar flujos frágiles o rutas visibles para clientes.' },
+      { title: 'Releases', desc: 'Combina proof-runner con release-checklist y deploy-evidence para separar pruebas locales de evidencia desplegada.' },
+      { title: 'Trabajo de cliente', desc: 'Muestra qué pasos solicitados fueron verificados sin inventar métricas de adopción o uso.' },
     ],
     disclaimer:
-      'Los cloners y visitantes únicos son valores rolling por repositorio, por eso no se suman aquí. No se agregó telemetry del instalador en este release.',
+      'ShipFrame sigue sin agregar telemetry, analytics ni tracking de usuarios. Las métricas privadas pueden quedarse en dashboards privados; el copy público debe citar pruebas concretas en lugar de números volátiles de alcance.',
   },
   audience: {
     eyebrow: 'Para quién es',
@@ -220,7 +220,7 @@ export const ES: Content = {
       },
       {
         q: '¿Qué herramientas de IA soporta ShipFrame?',
-        a: 'ShipFrame funciona con Claude Code (agentes y hooks gestionados por el plugin), Codex CLI (tabla de routing en AGENTS.md sin modificar tu config.toml), el plugin público ChatGPT/Codex (23 workflows curados) y OpenCode (skills enlazados y agentes convertidos que heredan tu modelo global/default salvo que lo sobrescribas). Una sola instalación puede apuntar a una, varias o todas.',
+        a: 'ShipFrame funciona con Claude Code (agentes y hooks gestionados por el plugin), Codex CLI (tabla de routing en AGENTS.md sin modificar tu config.toml), el plugin público ChatGPT/Codex (24 workflows curados) y OpenCode (skills enlazados y agentes convertidos que heredan tu modelo global/default salvo que lo sobrescribas). Una sola instalación puede apuntar a una, varias o todas.',
       },
 
       {

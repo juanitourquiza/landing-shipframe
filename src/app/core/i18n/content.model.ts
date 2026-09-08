@@ -75,14 +75,14 @@ export interface InstallContent {
   note: string;
 }
 
-export interface ReachContent {
+export interface ProofContent {
   eyebrow: string;
   title: string;
   subtitle: string;
-  snapshotLabel: string;
-  sourceLabel: string;
-  metrics: { value: string; label: string; note: string }[];
-  categories: { title: string; desc: string }[];
+  commandsTitle: string;
+  commands: { title: string; desc: string }[];
+  useCasesTitle: string;
+  useCases: { title: string; desc: string }[];
   disclaimer: string;
 }
 
@@ -133,7 +133,7 @@ export interface Content {
   problem: ProblemContent;
   features: FeaturesContent;
   install: InstallContent;
-  reach: ReachContent;
+  proof: ProofContent;
   audience: AudienceContent;
   faq: FaqContent;
   cta: CtaContent;

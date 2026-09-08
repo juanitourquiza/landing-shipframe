@@ -14,7 +14,7 @@ export const EN: Content = {
       { id: 'lifecycle', label: 'Lifecycle' },
       { id: 'features', label: 'Features' },
       { id: 'install', label: 'Install' },
-      { id: 'reach', label: 'Reach' },
+      { id: 'proof', label: 'Proof' },
       { id: 'faq', label: 'FAQ' },
     ],
     github: 'Star on GitHub',
@@ -36,7 +36,7 @@ export const EN: Content = {
     runsWith: 'Runs with',
     metrics: [
       { value: '30+', label: 'Reusable skills' },
-      { value: '23', label: 'Curated plugin skills' },
+      { value: '24', label: 'Curated plugin skills' },
       { value: '8', label: 'Lifecycle stages' },
       { value: 'MIT', label: 'Open source' },
     ],
@@ -177,27 +177,27 @@ export const EN: Content = {
       { tool: 'ChatGPT/Codex plugin', skills: 'Public curated plugin', orchestration: 'Open ChatGPT plugin' },
       { tool: 'OpenCode', skills: 'Native skill discovery', orchestration: 'OpenCode skill tool' },
     ],
-    note: 'Native discovery, no lock-in: the full GitHub/Homebrew toolkit includes 30+ skills; the ChatGPT/Codex plugin packages 23 curated workflows for public plugin use.'
+    note: 'Native discovery, no lock-in: the full GitHub/Homebrew toolkit includes 30+ skills; the ChatGPT/Codex plugin packages 24 curated workflows for public plugin use.'
   },
-  reach: {
-    eyebrow: 'Current reach',
-    title: 'Public interest, reported honestly',
+  proof: {
+    eyebrow: 'Proof before claims',
+    title: 'Run verification commands before saying done',
     subtitle:
-      'These are GitHub reach signals from the private metrics snapshot. They help track interest, but they are not installs, active users or telemetry.',
-    snapshotLabel: 'Snapshot',
-    sourceLabel: 'Source',
-    metrics: [
-      { value: '193', label: 'Rolling 14-day clones', note: 'Across shipframe and homebrew-shipframe; may include CI, bots, contributors and installer fetches.' },
-      { value: '86', label: 'Rolling 14-day views', note: 'Repository page views from GitHub traffic, not landing analytics.' },
-      { value: '2', label: 'GitHub stars', note: 'Public repository stars at snapshot time.' },
+      'ShipFrame keeps public claims grounded in evidence. The optional proof-runner reads checklist steps with explicit Verify commands, runs only approved commands, and reports exactly what passed.',
+    commandsTitle: 'What proof-runner checks',
+    commands: [
+      { title: 'Explicit commands', desc: 'Checklist items use Verify: `command` so agents know the exact proof step to run.' },
+      { title: 'Dry-run first', desc: 'Commands are listed before execution, with separate approval for risky deploys, paid providers, emails or production mutations.' },
+      { title: 'Exit-zero proof only', desc: 'A step is marked proven only when its command exits 0; failed commands and missing Verify lines stay visible.' },
     ],
-    categories: [
-      { title: 'Reach', desc: 'GitHub clones, views and stars show public discovery and interest.' },
-      { title: 'Possible usage signal', desc: 'Clone movement can hint at installation attempts, but it also includes automated and contributor traffic.' },
-      { title: 'Not measured', desc: 'ShipFrame does not track active users, retention, successful workflow runs or landing visitors.' },
+    useCasesTitle: 'Where it helps',
+    useCases: [
+      { title: 'High-risk changes', desc: 'Make verification explicit before touching fragile flows or customer-facing paths.' },
+      { title: 'Releases', desc: 'Pair proof-runner with release-checklist and deploy-evidence to separate local proof from deployed proof.' },
+      { title: 'Client work', desc: 'Show which requested steps were actually verified without inventing adoption or usage metrics.' },
     ],
     disclaimer:
-      'Unique cloners and visitors are per-repository rolling values, so they are not summed here. No installer telemetry was added for this release.',
+      'ShipFrame still does not add telemetry, analytics or user tracking. Private metrics can stay in private dashboards; public copy should cite concrete proof instead of volatile reach numbers.',
   },
   audience: {
     eyebrow: 'Who it’s for',
@@ -221,7 +221,7 @@ export const EN: Content = {
       },
       {
         q: 'Which AI tools does ShipFrame support?',
-        a: 'ShipFrame works with Claude Code (plugin-managed agents and hooks), Codex CLI (a routing table in AGENTS.md without changing your config.toml), the public ChatGPT/Codex plugin (23 curated workflows) and OpenCode (symlinked skills plus converted agents that inherit your global/default model unless you override it). A single install can target one, several or all of them.',
+        a: 'ShipFrame works with Claude Code (plugin-managed agents and hooks), Codex CLI (a routing table in AGENTS.md without changing your config.toml), the public ChatGPT/Codex plugin (24 curated workflows) and OpenCode (symlinked skills plus converted agents that inherit your global/default model unless you override it). A single install can target one, several or all of them.',
       },
 
       {
