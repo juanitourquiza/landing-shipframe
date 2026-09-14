@@ -26,6 +26,7 @@ Install once. Open `/skills`. Use ShipFrame workflows directly.
 - Targets: `./install.sh --claude`, `--codex`, `--opencode`, or `--all`
 - Safe checks and maintenance: `./install.sh --doctor --repo-only`, `./install.sh --repair --all`, `./install.sh --uninstall --all --yes`
 - Native discovery, no lock-in: Claude plugin marketplace support with `/shipframe:code-review`, Codex CLI `/skills` then `$code-review`, the public ChatGPT/Codex plugin with 24 curated workflows, and OpenCode native skill discovery after `shipframe install --opencode`.
+- Optional companion: ShipFrame can be paired with Caveman for more concise internal agent responses, but Caveman is not required or installed automatically.
 
 ## What's inside
 

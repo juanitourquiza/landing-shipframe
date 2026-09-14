@@ -176,7 +176,7 @@ export const ES: Content = {
       { tool: 'Plugin ChatGPT/Codex', skills: 'Plugin público curado', orchestration: 'Abrir plugin en ChatGPT' },
       { tool: 'OpenCode', skills: 'Discovery nativo de skills', orchestration: 'Herramienta skill de OpenCode' },
     ],
-    note: 'Discovery nativo, sin lock-in: el toolkit completo por GitHub/Homebrew incluye 30+ skills; el plugin ChatGPT/Codex empaqueta 24 workflows curados para uso público.'
+    note: 'Discovery nativo, sin lock-in: el toolkit completo por GitHub/Homebrew incluye 30+ skills; el plugin ChatGPT/Codex empaqueta 24 workflows curados para uso público. ShipFrame también puede combinarse opcionalmente con Caveman para respuestas internas más concisas.'
   },
   proof: {
     eyebrow: 'Pruebas antes de prometer',
@@ -233,7 +233,7 @@ export const ES: Content = {
       },
       {
         q: '¿Cómo instalo ShipFrame?',
-        a: 'Ejecuta el instalador de una línea con curl, instálalo con Homebrew (brew tap juanitourquiza/shipframe && brew install shipframe), o clona el repositorio y corre ./install.sh con --claude, --codex, --opencode o --all. Valida de forma segura con --doctor --repo-only, restaura archivos gestionados con --repair y elimina artefactos de ShipFrame con --uninstall.',
+        a: 'Ejecuta el instalador de una línea con curl, instálalo con Homebrew (brew tap juanitourquiza/shipframe && brew install shipframe), o clona el repositorio y corre ./install.sh con --claude, --codex, --opencode o --all. Valida de forma segura con --doctor --repo-only, restaura archivos gestionados con --repair y elimina artefactos de ShipFrame con --uninstall. Si quieres respuestas internas más concisas, puedes agregar Caveman por separado como skill complementaria opcional.',
       },
       {
         q: '¿Tengo que cambiar mi flujo de trabajo actual?',
