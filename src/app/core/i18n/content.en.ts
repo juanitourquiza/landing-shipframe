@@ -165,6 +165,7 @@ export const EN: Content = {
     tabs: [
       { id: 'curl', label: 'One-line', code: 'curl -fsSL https://raw.githubusercontent.com/juanitourquiza/shipframe/main/install.sh | bash' },
       { id: 'brew', label: 'Homebrew', code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --doctor --repo-only' },
+      { id: 'herdr', label: 'Herdr plugin', code: 'herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes' },
       { id: 'clone', label: 'Local clone', code: 'git clone https://github.com/juanitourquiza/shipframe ~/tools/shipframe\ncd ~/tools/shipframe\n./install.sh --all\n./install.sh --repair --all\n./install.sh --uninstall --all --yes' },
     ],
     copy: 'Copy',
@@ -176,8 +177,9 @@ export const EN: Content = {
       { tool: 'Codex CLI', skills: '/skills picker', orchestration: '$code-review' },
       { tool: 'ChatGPT/Codex plugin', skills: 'Public curated plugin', orchestration: 'Open ChatGPT plugin' },
       { tool: 'OpenCode', skills: 'Native skill discovery', orchestration: 'OpenCode skill tool' },
+      { tool: 'Herdr plugin', skills: 'Separate Herdr install', orchestration: 'Workspace/pane workflow surface' },
     ],
-    note: 'Native discovery, no lock-in: the full GitHub/Homebrew toolkit includes 30+ skills; the ChatGPT/Codex plugin packages 24 curated workflows for public plugin use. ShipFrame can also be paired optionally with Caveman for more concise internal agent responses.'
+    note: 'Native discovery, no lock-in: the full GitHub/Homebrew toolkit includes 30+ skills; Homebrew installs that base toolkit. The Herdr plugin is installed separately with herdr plugin install, and the ChatGPT/Codex plugin packages 24 curated workflows for public plugin use. ShipFrame can also be paired optionally with Caveman for more concise internal agent responses.'
   },
   proof: {
     eyebrow: 'Proof before claims',
@@ -221,7 +223,7 @@ export const EN: Content = {
       },
       {
         q: 'Which AI tools does ShipFrame support?',
-        a: 'ShipFrame works with Claude Code (plugin-managed agents and hooks), Codex CLI (a routing table in AGENTS.md without changing your config.toml), the public ChatGPT/Codex plugin (24 curated workflows) and OpenCode (symlinked skills plus converted agents that inherit your global/default model unless you override it). A single install can target one, several or all of them.',
+        a: 'ShipFrame works with Claude Code (plugin-managed agents and hooks), Codex CLI (a routing table in AGENTS.md without changing your config.toml), the public ChatGPT/Codex plugin (24 curated workflows), OpenCode (symlinked skills plus converted agents that inherit your global/default model unless you override it), and Herdr as a separate local workflow plugin. A single base toolkit install can target one, several or all supported agent tools; Herdr uses its own plugin install command.',
       },
 
       {
@@ -234,7 +236,7 @@ export const EN: Content = {
       },
       {
         q: 'How do I install ShipFrame?',
-        a: 'Run the one-line installer with curl, install via Homebrew (brew tap juanitourquiza/shipframe && brew install shipframe), or clone the repository and run ./install.sh with --claude, --codex, --opencode or --all. Validate safely with --doctor --repo-only, restore managed files with --repair, and remove ShipFrame-managed artifacts with --uninstall. If you want more concise internal agent responses, you can add Caveman separately as an optional companion skill.',
+        a: 'Run the one-line installer with curl, install the base toolkit via Homebrew (brew tap juanitourquiza/shipframe && brew install shipframe), or clone the repository and run ./install.sh with --claude, --codex, --opencode or --all. Install the Herdr surface separately with herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes; docs: https://github.com/juanitourquiza/shipframe#herdr-local-workflow-plugin. Validate safely with --doctor --repo-only, restore managed files with --repair, and remove ShipFrame-managed artifacts with --uninstall.',
       },
       {
         q: 'Do I have to change my existing workflow?',

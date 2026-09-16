@@ -5,7 +5,7 @@ import { SITE } from './site.config';
 
 describe('ShipFrame landing content', () => {
   it('keeps structured-data version on the single site constant', () => {
-    expect(SITE.version).toBe('0.4.4');
+    expect(SITE.version).toBe('0.4.5');
   });
 
   it('documents proof before claims without public reach metrics', () => {
@@ -15,6 +15,8 @@ describe('ShipFrame landing content', () => {
       expect(content.proof.commands).toHaveLength(3);
       expect(content.proof.useCases).toHaveLength(3);
       expect(content.proof.disclaimer.toLowerCase()).toContain('telemetry');
+      expect(content.install.tabs.some((tab) => tab.id === 'herdr')).toBe(true);
+      expect(content.install.tabs.find((tab) => tab.id === 'herdr')?.code).toContain('herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes');
     }
 
     expect(EN.proof.eyebrow).toBe('Proof before claims');

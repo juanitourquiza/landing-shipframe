@@ -164,6 +164,7 @@ export const ES: Content = {
     tabs: [
       { id: 'curl', label: 'Una línea', code: 'curl -fsSL https://raw.githubusercontent.com/juanitourquiza/shipframe/main/install.sh | bash' },
       { id: 'brew', label: 'Homebrew', code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --doctor --repo-only' },
+      { id: 'herdr', label: 'Plugin Herdr', code: 'herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes' },
       { id: 'clone', label: 'Clon local', code: 'git clone https://github.com/juanitourquiza/shipframe ~/tools/shipframe\ncd ~/tools/shipframe\n./install.sh --all\n./install.sh --repair --all\n./install.sh --uninstall --all --yes' },
     ],
     copy: 'Copiar',
@@ -175,8 +176,9 @@ export const ES: Content = {
       { tool: 'Codex CLI', skills: 'Picker /skills', orchestration: '$code-review' },
       { tool: 'Plugin ChatGPT/Codex', skills: 'Plugin público curado', orchestration: 'Abrir plugin en ChatGPT' },
       { tool: 'OpenCode', skills: 'Discovery nativo de skills', orchestration: 'Herramienta skill de OpenCode' },
+      { tool: 'Plugin Herdr', skills: 'Instalación Herdr separada', orchestration: 'Superficie de workflow en workspaces/panes' },
     ],
-    note: 'Discovery nativo, sin lock-in: el toolkit completo por GitHub/Homebrew incluye 30+ skills; el plugin ChatGPT/Codex empaqueta 24 workflows curados para uso público. ShipFrame también puede combinarse opcionalmente con Caveman para respuestas internas más concisas.'
+    note: 'Discovery nativo, sin lock-in: el toolkit completo por GitHub/Homebrew incluye 30+ skills; Homebrew instala ese toolkit base. El plugin Herdr se instala por separado con herdr plugin install, y el plugin ChatGPT/Codex empaqueta 24 workflows curados para uso público. ShipFrame también puede combinarse opcionalmente con Caveman para respuestas internas más concisas.'
   },
   proof: {
     eyebrow: 'Pruebas antes de prometer',
@@ -220,7 +222,7 @@ export const ES: Content = {
       },
       {
         q: '¿Qué herramientas de IA soporta ShipFrame?',
-        a: 'ShipFrame funciona con Claude Code (agentes y hooks gestionados por el plugin), Codex CLI (tabla de routing en AGENTS.md sin modificar tu config.toml), el plugin público ChatGPT/Codex (24 workflows curados) y OpenCode (skills enlazados y agentes convertidos que heredan tu modelo global/default salvo que lo sobrescribas). Una sola instalación puede apuntar a una, varias o todas.',
+        a: 'ShipFrame funciona con Claude Code (agentes y hooks gestionados por el plugin), Codex CLI (tabla de routing en AGENTS.md sin modificar tu config.toml), el plugin público ChatGPT/Codex (24 workflows curados), OpenCode (skills enlazados y agentes convertidos que heredan tu modelo global/default salvo que lo sobrescribas) y Herdr como plugin local separado. Una instalación del toolkit base puede apuntar a una, varias o todas las herramientas de agente soportadas; Herdr usa su propio comando de instalación de plugin.',
       },
 
       {
@@ -233,7 +235,7 @@ export const ES: Content = {
       },
       {
         q: '¿Cómo instalo ShipFrame?',
-        a: 'Ejecuta el instalador de una línea con curl, instálalo con Homebrew (brew tap juanitourquiza/shipframe && brew install shipframe), o clona el repositorio y corre ./install.sh con --claude, --codex, --opencode o --all. Valida de forma segura con --doctor --repo-only, restaura archivos gestionados con --repair y elimina artefactos de ShipFrame con --uninstall. Si quieres respuestas internas más concisas, puedes agregar Caveman por separado como skill complementaria opcional.',
+        a: 'Ejecuta el instalador de una línea con curl, instala el toolkit base con Homebrew (brew tap juanitourquiza/shipframe && brew install shipframe), o clona el repositorio y corre ./install.sh con --claude, --codex, --opencode o --all. Instala la superficie Herdr por separado con herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes; docs: https://github.com/juanitourquiza/shipframe#herdr-local-workflow-plugin. Valida de forma segura con --doctor --repo-only, restaura archivos gestionados con --repair y elimina artefactos de ShipFrame con --uninstall.',
       },
       {
         q: '¿Tengo que cambiar mi flujo de trabajo actual?',

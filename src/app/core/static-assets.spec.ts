@@ -10,6 +10,6 @@ describe('static SEO assets', () => {
   it('keeps the production route contract documented in public assets', async () => {
     const { SITE } = await import('./site.config');
     expect(SITE.url).toBe('https://shipframe.hackeruna.com');
-    expect(SITE.version).toBe('0.4.4');
+    expect(SITE.version).toBe('0.4.5');
   });
 });
