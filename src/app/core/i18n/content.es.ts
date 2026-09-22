@@ -164,7 +164,7 @@ export const ES: Content = {
       'Instala una vez. Abre /skills. Usa los workflows de ShipFrame directamente en Claude Code, Codex CLI y OpenCode, con doctor, repair y uninstall para un rollout seguro. La skill opcional live-docs consulta documentación compatible antes de cambios que dependan de APIs externas.',
     tabs: [
       { id: 'curl', label: 'Una línea', code: 'curl -fsSL https://raw.githubusercontent.com/juanitourquiza/shipframe/main/install.sh | bash' },
-      { id: 'brew', label: 'Homebrew', code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --doctor --repo-only\n./install.sh --sync-docs --project-dir /ruta/al/proyecto --dry-run' },
+      { id: 'brew', label: 'Homebrew', code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --doctor --repo-only\nshipframe install --sync-docs --project-dir /ruta/al/proyecto --dry-run' },
       { id: 'herdr', label: 'Plugin Herdr', code: 'herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes' },
       { id: 'clone', label: 'Clon local', code: 'git clone https://github.com/juanitourquiza/shipframe ~/tools/shipframe\ncd ~/tools/shipframe\n./install.sh --all\n./install.sh --repair --all\n./install.sh --uninstall --all --yes' },
     ],
