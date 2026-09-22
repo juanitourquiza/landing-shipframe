@@ -152,7 +152,7 @@ export const ES: Content = {
           'Topología del repo y proceso de release',
           'Rutas de smoke-test y política de versiones',
           'Reglas de i18n y restricciones de copy',
-          'Packs iniciales: Angular, Laravel, MCP, Live Docs',
+          'Packs iniciales: Angular, Laravel, MCP, Live Docs con Context',
         ],
       },
     ],
@@ -161,10 +161,10 @@ export const ES: Content = {
     eyebrow: 'Instalación',
     title: 'Funcionando con un solo comando',
     subtitle:
-      'Instala una vez. Abre /skills. Usa los workflows de ShipFrame directamente en Claude Code, Codex CLI y OpenCode, con doctor, repair y uninstall para un rollout seguro. La skill opcional live-docs consulta documentación compatible antes de cambios que dependan de APIs externas.',
+      'Instala una vez. Abre /skills. Usa los workflows de ShipFrame directamente en Claude Code, Codex CLI y OpenCode, con doctor, repair y uninstall para un rollout seguro. La skill opcional live-docs consulta documentación compatible antes de cambios que dependan de APIs externas; Context MCP es recomendado pero no obligatorio.',
     tabs: [
       { id: 'curl', label: 'Una línea', code: 'curl -fsSL https://raw.githubusercontent.com/juanitourquiza/shipframe/main/install.sh | bash' },
-      { id: 'brew', label: 'Homebrew', code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --doctor --repo-only\nshipframe install --sync-docs --project-dir /ruta/al/proyecto --dry-run' },
+      { id: 'brew', label: 'Homebrew', code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --doctor --repo-only\nshipframe install --doctor' },
       { id: 'herdr', label: 'Plugin Herdr', code: 'herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes' },
       { id: 'clone', label: 'Clon local', code: 'git clone https://github.com/juanitourquiza/shipframe ~/tools/shipframe\ncd ~/tools/shipframe\n./install.sh --all\n./install.sh --repair --all\n./install.sh --uninstall --all --yes' },
     ],
@@ -179,7 +179,7 @@ export const ES: Content = {
       { tool: 'OpenCode', skills: 'Discovery nativo de skills', orchestration: 'Herramienta skill de OpenCode' },
       { tool: 'Plugin Herdr', skills: 'Instalación Herdr separada', orchestration: 'Superficie de workflow en workspaces/panes' },
     ],
-    note: 'Discovery nativo, sin lock-in: el toolkit completo por GitHub/Homebrew incluye 30+ skills; Homebrew instala ese toolkit base. El plugin Herdr se instala por separado con herdr plugin install, y el plugin ChatGPT/Codex empaqueta 24 workflows curados para uso público. ShipFrame también puede combinarse opcionalmente con Caveman para respuestas internas más concisas. Live Docs es opcional y no exige un servicio documental pago.'
+    note: 'Discovery nativo, sin lock-in: el toolkit completo por GitHub/Homebrew incluye 30+ skills; Homebrew instala ese toolkit base. El plugin Herdr se instala por separado con herdr plugin install, y el plugin ChatGPT/Codex empaqueta 24 workflows curados para uso público. ShipFrame también puede combinarse opcionalmente con Caveman para respuestas internas más concisas. Live Docs es opcional: Context MCP se recomienda para docs locales y versionadas, pero ShipFrame funciona sin él y no exige un servicio documental pago.'
   },
   proof: {
     eyebrow: 'Pruebas antes de prometer',
@@ -240,7 +240,7 @@ export const ES: Content = {
       },
       {
         q: '¿Qué es Live Docs?',
-        a: 'Live Docs es una skill opcional que consulta documentación compatible con la versión de la dependencia antes de cambiar una API externa. Puede usar fuentes oficiales sin Neuledge o el pack local opcional; no instala herramientas ni modifica la configuración MCP automáticamente.',
+        a: 'Live Docs es una skill opcional que consulta documentación compatible con la versión de la dependencia antes de cambiar una API externa. ShipFrame recomienda Context MCP para docs locales y versionadas, pero instalación y doctor solo lo detectan, imprimen comandos y continúan normalmente sin instalar herramientas ni editar configuración MCP.',
       },
       {
         q: '¿Tengo que cambiar mi flujo de trabajo actual?',

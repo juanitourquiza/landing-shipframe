@@ -153,7 +153,7 @@ export const EN: Content = {
           'Repo topology & release process',
           'Smoke-test routes & version policy',
           'i18n rules & client copy constraints',
-          'Starter packs: Angular, Laravel, MCP, Live Docs',
+          'Starter packs: Angular, Laravel, MCP, Context-backed Live Docs',
         ],
       },
     ],
@@ -162,10 +162,10 @@ export const EN: Content = {
     eyebrow: 'Installation',
     title: 'Up and running in one command',
     subtitle:
-      'Install once. Open /skills. Use ShipFrame workflows directly across Claude Code, Codex CLI and OpenCode, with doctor, repair and uninstall commands for safe rollout. The optional live-docs skill checks version-compatible library documentation before API-dependent changes.',
+      'Install once. Open /skills. Use ShipFrame workflows directly across Claude Code, Codex CLI and OpenCode, with doctor, repair and uninstall commands for safe rollout. The optional live-docs skill checks version-compatible library documentation before API-dependent changes; Context MCP is recommended but not required.',
     tabs: [
       { id: 'curl', label: 'One-line', code: 'curl -fsSL https://raw.githubusercontent.com/juanitourquiza/shipframe/main/install.sh | bash' },
-      { id: 'brew', label: 'Homebrew', code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --doctor --repo-only\nshipframe install --sync-docs --project-dir /absolute/path/to/project --dry-run' },
+      { id: 'brew', label: 'Homebrew', code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --doctor --repo-only\nshipframe install --doctor' },
       { id: 'herdr', label: 'Herdr plugin', code: 'herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes' },
       { id: 'clone', label: 'Local clone', code: 'git clone https://github.com/juanitourquiza/shipframe ~/tools/shipframe\ncd ~/tools/shipframe\n./install.sh --all\n./install.sh --repair --all\n./install.sh --uninstall --all --yes' },
     ],
@@ -180,7 +180,7 @@ export const EN: Content = {
       { tool: 'OpenCode', skills: 'Native skill discovery', orchestration: 'OpenCode skill tool' },
       { tool: 'Herdr plugin', skills: 'Separate Herdr install', orchestration: 'Workspace/pane workflow surface' },
     ],
-    note: 'Native discovery, no lock-in: the full GitHub/Homebrew toolkit includes 30+ skills; Homebrew installs that base toolkit. The Herdr plugin is installed separately with herdr plugin install, and the ChatGPT/Codex plugin packages 24 curated workflows for public plugin use. ShipFrame can also be paired optionally with Caveman for more concise internal agent responses. Live Docs is optional and does not require a paid documentation service.'
+    note: 'Native discovery, no lock-in: the full GitHub/Homebrew toolkit includes 30+ skills; Homebrew installs that base toolkit. The Herdr plugin is installed separately with herdr plugin install, and the ChatGPT/Codex plugin packages 24 curated workflows for public plugin use. ShipFrame can also be paired optionally with Caveman for more concise internal agent responses. Live Docs is optional: Context MCP is recommended for local versioned docs, but ShipFrame works without it and does not require a paid documentation service.'
   },
   proof: {
     eyebrow: 'Proof before claims',
@@ -241,7 +241,7 @@ export const EN: Content = {
       },
       {
         q: 'What is Live Docs?',
-        a: 'Live Docs is an optional skill that checks documentation compatible with the dependency version before an external API change. It can use official sources without Neuledge or the optional local project pack; it does not install tools or modify MCP configuration automatically.',
+        a: 'Live Docs is an optional skill that checks documentation compatible with the dependency version before an external API change. ShipFrame recommends Context MCP for local versioned docs, but installation and doctor only detect it, print commands, and continue normally without installing tools or editing MCP configuration.',
       },
       {
         q: 'Do I have to change my existing workflow?',

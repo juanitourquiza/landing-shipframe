@@ -17,8 +17,10 @@ describe('ShipFrame landing content', () => {
       expect(content.proof.disclaimer.toLowerCase()).toContain('telemetry');
       expect(content.install.tabs.some((tab) => tab.id === 'herdr')).toBe(true);
       expect(content.install.tabs.find((tab) => tab.id === 'herdr')?.code).toContain('herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes');
-      expect(content.install.tabs.find((tab) => tab.id === 'brew')?.code).toContain('shipframe install --sync-docs');
-      expect(content.features.groups.flatMap((group) => group.items).join(' ')).toContain('live-docs');
+      expect(content.install.tabs.find((tab) => tab.id === 'brew')?.code).toContain('shipframe install --doctor');
+      expect(content.install.tabs.find((tab) => tab.id === 'brew')?.code).not.toContain('shipframe install --sync-docs');
+      expect(content.features.groups.flatMap((group) => group.items).join(' ')).toContain('Live Docs');
+      expect(content.faq.items.find((item) => item.q.includes('Live Docs') || item.q.includes('Live Docs'))?.a).toContain('Context MCP');
     }
 
     expect(EN.proof.eyebrow).toBe('Proof before claims');
