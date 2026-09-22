@@ -32,7 +32,7 @@
 - **2.4.2** Descriptive, per-locale `<title>` set by SeoService.
 - **2.3.1** No flashing content; **2.2.2** reduced-motion honored via `prefers-reduced-motion`.
 - **1.4.10** Reflow verified at 320–390px with no horizontal scroll (measured scrollWidth 379px).
-- **3.1.1 / 3.1.2** `<html lang>` correct per locale (`/en` → en, `/es` → es); language toggle updates it.
+- **3.1.1 / 3.1.2** `<html lang>` correct per locale (`/` → en, `/es` → es); language toggle updates it.
 - **3.2.3** Consistent navigation and labeling across locales.
 - **4.1.1** No duplicate IDs; valid nesting.
 

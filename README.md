@@ -10,7 +10,7 @@ Built with **Angular 22** (standalone, signals, zoneless), **Tailwind CSS v4**, 
 
 ## ✨ Features
 
-- **Bilingual** — English (`/en`) and Spanish (`/es`) on separate, indexable URLs with `hreflang` alternates.
+- **Bilingual** — English (`/`) and Spanish (`/es`) on separate, indexable URLs with `hreflang` alternates. `/en` remains a legacy redirect to `/`.
 - **Dark & light mode** — respects `prefers-color-scheme`, persists choice in `localStorage`, and supports a `?theme=dark|light` deep-link override.
 - **Fully responsive** — mobile-first, no horizontal overflow.
 - **SEO / AEO / GEO optimized:**
@@ -31,7 +31,7 @@ Built with **Angular 22** (standalone, signals, zoneless), **Tailwind CSS v4**, 
 | Framework | Angular 22 (standalone components, signals, zoneless, OnPush) |
 | Styling | Tailwind CSS v4 + CSS custom-property design tokens |
 | Rendering | Static Site Generation (prerender, `outputMode: "static"`) |
-| i18n | Signal-based dictionaries + locale-prefixed routes (`/en`, `/es`) |
+| i18n | Signal-based dictionaries + canonical routes (`/`, `/es`) |
 | Fonts | Inter + JetBrains Mono |
 
 ---
@@ -40,10 +40,10 @@ Built with **Angular 22** (standalone, signals, zoneless), **Tailwind CSS v4**, 
 
 ```bash
 npm install
-npm start          # dev server at http://localhost:4200 (redirects to /en)
+npm start          # dev server at http://localhost:4200 (English)
 ```
 
-Available locales while developing: `http://localhost:4200/en` and `http://localhost:4200/es`.
+Available locales while developing: `http://localhost:4200/` and `http://localhost:4200/es`.
 
 ## 🏗️ Production build (static)
 
@@ -55,8 +55,7 @@ The prerendered site is emitted to:
 
 ```
 dist/landing-shipframe/browser/
-├── index.html          # root — redirects to /en/
-├── en/index.html       # English (prerendered)
+├── index.html          # English (prerendered)
 ├── es/index.html       # Spanish (prerendered)
 ├── og-image.png
 ├── robots.txt
@@ -90,7 +89,7 @@ The site is static, so no Node runtime is required on the server.
      ```
    - Or zip and extract on the server. Make sure the dotfile `.htaccess` is included.
 3. Point the subdomain `shipframe.hackeruna.com` to that application in Cloudways and enable the free Let's Encrypt SSL.
-4. The bundled `.htaccess` handles: HTTPS redirect, root → language redirect (Spanish browsers → `/es/`, everyone else → `/en/`), trailing-slash normalization, gzip compression and long-lived asset caching.
+4. The bundled `.htaccess` handles: HTTPS redirect, legacy `/en` → `/`, `/es` trailing-slash normalization, gzip compression and long-lived asset caching.
 
 > Tip: after DNS resolves, validate rich results with Google's [Rich Results Test](https://search.google.com/test/rich-results) and submit `https://shipframe.hackeruna.com/sitemap.xml` in Google Search Console.
 
