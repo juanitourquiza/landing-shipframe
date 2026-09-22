@@ -43,7 +43,7 @@ gh secret set CLOUDWAYS_SSH_PASSWORD --repo juanitourquiza/landing-shipframe   #
      dist/landing-shipframe/browser/ user@host:public_html/
    ```
    `--delete` keeps the web root clean; `.well-known` is preserved for SSL/ACME.
-3. A production smoke check hits `/en/`, `/es/` and `/llms.txt` and warns if any is not `200`.
+3. A production smoke check hits `/`, `/es/` and `/llms.txt` and warns if any is not `200`.
 
 ## Cloudways notes (important)
 
@@ -51,8 +51,7 @@ gh secret set CLOUDWAYS_SSH_PASSWORD --repo juanitourquiza/landing-shipframe   #
   **ignored**. The bundled `.htaccess` is kept for portability (Apache hosts) but has no effect here.
 - **Force HTTPS:** enable it in the Cloudways console — **Application → SSL Certificate →
   "Force HTTPS Redirection"**. (The `.htaccess` HTTPS rule does not apply under nginx.)
-- **Root → language redirect** works via the `index.html` meta-refresh to `/en/` (served at `/`),
-  independent of `.htaccess`.
+- **Canonical routes:** English is served at `/`; Spanish is served at `/es/`; legacy `/en` redirects to `/`.
 - Security headers / custom cache rules from `.htaccess` won't apply; nginx already sends
   long-lived caching for hashed assets. Add nginx-level rules via Cloudways if you need the headers.
 
