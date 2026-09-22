@@ -17,6 +17,8 @@ describe('ShipFrame landing content', () => {
       expect(content.proof.disclaimer.toLowerCase()).toContain('telemetry');
       expect(content.install.tabs.some((tab) => tab.id === 'herdr')).toBe(true);
       expect(content.install.tabs.find((tab) => tab.id === 'herdr')?.code).toContain('herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes');
+      expect(content.install.tabs.find((tab) => tab.id === 'brew')?.code).toContain('--sync-docs');
+      expect(content.features.groups.flatMap((group) => group.items).join(' ')).toContain('live-docs');
     }
 
     expect(EN.proof.eyebrow).toBe('Proof before claims');
