@@ -4,9 +4,9 @@ export const ES: Content = {
   seo: {
     title: 'ShipFrame — Flujos de trabajo de IA para equipos que planifican, prueban y publican',
     description:
-      'ShipFrame es un toolkit open source de flujos de trabajo con IA para Claude Code, Codex CLI, plugin ChatGPT/Codex y OpenCode. Convierte peticiones en lenguaje natural en un ciclo repetible: planificar, implementar, verificar, revisar y publicar con evidencia real de release.',
+      'ShipFrame es un toolkit open source de flujos de trabajo con IA para Claude Code, Codex CLI, plugin ChatGPT/Codex y OpenCode. Convierte peticiones en lenguaje natural en un ciclo repetible: planificar, implementar, verificar, revisar y publicar con evidencia real de release y documentación opcional compatible con las versiones de las librerías.',
     keywords:
-      'flujo de trabajo IA, Claude Code, Codex CLI, plugin ChatGPT, OpenCode, agentes de IA, desarrollo con agentes, evidencia de release, herramientas para desarrolladores, MCP, desarrollo guiado por especificación',
+      'flujo de trabajo IA, Claude Code, Codex CLI, plugin ChatGPT, OpenCode, agentes de IA, desarrollo con agentes, evidencia de release, live docs, herramientas para desarrolladores, MCP, desarrollo guiado por especificación',
     ogAlt: 'ShipFrame — flujos de trabajo de IA para equipos que planifican, prueban y publican',
   },
   nav: {
@@ -108,6 +108,7 @@ export const ES: Content = {
           'tdd — red / green / refactor',
           'bug-diagnosis con bucle de reproducción',
           'research contra fuentes primarias',
+          'live-docs para documentación compatible con la versión',
         ],
       },
       {
@@ -151,7 +152,7 @@ export const ES: Content = {
           'Topología del repo y proceso de release',
           'Rutas de smoke-test y política de versiones',
           'Reglas de i18n y restricciones de copy',
-          'Packs iniciales: Angular, Laravel, MCP',
+          'Packs iniciales: Angular, Laravel, MCP, Live Docs',
         ],
       },
     ],
@@ -160,10 +161,10 @@ export const ES: Content = {
     eyebrow: 'Instalación',
     title: 'Funcionando con un solo comando',
     subtitle:
-      'Instala una vez. Abre /skills. Usa los workflows de ShipFrame directamente en Claude Code, Codex CLI y OpenCode, con doctor, repair y uninstall para un rollout seguro.',
+      'Instala una vez. Abre /skills. Usa los workflows de ShipFrame directamente en Claude Code, Codex CLI y OpenCode, con doctor, repair y uninstall para un rollout seguro. La skill opcional live-docs consulta documentación compatible antes de cambios que dependan de APIs externas.',
     tabs: [
       { id: 'curl', label: 'Una línea', code: 'curl -fsSL https://raw.githubusercontent.com/juanitourquiza/shipframe/main/install.sh | bash' },
-      { id: 'brew', label: 'Homebrew', code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --doctor --repo-only' },
+      { id: 'brew', label: 'Homebrew', code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --doctor --repo-only\nshipframe install --sync-docs --project-dir /ruta/al/proyecto --dry-run' },
       { id: 'herdr', label: 'Plugin Herdr', code: 'herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes' },
       { id: 'clone', label: 'Clon local', code: 'git clone https://github.com/juanitourquiza/shipframe ~/tools/shipframe\ncd ~/tools/shipframe\n./install.sh --all\n./install.sh --repair --all\n./install.sh --uninstall --all --yes' },
     ],
@@ -178,7 +179,7 @@ export const ES: Content = {
       { tool: 'OpenCode', skills: 'Discovery nativo de skills', orchestration: 'Herramienta skill de OpenCode' },
       { tool: 'Plugin Herdr', skills: 'Instalación Herdr separada', orchestration: 'Superficie de workflow en workspaces/panes' },
     ],
-    note: 'Discovery nativo, sin lock-in: el toolkit completo por GitHub/Homebrew incluye 30+ skills; Homebrew instala ese toolkit base. El plugin Herdr se instala por separado con herdr plugin install, y el plugin ChatGPT/Codex empaqueta 24 workflows curados para uso público. ShipFrame también puede combinarse opcionalmente con Caveman para respuestas internas más concisas.'
+    note: 'Discovery nativo, sin lock-in: el toolkit completo por GitHub/Homebrew incluye 30+ skills; Homebrew instala ese toolkit base. El plugin Herdr se instala por separado con herdr plugin install, y el plugin ChatGPT/Codex empaqueta 24 workflows curados para uso público. ShipFrame también puede combinarse opcionalmente con Caveman para respuestas internas más concisas. Live Docs es opcional y no exige un servicio documental pago.'
   },
   proof: {
     eyebrow: 'Pruebas antes de prometer',
@@ -238,6 +239,10 @@ export const ES: Content = {
         a: 'Ejecuta el instalador de una línea con curl, instala el toolkit base con Homebrew (brew tap juanitourquiza/shipframe && brew install shipframe), o clona el repositorio y corre ./install.sh con --claude, --codex, --opencode o --all. Instala la superficie Herdr por separado con herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes; docs: https://github.com/juanitourquiza/shipframe#herdr-local-workflow-plugin. Valida de forma segura con --doctor --repo-only, restaura archivos gestionados con --repair y elimina artefactos de ShipFrame con --uninstall.',
       },
       {
+        q: '¿Qué es Live Docs?',
+        a: 'Live Docs es una skill opcional que consulta documentación compatible con la versión de la dependencia antes de cambiar una API externa. Puede usar fuentes oficiales sin Neuledge o el pack local opcional; no instala herramientas ni modifica la configuración MCP automáticamente.',
+      },
+      {
         q: '¿Tengo que cambiar mi flujo de trabajo actual?',
         a: 'No. ShipFrame está diseñado en torno a tickets, ramas de Git y pull/merge requests — la forma en que ya trabajan la mayoría de los equipos. Adoptas solo las skills que quieras y el comportamiento específico del proyecto queda en perfiles opcionales.',
       },
@@ -257,7 +262,7 @@ export const ES: Content = {
   },
   cta: {
     title: 'Dale a tus agentes de IA un proceso digno de confianza',
-    subtitle: 'Instala ShipFrame o abre el plugin curado de ChatGPT/Codex, y convierte cada petición en un plan, un cambio verificado y evidencia real de release.',
+    subtitle: 'Instala ShipFrame o abre el plugin curado de ChatGPT/Codex, y convierte cada petición en un plan, un cambio verificado y evidencia real de release y documentación opcional compatible con las versiones de las librerías.',
     primary: 'Empezar ahora',
     secondary: 'Leer la documentación',
     plugin: 'Abrir plugin ChatGPT',

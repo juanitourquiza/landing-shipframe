@@ -4,9 +4,9 @@ export const EN: Content = {
   seo: {
     title: 'ShipFrame — AI Coding Workflows for Teams that Plan, Prove & Ship',
     description:
-      'ShipFrame is an open-source AI coding workflow toolkit for Claude Code, Codex CLI, ChatGPT/Codex plugin and OpenCode. Turn natural-language requests into a repeatable lifecycle: plan, implement, verify, review and ship with real release evidence.',
+      'ShipFrame is an open-source AI coding workflow toolkit for Claude Code, Codex CLI, ChatGPT/Codex plugin and OpenCode. Turn natural-language requests into a repeatable lifecycle: plan, implement, verify, review and ship with real release evidence, with optional version-compatible live library documentation.',
     keywords:
-      'AI coding workflow, Claude Code, Codex CLI, ChatGPT plugin, OpenCode, AI agents, agentic development, release evidence, developer tools, MCP, spec-driven development',
+      'AI coding workflow, Claude Code, Codex CLI, ChatGPT plugin, OpenCode, AI agents, agentic development, release evidence, live docs, developer tools, MCP, spec-driven development',
     ogAlt: 'ShipFrame — AI coding workflows for teams that plan, prove and ship',
   },
   nav: {
@@ -108,6 +108,7 @@ export const EN: Content = {
           'tdd — red / green / refactor',
           'bug-diagnosis with a tight repro loop',
           'research against primary sources',
+          'live-docs for version-compatible library docs',
         ],
       },
       {
@@ -152,7 +153,7 @@ export const EN: Content = {
           'Repo topology & release process',
           'Smoke-test routes & version policy',
           'i18n rules & client copy constraints',
-          'Starter packs: Angular, Laravel, MCP',
+          'Starter packs: Angular, Laravel, MCP, Live Docs',
         ],
       },
     ],
@@ -161,10 +162,10 @@ export const EN: Content = {
     eyebrow: 'Installation',
     title: 'Up and running in one command',
     subtitle:
-      'Install once. Open /skills. Use ShipFrame workflows directly across Claude Code, Codex CLI and OpenCode, with doctor, repair and uninstall commands for safe rollout.',
+      'Install once. Open /skills. Use ShipFrame workflows directly across Claude Code, Codex CLI and OpenCode, with doctor, repair and uninstall commands for safe rollout. The optional live-docs skill checks version-compatible library documentation before API-dependent changes.',
     tabs: [
       { id: 'curl', label: 'One-line', code: 'curl -fsSL https://raw.githubusercontent.com/juanitourquiza/shipframe/main/install.sh | bash' },
-      { id: 'brew', label: 'Homebrew', code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --doctor --repo-only' },
+      { id: 'brew', label: 'Homebrew', code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --doctor --repo-only\nshipframe install --sync-docs --project-dir /absolute/path/to/project --dry-run' },
       { id: 'herdr', label: 'Herdr plugin', code: 'herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes' },
       { id: 'clone', label: 'Local clone', code: 'git clone https://github.com/juanitourquiza/shipframe ~/tools/shipframe\ncd ~/tools/shipframe\n./install.sh --all\n./install.sh --repair --all\n./install.sh --uninstall --all --yes' },
     ],
@@ -179,7 +180,7 @@ export const EN: Content = {
       { tool: 'OpenCode', skills: 'Native skill discovery', orchestration: 'OpenCode skill tool' },
       { tool: 'Herdr plugin', skills: 'Separate Herdr install', orchestration: 'Workspace/pane workflow surface' },
     ],
-    note: 'Native discovery, no lock-in: the full GitHub/Homebrew toolkit includes 30+ skills; Homebrew installs that base toolkit. The Herdr plugin is installed separately with herdr plugin install, and the ChatGPT/Codex plugin packages 24 curated workflows for public plugin use. ShipFrame can also be paired optionally with Caveman for more concise internal agent responses.'
+    note: 'Native discovery, no lock-in: the full GitHub/Homebrew toolkit includes 30+ skills; Homebrew installs that base toolkit. The Herdr plugin is installed separately with herdr plugin install, and the ChatGPT/Codex plugin packages 24 curated workflows for public plugin use. ShipFrame can also be paired optionally with Caveman for more concise internal agent responses. Live Docs is optional and does not require a paid documentation service.'
   },
   proof: {
     eyebrow: 'Proof before claims',
@@ -239,6 +240,10 @@ export const EN: Content = {
         a: 'Run the one-line installer with curl, install the base toolkit via Homebrew (brew tap juanitourquiza/shipframe && brew install shipframe), or clone the repository and run ./install.sh with --claude, --codex, --opencode or --all. Install the Herdr surface separately with herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes; docs: https://github.com/juanitourquiza/shipframe#herdr-local-workflow-plugin. Validate safely with --doctor --repo-only, restore managed files with --repair, and remove ShipFrame-managed artifacts with --uninstall.',
       },
       {
+        q: 'What is Live Docs?',
+        a: 'Live Docs is an optional skill that checks documentation compatible with the dependency version before an external API change. It can use official sources without Neuledge or the optional local project pack; it does not install tools or modify MCP configuration automatically.',
+      },
+      {
         q: 'Do I have to change my existing workflow?',
         a: 'No. ShipFrame is designed around tickets, Git branches and pull/merge requests — the way most teams already work. You adopt only the skills you want, and project-specific behavior stays in opt-in profiles.',
       },
@@ -258,7 +263,7 @@ export const EN: Content = {
   },
   cta: {
     title: 'Give your AI agents a process worth trusting',
-    subtitle: 'Install ShipFrame or open the curated ChatGPT/Codex plugin, then turn every request into a plan, a verified change and real release evidence.',
+    subtitle: 'Install ShipFrame or open the curated ChatGPT/Codex plugin, then turn every request into a plan, a verified change and real release evidence, with optional version-compatible live library documentation.',
     primary: 'Get started',
     secondary: 'Read the docs',
     plugin: 'Open ChatGPT plugin',
