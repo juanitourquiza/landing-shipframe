@@ -57,8 +57,10 @@ jobs:
 
       - name: Smoke check (production)
         run: |
+          set -euo pipefail
           for url in "https://shipframe.hackeruna.com/" "https://shipframe.hackeruna.com/es/" "https://shipframe.hackeruna.com/llms.txt"; do
-            code=$(curl -s -o /dev/null -w "%{http_code}" "$url" || echo "000")
+            code=$(curl --fail --silent --show-error -o /dev/null -w "%{http_code}" "$url")
             echo "$code  $url"
-            [ "$code" = "200" ] || echo "::warning::$url returned $code"
+            [ "$code" = "200" ]
           done
+          curl --fail --silent --show-error https://shipframe.hackeruna.com/llms.txt | grep -F 'Current version: v0.4.7'
