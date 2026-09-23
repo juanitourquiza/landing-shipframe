@@ -43,7 +43,9 @@ gh secret set CLOUDWAYS_SSH_PASSWORD --repo juanitourquiza/landing-shipframe   #
      dist/landing-shipframe/browser/ user@host:public_html/
    ```
    `--delete` keeps the web root clean; `.well-known` is preserved for SSL/ACME.
-3. A production smoke check hits `/`, `/es/` and `/llms.txt` and warns if any is not `200`.
+3. A production smoke check requires `/`, `/es/`, and `/llms.txt` to return `200`, and confirms `llms.txt` publishes the expected current version. A failed route or stale version fails the deployment workflow.
+
+Pull requests run `npm ci`, `npm test -- --watch=false`, `npm run build`, and verify the prerendered English/Spanish routes plus the versioned `llms.txt` artifact before merge.
 
 ## Cloudways notes (important)
 
