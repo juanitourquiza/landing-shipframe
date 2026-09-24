@@ -24,4 +24,4 @@ jobs:
         run: |
           test -f dist/landing-shipframe/browser/index.html
           test -f dist/landing-shipframe/browser/es/index.html
-          grep -Fq 'Current version: v0.4.7' dist/landing-shipframe/browser/llms.txt
+          grep -Fq 'Current version: v0.4.8' dist/landing-shipframe/browser/llms.txt
