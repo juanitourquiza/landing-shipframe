@@ -162,7 +162,7 @@ export const EN: Content = {
     eyebrow: 'Installation',
     title: 'Up and running in one command',
     subtitle:
-      'Install once. Open /skills. Use ShipFrame workflows directly across Claude Code, Codex CLI and OpenCode, with doctor, repair and uninstall commands for safe rollout. The optional live-docs skill checks version-compatible library documentation before API-dependent changes; Context MCP is recommended but not required.',
+      'ShipFrame v0.4.8 adds an optional advisory prompt fast path for Claude Code, Codex CLI, and OpenCode: bypass, suggest, or route to a matching workflow. Explicit user direction wins. Codex hooks require user trust; OpenCode plugin registration remains under your control. Install once. Open /skills. Use ShipFrame workflows directly across Claude Code, Codex CLI and OpenCode, with doctor, repair and uninstall commands for safe rollout. The optional live-docs skill checks version-compatible library documentation before API-dependent changes; Context MCP is recommended but not required.',
     tabs: [
       { id: 'curl', label: 'One-line', code: 'curl -fsSL https://raw.githubusercontent.com/juanitourquiza/shipframe/main/install.sh | bash' },
       { id: 'brew', label: 'Homebrew', code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --doctor --repo-only\nshipframe install --doctor' },
