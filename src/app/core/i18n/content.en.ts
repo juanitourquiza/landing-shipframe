@@ -153,7 +153,9 @@ export const EN: Content = {
           'Repo topology & release process',
           'Smoke-test routes & version policy',
           'i18n rules & client copy constraints',
-          'Starter packs: Angular, Laravel, MCP, Context-backed Live Docs',
+          'Language/runtime packs: JavaScript, TypeScript, PHP, Node.js, Python, Go, Rust',
+          'Framework/build packs: Angular, Laravel, React/Vite, Next.js, NestJS, FastAPI',
+          'MCP guidance and version-matched Live Docs; Context remains optional',
         ],
       },
     ],
@@ -180,7 +182,7 @@ export const EN: Content = {
       { tool: 'OpenCode', skills: 'Native skill discovery', orchestration: 'OpenCode skill tool' },
       { tool: 'Herdr plugin', skills: 'Separate Herdr install', orchestration: 'Workspace/pane workflow surface' },
     ],
-    note: 'Native discovery, no lock-in: the full GitHub/Homebrew toolkit includes 30+ skills; Homebrew installs that base toolkit. The Herdr plugin is installed separately with herdr plugin install, and the ChatGPT/Codex plugin packages 24 curated workflows for public plugin use. ShipFrame can also be paired optionally with Caveman for more concise internal agent responses. Live Docs is optional: Context MCP is recommended for local versioned docs, but ShipFrame works without it and does not require a paid documentation service.'
+    note: 'Native discovery, no lock-in: the ShipFrame GitHub repository includes 30+ skills and optional technology packs; Homebrew installs the stable tagged base toolkit. The Herdr plugin is installed separately with herdr plugin install, and the ChatGPT/Codex plugin packages 24 curated workflows for public plugin use. ShipFrame can also be paired optionally with Caveman for more concise internal agent responses. Live Docs uses dependency versions from project lockfiles; when connected, Context MCP can provide matching docs. init-project may suggest setup based on the detected stack, but never installs Context or edits host config. Official versioned docs remain the fallback.'
   },
   proof: {
     eyebrow: 'Proof before claims',
