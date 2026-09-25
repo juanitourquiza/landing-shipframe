@@ -152,7 +152,9 @@ export const ES: Content = {
           'Topología del repo y proceso de release',
           'Rutas de smoke-test y política de versiones',
           'Reglas de i18n y restricciones de copy',
-          'Packs iniciales: Angular, Laravel, MCP, Live Docs con Context',
+          'Packs de lenguaje/runtime: JavaScript, TypeScript, PHP, Node.js, Python, Go y Rust',
+          'Packs de frameworks/build: Angular, Laravel, React/Vite, Next.js, NestJS y FastAPI',
+          'Guías MCP y Live Docs versionado; Context sigue siendo opcional',
         ],
       },
     ],
@@ -179,7 +181,7 @@ export const ES: Content = {
       { tool: 'OpenCode', skills: 'Discovery nativo de skills', orchestration: 'Herramienta skill de OpenCode' },
       { tool: 'Plugin Herdr', skills: 'Instalación Herdr separada', orchestration: 'Superficie de workflow en workspaces/panes' },
     ],
-    note: 'Discovery nativo, sin lock-in: el toolkit completo por GitHub/Homebrew incluye 30+ skills; Homebrew instala ese toolkit base. El plugin Herdr se instala por separado con herdr plugin install, y el plugin ChatGPT/Codex empaqueta 24 workflows curados para uso público. ShipFrame también puede combinarse opcionalmente con Caveman para respuestas internas más concisas. Live Docs es opcional: Context MCP se recomienda para docs locales y versionadas, pero ShipFrame funciona sin él y no exige un servicio documental pago.'
+    note: 'Discovery nativo, sin lock-in: el repositorio de ShipFrame en GitHub incluye 30+ skills y packs de tecnología opcionales; Homebrew instala el toolkit estable etiquetado. El plugin Herdr se instala por separado con herdr plugin install, y el plugin ChatGPT/Codex empaqueta 24 workflows curados para uso público. ShipFrame también puede combinarse opcionalmente con Caveman para respuestas internas más concisas. Live Docs usa las versiones de dependencias del lockfile; si está conectado, Context MCP puede ofrecer documentación compatible. init-project puede sugerir su configuración según el stack detectado, pero nunca instala Context ni edita la configuración del host. La documentación oficial versionada sigue siendo la alternativa.'
   },
   proof: {
     eyebrow: 'Pruebas antes de prometer',

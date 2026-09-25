@@ -20,7 +20,12 @@ describe('ShipFrame landing content', () => {
       expect(content.install.tabs.find((tab) => tab.id === 'brew')?.code).toContain('shipframe install --doctor');
       expect(content.install.tabs.find((tab) => tab.id === 'brew')?.code).not.toContain('shipframe install --sync-docs');
       expect(content.features.groups.flatMap((group) => group.items).join(' ')).toContain('Live Docs');
+      const featureCopy = content.features.groups.flatMap((group) => group.items).join(' ');
+      for (const technology of ['JavaScript', 'TypeScript', 'PHP', 'Node.js', 'Python', 'Go', 'Rust', 'Angular', 'Laravel', 'React/Vite', 'Next.js', 'NestJS', 'FastAPI']) {
+        expect(featureCopy).toContain(technology);
+      }
       expect(content.faq.items.find((item) => item.q.includes('Live Docs') || item.q.includes('Live Docs'))?.a).toContain('Context MCP');
+      expect(content.install.note).toContain('lockfile');
     }
 
     expect(EN.proof.eyebrow).toBe('Proof before claims');
