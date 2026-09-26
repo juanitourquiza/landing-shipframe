@@ -63,4 +63,6 @@ jobs:
             echo "$code  $url"
             [ "$code" = "200" ]
           done
-          curl --fail --silent --show-error https://shipframe.hackeruna.com/llms.txt | grep -F 'Current version: v0.6.0'
+          version=$(sed -nE "s/.*version: '([^']+)'.*/\1/p" src/app/core/site.config.ts)
+          test -n "$version"
+          curl --fail --silent --show-error https://shipframe.hackeruna.com/llms.txt | grep -F "Current version: v${version}"
