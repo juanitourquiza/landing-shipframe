@@ -1,12 +1,12 @@
 # ShipFrame
 
-Current version: v0.6.0
+Current version: v0.6.1
 
 > ShipFrame is an open-source AI coding workflow toolkit for teams that plan, prove and ship software changes with discipline. It turns natural-language development requests into a repeatable delivery lifecycle and works with Claude Code, Codex CLI, the curated ChatGPT/Codex plugin, OpenCode and the separate Herdr plugin. Released under the MIT License.
 
-ShipFrame v0.6.0 closes the four-wave roadmap with security review, E2E verification, dependency and API-contract workflows, incident response, memory curation, and Next.js, NestJS, FastAPI, and Go starter packs. It also provides an optional advisory prompt fast path for Claude Code, Codex CLI, and OpenCode that can bypass, suggest, or route prompts to workflows. Explicit user direction takes precedence; Codex hook trust and OpenCode plugin registration remain user-controlled. ShipFrame provides reusable skills, agent workflows, templates and project profiles. The core lifecycle is: Refresh context → Discover requirements → Plan work → Implement → Verify → Review → Release evidence → PR/MR. It is built for teams that work from tickets, Git branches and pull/merge requests, and that require concrete release evidence before declaring work complete.
+ShipFrame v0.6.1 includes the four-wave roadmap closeout, security review, E2E verification, dependency and API-contract workflows, incident response, memory curation, and optional technology packs. It also provides an optional advisory prompt fast path for Claude Code, Codex CLI, and OpenCode that can bypass, suggest, or route prompts to workflows. Explicit user direction takes precedence; Codex hook trust and OpenCode plugin registration remain user-controlled. ShipFrame provides reusable skills, agent workflows, templates and project profiles. The core lifecycle is: Refresh context → Discover requirements → Plan work → Implement → Verify → Review → Release evidence → PR/MR. It is built for teams that work from tickets, Git branches and pull/merge requests, and that require concrete release evidence before declaring work complete.
 
-The ShipFrame repository's current main also includes optional technology packs for JavaScript, TypeScript, PHP, Node.js, Python, Rust, Angular, Laravel, and React/Vite. These are workflow/review guides, not installed libraries; packs added after v0.6.0 are not part of that immutable tag. The optional Live Docs workflow uses versions resolved from project lockfiles; Context MCP can provide matching docs when the user has configured it, while official versioned docs remain the fallback.
+The current stable v0.6.1 release includes optional technology packs for JavaScript, TypeScript, PHP, Node.js, Python, Go, Rust, Angular, Laravel, React/Vite, Next.js, NestJS, and FastAPI. These are workflow/review guides, not installed libraries. Homebrew installs this immutable tagged release. The optional Live Docs workflow uses versions resolved from project lockfiles; Context MCP can provide matching docs when the user has configured it, while official versioned docs remain the fallback.
 
 ## Key facts
 
@@ -18,7 +18,7 @@ The ShipFrame repository's current main also includes optional technology packs 
 - **Repository:** https://github.com/juanitourquiza/shipframe
 - **ChatGPT/Codex plugin:** https://chatgpt.com/plugins/plugins_6a88e6256bb48191a343d39dace5e05c
 - **Landing page:** https://shipframe.hackeruna.com
-- **Current version:** v0.6.0
+- **Current version:** v0.6.1
 - **Maintainer:** hackeruna — contact j@hackeruna.com
 - **Optional memory:** integrates with Engram for persistent cross-session memory
 
@@ -42,7 +42,7 @@ Install once. Open `/skills`. Use ShipFrame workflows directly.
 - **Release & evidence:** project-profile, project-release, release-checklist, frontend-release, backend-release, deploy-evidence, evidence-audit, proof-runner
 - **Integration & product:** mcp-debugging, client-copy-review, a11y-auditor (WCAG 2.2), design-expert, design-system-docs, design-system-setup
 - **Knowledge wiki:** wiki-init, wiki-query, wiki-sync, wiki-forge
-- **Project profiles:** generic core plus opt-in per-repo rules (release process, smoke-test routes, version policy, i18n, client copy). Starter packs for Angular, Laravel and MCP.
+- **Project profiles:** generic core plus opt-in per-repo rules (release process, smoke-test routes, version policy, i18n, client copy). Technology packs cover JavaScript, TypeScript, PHP, Node.js, Python, Go, Rust, Angular, Laravel, React/Vite, Next.js, NestJS, and FastAPI; separate MCP and Live Docs guidance is also available.
 
 ## Docs and pages
 

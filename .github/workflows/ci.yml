@@ -24,4 +24,6 @@ jobs:
         run: |
           test -f dist/landing-shipframe/browser/index.html
           test -f dist/landing-shipframe/browser/es/index.html
-          grep -Fq 'Current version: v0.6.0' dist/landing-shipframe/browser/llms.txt
+          version=$(sed -nE "s/.*version: '([^']+)'.*/\1/p" src/app/core/site.config.ts)
+          test -n "$version"
+          grep -Fq "Current version: v${version}" dist/landing-shipframe/browser/llms.txt
