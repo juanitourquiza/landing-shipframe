@@ -1,17 +1,9 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  PLATFORM_ID,
-  inject,
-  input,
-  signal,
-} from '@angular/core';
+import { Component, PLATFORM_ID, inject, input, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { IconComponent } from './icon';
 
 @Component({
   selector: 'app-copy-button',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [IconComponent],
   template: `
     <button

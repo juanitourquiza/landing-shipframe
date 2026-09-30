@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RevealDirective } from '../shared/reveal.directive';
 import { IconComponent } from '../shared/icon';
 import { I18nService } from '../core/i18n/i18n.service';
@@ -6,7 +6,6 @@ import { SITE } from '../core/site.config';
 
 @Component({
   selector: 'app-cta',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RevealDirective, IconComponent],
   template: `
     <section class="py-20 sm:py-28">
@@ -24,7 +23,9 @@ import { SITE } from '../core/site.config';
             aria-hidden="true"
           ></div>
 
-          <h2 class="text-fg mx-auto max-w-2xl text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+          <h2
+            class="text-fg mx-auto max-w-2xl text-3xl font-bold tracking-tight text-balance sm:text-4xl"
+          >
             {{ c().title }}
           </h2>
           <p class="text-fg-muted mx-auto mt-4 max-w-xl text-lg text-pretty">{{ c().subtitle }}</p>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { RevealDirective } from '../shared/reveal.directive';
 import { IconComponent } from '../shared/icon';
 import { CopyButtonComponent } from '../shared/copy-button';
@@ -6,13 +6,17 @@ import { I18nService } from '../core/i18n/i18n.service';
 
 @Component({
   selector: 'app-install',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RevealDirective, IconComponent, CopyButtonComponent],
   template: `
-    <section id="install" class="bg-bg-subtle border-border-soft scroll-mt-20 border-y py-20 sm:py-28">
+    <section
+      id="install"
+      class="bg-bg-subtle border-border-soft scroll-mt-20 border-y py-20 sm:py-28"
+    >
       <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-2xl text-center" appReveal>
-          <p class="text-brand-600 dark:text-brand-400 text-sm font-semibold tracking-widest uppercase">
+          <p
+            class="text-brand-600 dark:text-brand-400 text-sm font-semibold tracking-widest uppercase"
+          >
             {{ c().eyebrow }}
           </p>
           <h2 class="text-fg mt-3 text-3xl font-bold tracking-tight text-balance sm:text-4xl">
@@ -22,16 +26,22 @@ import { I18nService } from '../core/i18n/i18n.service';
         </div>
 
         <div class="mx-auto mt-12 max-w-3xl" appReveal>
-          <div
-            class="border-border-soft bg-surface overflow-hidden rounded-2xl border shadow-xl"
-          >
-            <div class="border-border-soft flex items-center gap-1 border-b px-2 py-2" role="tablist">
+          <div class="border-border-soft bg-surface overflow-hidden rounded-2xl border shadow-xl">
+            <div
+              class="border-border-soft flex items-center gap-1 border-b px-2 py-2"
+              role="tablist"
+              [attr.aria-label]="i18n.content().nav.installTabsLabel"
+            >
               @for (tab of c().tabs; track tab.id) {
                 <button
                   type="button"
                   role="tab"
+                  [id]="'install-tab-' + tab.id"
+                  aria-controls="install-panel"
                   [attr.aria-selected]="active() === tab.id"
+                  [attr.tabindex]="active() === tab.id ? 0 : -1"
                   (click)="active.set(tab.id)"
+                  (keydown)="onTabKeydown($event, tab.id)"
                   class="rounded-lg px-4 py-2 text-sm font-semibold transition-colors"
                   [class]="
                     active() === tab.id
@@ -43,7 +53,13 @@ import { I18nService } from '../core/i18n/i18n.service';
                 </button>
               }
             </div>
-            <div class="relative">
+            <div
+              class="relative"
+              role="tabpanel"
+              id="install-panel"
+              [attr.aria-labelledby]="'install-tab-' + active()"
+              tabindex="0"
+            >
               <div class="absolute top-3 right-3 z-10">
                 <app-copy-button
                   [text]="activeCode()"
@@ -60,11 +76,11 @@ import { I18nService } from '../core/i18n/i18n.service';
 
         <div class="mx-auto mt-12 max-w-3xl" appReveal>
           <h3 class="text-fg text-center text-lg font-semibold">{{ c().targetsTitle }}</h3>
-          <div
-            class="border-border-soft bg-surface mt-5 overflow-hidden rounded-2xl border"
-          >
+          <div class="border-border-soft bg-surface mt-5 overflow-hidden rounded-2xl border">
             <table class="w-full text-left text-sm">
-              <thead class="border-border-soft text-fg-subtle border-b text-xs uppercase tracking-wider">
+              <thead
+                class="border-border-soft text-fg-subtle border-b text-xs uppercase tracking-wider"
+              >
                 <tr>
                   <th class="px-5 py-3 font-semibold">{{ c().targetsHead.tool }}</th>
                   <th class="px-5 py-3 font-semibold">{{ c().targetsHead.skills }}</th>
@@ -86,10 +102,10 @@ import { I18nService } from '../core/i18n/i18n.service';
               </tbody>
             </table>
           </div>
-          <p
-            class="text-fg-muted mt-5 flex items-start justify-center gap-2 text-center text-sm"
-          >
-            <span class="text-brand-400 mt-0.5 shrink-0"><app-icon name="spark" [size]="16" /></span>
+          <p class="text-fg-muted mt-5 flex items-start justify-center gap-2 text-center text-sm">
+            <span class="text-brand-400 mt-0.5 shrink-0"
+              ><app-icon name="spark" [size]="16"
+            /></span>
             <span>{{ c().note }}</span>
           </p>
         </div>
@@ -98,7 +114,7 @@ import { I18nService } from '../core/i18n/i18n.service';
   `,
 })
 export class InstallComponent {
-  private readonly i18n = inject(I18nService);
+  protected readonly i18n = inject(I18nService);
   protected readonly c = () => this.i18n.content().install;
 
   protected readonly active = signal<string>('curl');
@@ -106,4 +122,27 @@ export class InstallComponent {
     const tabs = this.i18n.content().install.tabs;
     return tabs.find((t) => t.id === this.active())?.code ?? tabs[0].code;
   });
+
+  protected onTabKeydown(event: KeyboardEvent, currentId: string): void {
+    const tabs = this.i18n.content().install.tabs;
+    const currentIndex = tabs.findIndex((tab) => tab.id === currentId);
+    const nextIndex =
+      event.key === 'ArrowRight'
+        ? (currentIndex + 1) % tabs.length
+        : event.key === 'ArrowLeft'
+          ? (currentIndex - 1 + tabs.length) % tabs.length
+          : event.key === 'Home'
+            ? 0
+            : event.key === 'End'
+              ? tabs.length - 1
+              : -1;
+
+    if (nextIndex < 0) return;
+    event.preventDefault();
+    const nextTab = tabs[nextIndex];
+    this.active.set(nextTab.id);
+    (event.currentTarget as HTMLElement).parentElement
+      ?.querySelector<HTMLElement>(`#install-tab-${nextTab.id}`)
+      ?.focus();
+  }
 }

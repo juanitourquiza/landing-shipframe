@@ -1,6 +1,6 @@
-<a class="skip-link" [href]="i18n.sectionPath('main')">Skip to content</a>
+<a class="skip-link" [href]="i18n.sectionPath('main')">{{ i18n.content().nav.skipToContent }}</a>
 <app-header />
-<main id="main">
+<main id="main" tabindex="-1">
   <router-outlet />
 </main>
 <app-footer />

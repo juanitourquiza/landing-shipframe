@@ -5,7 +5,7 @@ import { SITE } from './site.config';
 
 describe('ShipFrame landing content', () => {
   it('keeps structured-data version on the single site constant', () => {
-    expect(SITE.version).toBe('0.7.0');
+    expect(SITE.version).toBe('0.7.1');
   });
 
   it('documents proof before claims without public reach metrics', () => {
@@ -16,15 +16,41 @@ describe('ShipFrame landing content', () => {
       expect(content.proof.useCases).toHaveLength(3);
       expect(content.proof.disclaimer.toLowerCase()).toContain('telemetry');
       expect(content.install.tabs.some((tab) => tab.id === 'herdr')).toBe(true);
-      expect(content.install.tabs.find((tab) => tab.id === 'herdr')?.code).toContain('herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes');
-      expect(content.install.tabs.find((tab) => tab.id === 'brew')?.code).toContain('shipframe install --doctor');
-      expect(content.install.tabs.find((tab) => tab.id === 'brew')?.code).not.toContain('shipframe install --sync-docs');
-      expect(content.features.groups.flatMap((group) => group.items).join(' ')).toContain('Live Docs');
+      expect(content.install.tabs.find((tab) => tab.id === 'herdr')?.code).toContain(
+        'herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes',
+      );
+      expect(content.install.tabs.find((tab) => tab.id === 'brew')?.code).toContain(
+        'shipframe install --doctor',
+      );
+      expect(content.install.tabs.find((tab) => tab.id === 'brew')?.code).not.toContain(
+        'shipframe install --sync-docs',
+      );
+      expect(content.features.groups.flatMap((group) => group.items).join(' ')).toContain(
+        'Live Docs',
+      );
       const featureCopy = content.features.groups.flatMap((group) => group.items).join(' ');
-      for (const technology of ['JavaScript', 'TypeScript', 'PHP', 'Node.js', 'Python', 'Go', 'Rust', 'Angular', 'Laravel', 'React/Vite', 'Next.js', 'NestJS', 'FastAPI']) {
+      for (const technology of [
+        'JavaScript',
+        'TypeScript',
+        'PHP',
+        'Node.js',
+        'Python',
+        'Go',
+        'Rust',
+        'Angular',
+        'Laravel',
+        'React/Vite',
+        'Next.js',
+        'NestJS',
+        'FastAPI',
+      ]) {
         expect(featureCopy).toContain(technology);
       }
-      expect(content.faq.items.find((item) => item.q.includes('Live Docs') || item.q.includes('Live Docs'))?.a).toContain('Context MCP');
+      expect(
+        content.faq.items.find(
+          (item) => item.q.includes('Live Docs') || item.q.includes('Live Docs'),
+        )?.a,
+      ).toContain('Context MCP');
       expect(content.install.note).toContain('lockfile');
     }
 

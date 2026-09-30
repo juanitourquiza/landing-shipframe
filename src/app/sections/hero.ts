@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { IconComponent } from '../shared/icon';
 import { CopyButtonComponent } from '../shared/copy-button';
 import { I18nService } from '../core/i18n/i18n.service';
@@ -6,14 +6,15 @@ import { SITE } from '../core/site.config';
 
 @Component({
   selector: 'app-hero',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [IconComponent, CopyButtonComponent],
   template: `
     <section class="relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-24">
       <!-- Background: grid + glow -->
       <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10">
         <div class="hero-grid absolute inset-0"></div>
-        <div class="hero-glow absolute top-[-20%] left-1/2 h-[560px] w-[880px] -translate-x-1/2"></div>
+        <div
+          class="hero-glow absolute top-[-20%] left-1/2 h-[560px] w-[880px] -translate-x-1/2"
+        ></div>
       </div>
 
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

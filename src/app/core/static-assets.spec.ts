@@ -3,14 +3,15 @@ import { describe, expect, it } from 'vitest';
 describe('static SEO assets', () => {
   it('keeps llms and sitemap assets in the Angular public asset list', async () => {
     const angularConfig = await import('../../../angular.json');
-    const assets = angularConfig.default.projects['landing-shipframe'].architect.build.options.assets;
+    const assets =
+      angularConfig.default.projects['landing-shipframe'].architect.build.options.assets;
     expect(JSON.stringify(assets)).toContain('public');
   });
 
   it('keeps the production route contract documented in public assets', async () => {
     const { SITE } = await import('./site.config');
     expect(SITE.url).toBe('https://shipframe.hackeruna.com');
-    expect(SITE.version).toBe('0.7.0');
+    expect(SITE.version).toBe('0.7.1');
   });
 
   it('keeps the public crawler summary aligned with the structured site version', async () => {
@@ -21,7 +22,21 @@ describe('static SEO assets', () => {
     const shortCrawlerSummary = await fs.readFile('public/llm.txt', 'utf8');
     for (const summary of [crawlerSummary, shortCrawlerSummary]) {
       expect(summary).toContain('Homebrew installs this immutable tagged release');
-      for (const technology of ['JavaScript', 'TypeScript', 'PHP', 'Node.js', 'Python', 'Go', 'Rust', 'Angular', 'Laravel', 'React/Vite', 'Next.js', 'NestJS', 'FastAPI']) {
+      for (const technology of [
+        'JavaScript',
+        'TypeScript',
+        'PHP',
+        'Node.js',
+        'Python',
+        'Go',
+        'Rust',
+        'Angular',
+        'Laravel',
+        'React/Vite',
+        'Next.js',
+        'NestJS',
+        'FastAPI',
+      ]) {
         expect(summary).toContain(technology);
       }
     }

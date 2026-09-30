@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { I18nService } from '../core/i18n/i18n.service';
 
 @Component({
   selector: 'app-trust',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="border-border-soft border-y">
       <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -24,5 +23,12 @@ import { I18nService } from '../core/i18n/i18n.service';
 export class TrustComponent {
   private readonly i18n = inject(I18nService);
   protected readonly runsWith = () => this.i18n.content().hero.runsWith;
-  protected readonly tools = ['Claude Code', 'Codex CLI', 'OpenCode', 'GitHub', 'GitLab', 'ClickUp'];
+  protected readonly tools = [
+    'Claude Code',
+    'Codex CLI',
+    'OpenCode',
+    'GitHub',
+    'GitLab',
+    'ClickUp',
+  ];
 }
