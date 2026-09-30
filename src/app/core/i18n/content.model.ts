@@ -2,7 +2,15 @@ export type Lang = 'en' | 'es';
 
 export interface NavContent {
   links: { id: string; label: string }[];
+  skipToContent: string;
+  home: string;
+  primaryNavigation: string;
+  mobileNavigation: string;
+  toggleMenu: string;
+  switchLanguageTo: string;
+  installTabsLabel: string;
   github: string;
+  githubAriaLabel: string;
   install: string;
   themeLight: string;
   themeDark: string;

@@ -1,6 +1,6 @@
 # ShipFrame — Landing Page
 
-Marketing landing page for **[ShipFrame](https://github.com/juanitourquiza/shipframe)**, the open-source AI coding workflow toolkit for teams that *plan, prove & ship*.
+Marketing landing page for **[ShipFrame](https://github.com/juanitourquiza/shipframe)**, the open-source AI coding workflow toolkit for teams that _plan, prove & ship_.
 
 🌐 **Live:** https://shipframe.hackeruna.com
 
@@ -26,13 +26,13 @@ Built with **Angular 22** (standalone, signals, zoneless), **Tailwind CSS v4**, 
 
 ## 🧱 Tech stack
 
-| Area | Choice |
-|---|---|
+| Area      | Choice                                                        |
+| --------- | ------------------------------------------------------------- |
 | Framework | Angular 22 (standalone components, signals, zoneless, OnPush) |
-| Styling | Tailwind CSS v4 + CSS custom-property design tokens |
-| Rendering | Static Site Generation (prerender, `outputMode: "static"`) |
-| i18n | Signal-based dictionaries + canonical routes (`/`, `/es`) |
-| Fonts | Inter + JetBrains Mono |
+| Styling   | Tailwind CSS v4 + CSS custom-property design tokens           |
+| Rendering | Static Site Generation (prerender, `outputMode: "static"`)    |
+| i18n      | Signal-based dictionaries + canonical routes (`/`, `/es`)     |
+| Fonts     | Inter + JetBrains Mono                                        |
 
 ---
 

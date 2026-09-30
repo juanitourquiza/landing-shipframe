@@ -29,7 +29,11 @@
         try {
           var q = new URLSearchParams(location.search).get('theme');
           var t = localStorage.getItem('shipframe-theme');
-          var dark = q ? q === 'dark' : t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+          var dark = q
+            ? q === 'dark'
+            : t
+              ? t === 'dark'
+              : matchMedia('(prefers-color-scheme: dark)').matches;
           if (dark) document.documentElement.classList.add('dark');
         } catch (e) {}
       })();

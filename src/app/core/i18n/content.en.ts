@@ -10,6 +10,14 @@ export const EN: Content = {
     ogAlt: 'ShipFrame — AI coding workflows for teams that plan, prove and ship',
   },
   nav: {
+    skipToContent: 'Skip to content',
+    home: 'ShipFrame home',
+    primaryNavigation: 'Primary navigation',
+    mobileNavigation: 'Mobile navigation',
+    toggleMenu: 'Toggle menu',
+    switchLanguageTo: 'Switch language to',
+    installTabsLabel: 'Installation method',
+    githubAriaLabel: 'ShipFrame on GitHub',
     links: [
       { id: 'lifecycle', label: 'Lifecycle' },
       { id: 'features', label: 'Features' },
@@ -48,7 +56,10 @@ export const EN: Content = {
       'ShipFrame turns a request into a repeatable path — from context to a pull request backed by real proof.',
     steps: [
       { title: 'Refresh context', desc: 'Read wiki, agents and git state before touching code.' },
-      { title: 'Discover requirements', desc: 'Structured questioning turns vague ideas into specs.' },
+      {
+        title: 'Discover requirements',
+        desc: 'Structured questioning turns vague ideas into specs.',
+      },
       { title: 'Plan work', desc: 'Break the spec into ordered, file-level subtasks.' },
       { title: 'Implement', desc: 'Write scoped, production-ready code — no vibe coding.' },
       { title: 'Verify', desc: 'Drive the change end-to-end and observe real behavior.' },
@@ -166,23 +177,51 @@ export const EN: Content = {
     subtitle:
       'ShipFrame v0.7.0 adds bilingual preventive security-hardening guidance for implementation changes alongside evidence-based security review, E2E verification, dependency and API-contract workflows, incident response, memory curation, and optional language/runtime and framework/build technology packs. It also includes an optional advisory prompt fast path for Claude Code, Codex CLI, and OpenCode: bypass, suggest, or route to a matching workflow. Explicit user direction wins. Codex hooks require user trust; OpenCode plugin registration remains under your control. Install once. Open /skills. Use ShipFrame workflows directly across Claude Code, Codex CLI and OpenCode, with doctor, repair and uninstall commands for safe rollout. The optional live-docs skill checks version-compatible library documentation before API-dependent changes; Context MCP is recommended but not required.',
     tabs: [
-      { id: 'curl', label: 'One-line', code: 'curl -fsSL https://raw.githubusercontent.com/juanitourquiza/shipframe/main/install.sh | bash' },
-      { id: 'brew', label: 'Homebrew', code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --doctor --repo-only\nshipframe install --doctor' },
-      { id: 'herdr', label: 'Herdr plugin', code: 'herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes' },
-      { id: 'clone', label: 'Local clone', code: 'git clone https://github.com/juanitourquiza/shipframe ~/tools/shipframe\ncd ~/tools/shipframe\n./install.sh --all\n./install.sh --repair --all\n./install.sh --uninstall --all --yes' },
+      {
+        id: 'curl',
+        label: 'One-line',
+        code: 'curl -fsSL https://raw.githubusercontent.com/juanitourquiza/shipframe/main/install.sh | bash',
+      },
+      {
+        id: 'brew',
+        label: 'Homebrew',
+        code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --doctor --repo-only\nshipframe install --doctor',
+      },
+      {
+        id: 'herdr',
+        label: 'Herdr plugin',
+        code: 'herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes',
+      },
+      {
+        id: 'clone',
+        label: 'Local clone',
+        code: 'git clone https://github.com/juanitourquiza/shipframe ~/tools/shipframe\ncd ~/tools/shipframe\n./install.sh --all\n./install.sh --repair --all\n./install.sh --uninstall --all --yes',
+      },
     ],
     copy: 'Copy',
     copied: 'Copied!',
     targetsTitle: 'Use it from your skills picker',
-    targetsHead: { tool: 'Tool', skills: 'Discovery after install', orchestration: 'Run a workflow' },
+    targetsHead: {
+      tool: 'Tool',
+      skills: 'Discovery after install',
+      orchestration: 'Run a workflow',
+    },
     targets: [
       { tool: 'Claude Code', skills: 'Plugin namespace', orchestration: '/shipframe:code-review' },
       { tool: 'Codex CLI', skills: '/skills picker', orchestration: '$code-review' },
-      { tool: 'ChatGPT/Codex plugin', skills: 'Public curated plugin', orchestration: 'Open ChatGPT plugin' },
+      {
+        tool: 'ChatGPT/Codex plugin',
+        skills: 'Public curated plugin',
+        orchestration: 'Open ChatGPT plugin',
+      },
       { tool: 'OpenCode', skills: 'Native skill discovery', orchestration: 'OpenCode skill tool' },
-      { tool: 'Herdr plugin', skills: 'Separate Herdr install', orchestration: 'Workspace/pane workflow surface' },
+      {
+        tool: 'Herdr plugin',
+        skills: 'Separate Herdr install',
+        orchestration: 'Workspace/pane workflow surface',
+      },
     ],
-    note: 'Native discovery, no lock-in: the ShipFrame GitHub repository includes 30+ skills and optional technology packs; Homebrew installs the stable tagged base toolkit. The Herdr plugin is installed separately with herdr plugin install, and the ChatGPT/Codex plugin packages 24 curated workflows for public plugin use. ShipFrame can also be paired optionally with Caveman for more concise internal agent responses. Live Docs uses dependency versions from project lockfiles; when connected, Context MCP can provide matching docs. init-project may suggest setup based on the detected stack, but never installs Context or edits host config. Official versioned docs remain the fallback.'
+    note: 'Native discovery, no lock-in: the ShipFrame GitHub repository includes 30+ skills and optional technology packs; Homebrew installs the stable tagged base toolkit. The Herdr plugin is installed separately with herdr plugin install, and the ChatGPT/Codex plugin packages 24 curated workflows for public plugin use. ShipFrame can also be paired optionally with Caveman for more concise internal agent responses. Live Docs uses dependency versions from project lockfiles; when connected, Context MCP can provide matching docs. init-project may suggest setup based on the detected stack, but never installs Context or edits host config. Official versioned docs remain the fallback.',
   },
   proof: {
     eyebrow: 'Proof before claims',
@@ -191,15 +230,33 @@ export const EN: Content = {
       'ShipFrame keeps public claims grounded in evidence. The optional proof-runner reads checklist steps with explicit Verify commands, runs only approved commands, and reports exactly what passed.',
     commandsTitle: 'What proof-runner checks',
     commands: [
-      { title: 'Explicit commands', desc: 'Checklist items use Verify: `command` so agents know the exact proof step to run.' },
-      { title: 'Dry-run first', desc: 'Commands are listed before execution, with separate approval for risky deploys, paid providers, emails or production mutations.' },
-      { title: 'Exit-zero proof only', desc: 'A step is marked proven only when its command exits 0; failed commands and missing Verify lines stay visible.' },
+      {
+        title: 'Explicit commands',
+        desc: 'Checklist items use Verify: `command` so agents know the exact proof step to run.',
+      },
+      {
+        title: 'Dry-run first',
+        desc: 'Commands are listed before execution, with separate approval for risky deploys, paid providers, emails or production mutations.',
+      },
+      {
+        title: 'Exit-zero proof only',
+        desc: 'A step is marked proven only when its command exits 0; failed commands and missing Verify lines stay visible.',
+      },
     ],
     useCasesTitle: 'Where it helps',
     useCases: [
-      { title: 'High-risk changes', desc: 'Make verification explicit before touching fragile flows or customer-facing paths.' },
-      { title: 'Releases', desc: 'Pair proof-runner with release-checklist and deploy-evidence to separate local proof from deployed proof.' },
-      { title: 'Client work', desc: 'Show which requested steps were actually verified without inventing adoption or usage metrics.' },
+      {
+        title: 'High-risk changes',
+        desc: 'Make verification explicit before touching fragile flows or customer-facing paths.',
+      },
+      {
+        title: 'Releases',
+        desc: 'Pair proof-runner with release-checklist and deploy-evidence to separate local proof from deployed proof.',
+      },
+      {
+        title: 'Client work',
+        desc: 'Show which requested steps were actually verified without inventing adoption or usage metrics.',
+      },
     ],
     disclaimer:
       'ShipFrame still does not add telemetry, analytics or user tracking. Private metrics can stay in private dashboards; public copy should cite concrete proof instead of volatile reach numbers.',
@@ -207,12 +264,29 @@ export const EN: Content = {
   audience: {
     eyebrow: 'Who it’s for',
     title: 'Built for teams that take shipping seriously',
-    subtitle: 'ShipFrame fits the way real teams already work — tickets, branches and pull requests.',
+    subtitle:
+      'ShipFrame fits the way real teams already work — tickets, branches and pull requests.',
     items: [
-      { icon: 'ticket', title: 'Ticket-driven teams', desc: 'Work from tickets, Git branches and PRs/MRs with agents that respect the flow.' },
-      { icon: 'compass', title: 'Developers who want discipline', desc: 'Get agent help without vibe coding — every step is explicit and reviewable.' },
-      { icon: 'check', title: 'Projects that need proof', desc: 'Require exact release evidence before any change is declared complete.' },
-      { icon: 'grid', title: 'Multi-project teams', desc: 'Share one generic core, then layer project-specific profiles per repo.' },
+      {
+        icon: 'ticket',
+        title: 'Ticket-driven teams',
+        desc: 'Work from tickets, Git branches and PRs/MRs with agents that respect the flow.',
+      },
+      {
+        icon: 'compass',
+        title: 'Developers who want discipline',
+        desc: 'Get agent help without vibe coding — every step is explicit and reviewable.',
+      },
+      {
+        icon: 'check',
+        title: 'Projects that need proof',
+        desc: 'Require exact release evidence before any change is declared complete.',
+      },
+      {
+        icon: 'grid',
+        title: 'Multi-project teams',
+        desc: 'Share one generic core, then layer project-specific profiles per repo.',
+      },
     ],
   },
   faq: {
@@ -265,7 +339,8 @@ export const EN: Content = {
   },
   cta: {
     title: 'Give your AI agents a process worth trusting',
-    subtitle: 'Install ShipFrame or open the curated ChatGPT/Codex plugin, then turn every request into a plan, a verified change and real release evidence, with optional version-compatible live library documentation.',
+    subtitle:
+      'Install ShipFrame or open the curated ChatGPT/Codex plugin, then turn every request into a plan, a verified change and real release evidence, with optional version-compatible live library documentation.',
     primary: 'Get started',
     secondary: 'Read the docs',
     plugin: 'Open ChatGPT plugin',
@@ -288,11 +363,31 @@ export const EN: Content = {
       {
         title: 'Resources',
         links: [
-          { label: 'GitHub repository', href: 'https://github.com/juanitourquiza/shipframe', external: true },
-          { label: 'README & docs', href: 'https://github.com/juanitourquiza/shipframe#readme', external: true },
-          { label: 'ChatGPT plugin', href: 'https://chatgpt.com/plugins/plugins_6a88e6256bb48191a343d39dace5e05c', external: true },
-          { label: 'Releases', href: 'https://github.com/juanitourquiza/shipframe/releases', external: true },
-          { label: 'MIT License', href: 'https://github.com/juanitourquiza/shipframe/blob/main/LICENSE', external: true },
+          {
+            label: 'GitHub repository',
+            href: 'https://github.com/juanitourquiza/shipframe',
+            external: true,
+          },
+          {
+            label: 'README & docs',
+            href: 'https://github.com/juanitourquiza/shipframe#readme',
+            external: true,
+          },
+          {
+            label: 'ChatGPT plugin',
+            href: 'https://chatgpt.com/plugins/plugins_6a88e6256bb48191a343d39dace5e05c',
+            external: true,
+          },
+          {
+            label: 'Releases',
+            href: 'https://github.com/juanitourquiza/shipframe/releases',
+            external: true,
+          },
+          {
+            label: 'MIT License',
+            href: 'https://github.com/juanitourquiza/shipframe/blob/main/LICENSE',
+            external: true,
+          },
         ],
       },
     ],

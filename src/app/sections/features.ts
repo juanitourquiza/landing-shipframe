@@ -1,17 +1,18 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RevealDirective } from '../shared/reveal.directive';
 import { IconComponent } from '../shared/icon';
 import { I18nService } from '../core/i18n/i18n.service';
 
 @Component({
   selector: 'app-features',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RevealDirective, IconComponent],
   template: `
     <section id="features" class="scroll-mt-20 py-20 sm:py-28">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-2xl text-center" appReveal>
-          <p class="text-brand-600 dark:text-brand-400 text-sm font-semibold tracking-widest uppercase">
+          <p
+            class="text-brand-600 dark:text-brand-400 text-sm font-semibold tracking-widest uppercase"
+          >
             {{ c().eyebrow }}
           </p>
           <h2 class="text-fg mt-3 text-3xl font-bold tracking-tight text-balance sm:text-4xl">

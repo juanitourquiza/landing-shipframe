@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostListener,
-  PLATFORM_ID,
-  inject,
-  signal,
-} from '@angular/core';
+import { Component, PLATFORM_ID, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -17,7 +10,7 @@ import { SITE } from '../core/site.config';
 
 @Component({
   selector: 'app-header',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { '(window:scroll)': 'onScroll()' },
   imports: [RouterLink, IconComponent, LogoComponent],
   styles: [
     `
@@ -36,11 +29,11 @@ import { SITE } from '../core/site.config';
       <div
         class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8"
       >
-        <a [routerLink]="i18n.homePath()" class="shrink-0" aria-label="ShipFrame home">
+        <a [routerLink]="i18n.homePath()" class="shrink-0" [attr.aria-label]="nav().home">
           <app-logo />
         </a>
 
-        <nav class="hidden items-center gap-1 lg:flex" aria-label="Primary">
+        <nav class="hidden items-center gap-1 lg:flex" [attr.aria-label]="nav().primaryNavigation">
           @for (link of nav().links; track link.id) {
             <a
               [href]="i18n.sectionPath(link.id)"
@@ -55,7 +48,7 @@ import { SITE } from '../core/site.config';
           <a
             [routerLink]="i18n.otherPath()"
             class="text-fg-muted hover:text-fg hover:border-brand-400/60 rounded-lg border border-transparent px-2.5 py-1.5 text-sm font-semibold uppercase transition-colors"
-            [attr.aria-label]="'Switch language to ' + i18n.otherLang()"
+            [attr.aria-label]="nav().switchLanguageTo + ' ' + i18n.otherLang()"
           >
             {{ i18n.otherLang() }}
           </a>
@@ -74,7 +67,7 @@ import { SITE } from '../core/site.config';
             target="_blank"
             rel="noopener noreferrer"
             class="text-fg-muted hover:text-fg hover:bg-surface-2 hidden size-9 place-items-center rounded-lg transition-colors sm:grid"
-            aria-label="ShipFrame on GitHub"
+            [attr.aria-label]="nav().githubAriaLabel"
           >
             <app-icon name="github" [size]="18" />
           </a>
@@ -91,7 +84,7 @@ import { SITE } from '../core/site.config';
             (click)="menuOpen.set(!menuOpen())"
             class="text-fg-muted hover:bg-surface-2 grid size-9 place-items-center rounded-lg transition-colors lg:hidden"
             [attr.aria-expanded]="menuOpen()"
-            aria-label="Toggle menu"
+            [attr.aria-label]="nav().toggleMenu"
           >
             <app-icon [name]="menuOpen() ? 'arrow' : 'chevron'" [size]="18" />
           </button>
@@ -100,7 +93,10 @@ import { SITE } from '../core/site.config';
 
       @if (menuOpen()) {
         <div class="bg-bg/95 border-b backdrop-blur-xl lg:hidden">
-          <nav class="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6" aria-label="Mobile">
+          <nav
+            class="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6"
+            [attr.aria-label]="nav().mobileNavigation"
+          >
             @for (link of nav().links; track link.id) {
               <a
                 [href]="i18n.sectionPath(link.id)"
@@ -134,7 +130,6 @@ export class HeaderComponent {
 
   protected readonly nav = () => this.i18n.content().nav;
 
-  @HostListener('window:scroll')
   onScroll(): void {
     if (this.isBrowser) {
       this.scrolled.set(window.scrollY > 8);

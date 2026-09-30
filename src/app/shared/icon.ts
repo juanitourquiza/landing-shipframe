@@ -1,11 +1,9 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 const PATHS: Record<string, string> = {
-  workflow:
-    '<path d="M4 4h6v6H4z"/><path d="M14 14h6v6h-6z"/><path d="M10 7h4a2 2 0 0 1 2 2v5"/>',
-  discipline:
-    '<path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/>',
+  workflow: '<path d="M4 4h6v6H4z"/><path d="M14 14h6v6h-6z"/><path d="M10 7h4a2 2 0 0 1 2 2v5"/>',
+  discipline: '<path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/>',
   shield: '<path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/>',
   plug: '<path d="M9 2v6M15 2v6"/><path d="M6 8h12v3a6 6 0 0 1-12 0z"/><path d="M12 17v5"/>',
   book: '<path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h12"/>',
@@ -21,7 +19,8 @@ const PATHS: Record<string, string> = {
   moon: '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>',
   arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
   copy: '<rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
-  terminal: '<path d="m7 8 4 4-4 4"/><path d="M13 16h4"/><rect x="2" y="4" width="20" height="16" rx="2"/>',
+  terminal:
+    '<path d="m7 8 4 4-4 4"/><path d="M13 16h4"/><rect x="2" y="4" width="20" height="16" rx="2"/>',
   spark: '<path d="M12 2v6M12 16v6M2 12h6M16 12h6M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/>',
   chevron: '<path d="m6 9 6 6 6-6"/>',
   mail: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/>',
@@ -30,7 +29,6 @@ const PATHS: Record<string, string> = {
 
 @Component({
   selector: 'app-icon',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `<span [innerHTML]="svg()"></span>`,
   styles: [':host{display:inline-flex;line-height:0}span{display:inline-flex}'],
 })

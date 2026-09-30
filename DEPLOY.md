@@ -12,13 +12,13 @@ manually from the **Actions** tab (`workflow_dispatch`).
 
 Add these under **Settings → Secrets and variables → Actions**, or with the `gh` CLI:
 
-| Secret | Value | Example |
-|---|---|---|
-| `CLOUDWAYS_SSH_HOST` | Server public IP | `159.203.136.40` |
-| `CLOUDWAYS_SSH_USER` | Application SSH/SFTP user | `shipframe` |
-| `CLOUDWAYS_SSH_PASSWORD` | That user's password | `••••••••` |
-| `CLOUDWAYS_REMOTE_PATH` | App web root (relative to home) | `public_html` |
-| `CLOUDWAYS_SSH_PORT` | SSH port (optional) | `22` |
+| Secret                   | Value                           | Example          |
+| ------------------------ | ------------------------------- | ---------------- |
+| `CLOUDWAYS_SSH_HOST`     | Server public IP                | `159.203.136.40` |
+| `CLOUDWAYS_SSH_USER`     | Application SSH/SFTP user       | `shipframe`      |
+| `CLOUDWAYS_SSH_PASSWORD` | That user's password            | `••••••••`       |
+| `CLOUDWAYS_REMOTE_PATH`  | App web root (relative to home) | `public_html`    |
+| `CLOUDWAYS_SSH_PORT`     | SSH port (optional)             | `22`             |
 
 ```bash
 gh secret set CLOUDWAYS_SSH_HOST     --repo juanitourquiza/landing-shipframe --body "159.203.136.40"

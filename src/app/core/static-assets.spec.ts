@@ -3,7 +3,8 @@ import { describe, expect, it } from 'vitest';
 describe('static SEO assets', () => {
   it('keeps llms and sitemap assets in the Angular public asset list', async () => {
     const angularConfig = await import('../../../angular.json');
-    const assets = angularConfig.default.projects['landing-shipframe'].architect.build.options.assets;
+    const assets =
+      angularConfig.default.projects['landing-shipframe'].architect.build.options.assets;
     expect(JSON.stringify(assets)).toContain('public');
   });
 
@@ -21,7 +22,21 @@ describe('static SEO assets', () => {
     const shortCrawlerSummary = await fs.readFile('public/llm.txt', 'utf8');
     for (const summary of [crawlerSummary, shortCrawlerSummary]) {
       expect(summary).toContain('Homebrew installs this immutable tagged release');
-      for (const technology of ['JavaScript', 'TypeScript', 'PHP', 'Node.js', 'Python', 'Go', 'Rust', 'Angular', 'Laravel', 'React/Vite', 'Next.js', 'NestJS', 'FastAPI']) {
+      for (const technology of [
+        'JavaScript',
+        'TypeScript',
+        'PHP',
+        'Node.js',
+        'Python',
+        'Go',
+        'Rust',
+        'Angular',
+        'Laravel',
+        'React/Vite',
+        'Next.js',
+        'NestJS',
+        'FastAPI',
+      ]) {
         expect(summary).toContain(technology);
       }
     }
