@@ -175,7 +175,7 @@ export const EN: Content = {
     eyebrow: 'Installation',
     title: 'Up and running in one command',
     subtitle:
-      'ShipFrame v0.7.2 adds CI validation for skill and agent metadata contracts and formalizes QA small as reduced test depth only, with public API, authentication/secrets, migration, and CI risk exclusions and mandatory independent final review. It also includes the safer installer repair and robust plugin-version handling introduced in v0.7.1, the bilingual preventive security-hardening guidance from v0.7.0, evidence-based security review, E2E verification, dependency and API-contract workflows, incident response, memory curation, optional technology packs, and an advisory prompt fast path for Claude Code, Codex CLI, and OpenCode. Explicit user direction wins. Codex hooks require user trust; OpenCode plugin registration remains under your control. Install once. Open /skills. Use ShipFrame workflows directly across Claude Code, Codex CLI and OpenCode, with doctor, repair and uninstall commands for safe rollout. The optional live-docs skill checks version-compatible library documentation before API-dependent changes; Context MCP is recommended but not required.',
+      'ShipFrame v0.8.0 adds opt-in Git-backed project memory: initialize a Markdown memory scaffold and, when explicitly chosen, publish only reviewed memory files through a GitHub Draft PR. It never auto-merges or requires GitHub memory; Engram remains an optional recommended companion. It preserves Claude Code, Codex CLI, and OpenCode workflows and includes the v0.7.2 skill/agent CI contracts, QA-small guardrails, safer installer and previous releases. Explicit user direction wins. Codex hooks require user trust; OpenCode plugin registration remains under your control. Install once. Open /skills. Use ShipFrame workflows directly across Claude Code, Codex CLI and OpenCode, with doctor, repair and uninstall commands for safe rollout. The optional live-docs skill checks version-compatible library documentation before API-dependent changes; Context MCP is recommended but not required.',
     tabs: [
       {
         id: 'curl',
@@ -333,7 +333,7 @@ export const EN: Content = {
       },
       {
         q: 'Does ShipFrame need a memory system?',
-        a: 'No — it works without one. Optionally, Engram adds persistent memory so agents remember prior decisions, bug fixes and conventions across Claude Code, Codex CLI and OpenCode sessions.',
+        a: 'No. Engram is an optional recommended companion for persistent memory across sessions. ShipFrame v0.8.0 also offers opt-in repo-based Markdown memory for GitHub collaboration: you choose whether to initialize it and whether to open a Draft PR with reviewed files. Nothing is published unless you explicitly approve the GitHub Draft PR; it never auto-merges and requires neither Engram nor GitHub memory.',
       },
     ],
   },

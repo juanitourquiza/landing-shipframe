@@ -186,7 +186,7 @@ export const ES: Content = {
     eyebrow: 'Instalación',
     title: 'Funcionando con un solo comando',
     subtitle:
-      'ShipFrame v0.7.2 añade validación CI de los contratos de metadata de skills y agentes, y formaliza QA small como una reducción de la profundidad de pruebas, con exclusiones para riesgos de API pública, autenticación/secretos, migraciones y CI, además de revisión final independiente obligatoria. También incluye las mejoras de reparación segura del instalador y detección de versiones del plugin incorporadas en v0.7.1, la guía preventiva bilingüe de endurecimiento de seguridad de v0.7.0, revisión de seguridad basada en evidencia, verificación E2E, workflows de dependencias y contratos API, respuesta a incidentes, curaduría de memoria, packs opcionales y una ruta rápida consultiva para Claude Code, Codex CLI y OpenCode. La instrucción explícita del usuario prevalece. Los hooks de Codex requieren confianza del usuario; el registro del plugin OpenCode queda bajo tu control. Instala una vez. Abre /skills. Usa los workflows de ShipFrame directamente en Claude Code, Codex CLI y OpenCode, con doctor, repair y uninstall para un rollout seguro. La skill opcional live-docs consulta documentación compatible antes de cambios que dependan de APIs externas; Context MCP es recomendado pero no obligatorio.',
+      'ShipFrame v0.8.0 añade memoria de proyecto opcional respaldada por Git: inicializa una estructura Markdown y, si lo eliges explícitamente, publica solo archivos de memoria revisados mediante un Draft PR de GitHub. Nunca hace merge automático ni exige usar memoria en GitHub; Engram sigue siendo un complemento opcional recomendado. Mantiene los flujos de Claude Code, Codex CLI y OpenCode, e incluye los contratos CI de skills/agentes, las salvaguardas QA-small y las mejoras de instalador de versiones anteriores. La instrucción explícita del usuario prevalece. Los hooks de Codex requieren confianza del usuario; el registro del plugin OpenCode queda bajo tu control. Instala una vez. Abre /skills. Usa los workflows de ShipFrame directamente en Claude Code, Codex CLI y OpenCode, con doctor, repair y uninstall para un rollout seguro. La skill opcional live-docs consulta documentación compatible antes de cambios que dependan de APIs externas; Context MCP es recomendado pero no obligatorio.',
     tabs: [
       {
         id: 'curl',
@@ -352,7 +352,7 @@ export const ES: Content = {
       },
       {
         q: '¿ShipFrame necesita un sistema de memoria?',
-        a: 'No — funciona sin uno. Opcionalmente, Engram añade memoria persistente para que los agentes recuerden decisiones previas, fixes y convenciones entre sesiones de Claude Code, Codex CLI y OpenCode.',
+        a: 'No. Engram es un complemento opcional recomendado para conservar memoria entre sesiones. ShipFrame v0.8.0 también ofrece memoria Markdown del repo para colaborar con GitHub: tú decides si inicializarla y si abrir un Draft PR con archivos revisados. No publica nada sin que apruebes explícitamente el Draft PR, nunca hace merge automático y no requiere Engram ni memoria GitHub.',
       },
     ],
   },
