@@ -175,7 +175,7 @@ export const EN: Content = {
     eyebrow: 'Installation',
     title: 'Up and running in one command',
     subtitle:
-      'ShipFrame v0.8.0 adds opt-in Git-backed project memory: initialize a Markdown memory scaffold and, when explicitly chosen, publish only reviewed memory files through a GitHub Draft PR. It never auto-merges or requires GitHub memory; Engram remains an optional recommended companion. It preserves Claude Code, Codex CLI, and OpenCode workflows and includes the v0.7.2 skill/agent CI contracts, QA-small guardrails, safer installer and previous releases. Explicit user direction wins. Codex hooks require user trust; OpenCode plugin registration remains under your control. Install once. Open /skills. Use ShipFrame workflows directly across Claude Code, Codex CLI and OpenCode, with doctor, repair and uninstall commands for safe rollout. The optional live-docs skill checks version-compatible library documentation before API-dependent changes; Context MCP is recommended but not required.',
+      'ShipFrame v0.8.1 adds opt-in native Codex roles for read-only code exploration and independent diff review. Install them explicitly with `shipframe install --codex --codex-agents`; user-owned Codex configuration remains unchanged. These profiles are for compatible Codex runtimes with native subagent support. Trivial tasks stay with the primary agent. ShipFrame also includes opt-in Git-backed project memory, evidence-led workflows, and support for Claude Code, Codex CLI, and OpenCode; Context MCP remains optional.',
     tabs: [
       {
         id: 'curl',
@@ -185,7 +185,7 @@ export const EN: Content = {
       {
         id: 'brew',
         label: 'Homebrew',
-        code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --doctor --repo-only\nshipframe install --doctor',
+        code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --codex --codex-agents\nshipframe install --doctor --repo-only\nshipframe install --doctor',
       },
       {
         id: 'herdr',

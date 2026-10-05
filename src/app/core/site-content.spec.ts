@@ -5,7 +5,7 @@ import { SITE } from './site.config';
 
 describe('ShipFrame landing content', () => {
   it('keeps structured-data version on the single site constant', () => {
-    expect(SITE.version).toBe('0.8.0');
+    expect(SITE.version).toBe('0.8.1');
   });
 
   it('documents proof before claims without public reach metrics', () => {
@@ -21,6 +21,9 @@ describe('ShipFrame landing content', () => {
       );
       expect(content.install.tabs.find((tab) => tab.id === 'brew')?.code).toContain(
         'shipframe install --doctor',
+      );
+      expect(content.install.tabs.find((tab) => tab.id === 'brew')?.code).toContain(
+        'shipframe install --codex --codex-agents',
       );
       expect(content.install.tabs.find((tab) => tab.id === 'brew')?.code).not.toContain(
         'shipframe install --sync-docs',
