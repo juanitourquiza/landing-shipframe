@@ -186,7 +186,7 @@ export const ES: Content = {
     eyebrow: 'Instalación',
     title: 'Funcionando con un solo comando',
     subtitle:
-      'ShipFrame v0.8.0 añade memoria de proyecto opcional respaldada por Git: inicializa una estructura Markdown y, si lo eliges explícitamente, publica solo archivos de memoria revisados mediante un Draft PR de GitHub. Nunca hace merge automático ni exige usar memoria en GitHub; Engram sigue siendo un complemento opcional recomendado. Mantiene los flujos de Claude Code, Codex CLI y OpenCode, e incluye los contratos CI de skills/agentes, las salvaguardas QA-small y las mejoras de instalador de versiones anteriores. La instrucción explícita del usuario prevalece. Los hooks de Codex requieren confianza del usuario; el registro del plugin OpenCode queda bajo tu control. Instala una vez. Abre /skills. Usa los workflows de ShipFrame directamente en Claude Code, Codex CLI y OpenCode, con doctor, repair y uninstall para un rollout seguro. La skill opcional live-docs consulta documentación compatible antes de cambios que dependan de APIs externas; Context MCP es recomendado pero no obligatorio.',
+      'ShipFrame v0.8.1 añade roles nativos opcionales de Codex para explorar el código en modo de solo lectura y hacer revisiones independientes del diff. Instálalos explícitamente con `shipframe install --codex --codex-agents`; la configuración de Codex propiedad del usuario permanece intacta. Estos perfiles requieren runtimes compatibles con subagentes nativos. Las tareas triviales se quedan en el agente principal. ShipFrame también incluye memoria de proyecto opcional respaldada por Git y workflows basados en evidencia para Claude Code, Codex CLI y OpenCode; Context MCP sigue siendo opcional.',
     tabs: [
       {
         id: 'curl',
@@ -196,7 +196,7 @@ export const ES: Content = {
       {
         id: 'brew',
         label: 'Homebrew',
-        code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --doctor --repo-only\nshipframe install --doctor',
+        code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --codex --codex-agents\nshipframe install --doctor --repo-only\nshipframe install --doctor',
       },
       {
         id: 'herdr',
