@@ -186,7 +186,7 @@ export const ES: Content = {
     eyebrow: 'Instalación',
     title: 'Funcionando con un solo comando',
     subtitle:
-      'ShipFrame v0.8.2 hace explícita la paridad del routing entre Codex, el README y el orquestador de Claude/OpenCode, incluido el gate QA/TDD para refactors no triviales. Mantiene los roles nativos opcionales de Codex para explorar en modo de solo lectura y revisar diffs de forma independiente; instálalos con `shipframe install --codex --codex-agents`. No modifica la configuración de Codex del usuario, deja las tareas triviales en el agente principal y mantiene Context MCP como opcional.',
+      'ShipFrame v0.8.3 hace que los agentes revisores independientes sean de solo lectura: elimina el acceso al shell y limita sus herramientas a operaciones de lectura. La aplicación de estos permisos puede variar según el host; el flujo documenta ese límite y verifica los permisos generados. Mantiene los roles nativos opcionales de Codex para explorar en modo de solo lectura y revisar diffs de forma independiente; instálalos con `shipframe install --codex --codex-agents`. No modifica la configuración de Codex del usuario, deja las tareas triviales en el agente principal y mantiene Context MCP como opcional.',
     tabs: [
       {
         id: 'curl',

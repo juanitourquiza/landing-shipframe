@@ -5,7 +5,7 @@ import { SITE } from './site.config';
 
 describe('ShipFrame landing content', () => {
   it('keeps structured-data version on the single site constant', () => {
-    expect(SITE.version).toBe('0.8.2');
+    expect(SITE.version).toBe('0.8.3');
   });
 
   it('documents proof before claims without public reach metrics', () => {
