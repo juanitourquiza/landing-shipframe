@@ -175,7 +175,7 @@ export const EN: Content = {
     eyebrow: 'Installation',
     title: 'Up and running in one command',
     subtitle:
-      'ShipFrame v0.8.1 adds opt-in native Codex roles for read-only code exploration and independent diff review. Install them explicitly with `shipframe install --codex --codex-agents`; user-owned Codex configuration remains unchanged. These profiles are for compatible Codex runtimes with native subagent support. Trivial tasks stay with the primary agent. ShipFrame also includes opt-in Git-backed project memory, evidence-led workflows, and support for Claude Code, Codex CLI, and OpenCode; Context MCP remains optional.',
+      'ShipFrame v0.8.2 makes workflow routing parity explicit across Codex, README, and the Claude/OpenCode orchestrator, including the QA/TDD gate for non-trivial refactors. It retains opt-in native Codex roles for read-only code exploration and independent diff review; install them with `shipframe install --codex --codex-agents`. User-owned Codex configuration remains unchanged, trivial tasks stay with the primary agent, and Context MCP remains optional.',
     tabs: [
       {
         id: 'curl',

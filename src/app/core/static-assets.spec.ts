@@ -11,7 +11,7 @@ describe('static SEO assets', () => {
   it('keeps the production route contract documented in public assets', async () => {
     const { SITE } = await import('./site.config');
     expect(SITE.url).toBe('https://shipframe.hackeruna.com');
-    expect(SITE.version).toBe('0.8.1');
+    expect(SITE.version).toBe('0.8.2');
   });
 
   it('keeps the public crawler summary aligned with the structured site version', async () => {
@@ -21,7 +21,7 @@ describe('static SEO assets', () => {
     expect(crawlerSummary).toContain(`Current version: v${SITE.version}`);
     const shortCrawlerSummary = await fs.readFile('public/llm.txt', 'utf8');
     for (const summary of [crawlerSummary, shortCrawlerSummary]) {
-      expect(summary).toContain('ShipFrame v0.8.1 adds opt-in native Codex roles');
+      expect(summary).toContain('ShipFrame v0.8.2 makes workflow routing parity explicit');
       expect(summary).toContain('shipframe install --codex --codex-agents');
       expect(summary).toContain('Homebrew installs this immutable tagged release');
       for (const technology of [
