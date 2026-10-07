@@ -175,7 +175,7 @@ export const EN: Content = {
     eyebrow: 'Installation',
     title: 'Up and running in one command',
     subtitle:
-      'ShipFrame v0.8.2 makes workflow routing parity explicit across Codex, README, and the Claude/OpenCode orchestrator, including the QA/TDD gate for non-trivial refactors. It retains opt-in native Codex roles for read-only code exploration and independent diff review; install them with `shipframe install --codex --codex-agents`. User-owned Codex configuration remains unchanged, trivial tasks stay with the primary agent, and Context MCP remains optional.',
+      'ShipFrame v0.8.3 makes independent reviewer agents read-only by removing shell access and limiting their tools to read-only operations. Host enforcement may vary; the workflow documents that boundary and verifies generated permissions. It retains opt-in native Codex roles for read-only code exploration and independent diff review; install them with `shipframe install --codex --codex-agents`. User-owned Codex configuration remains unchanged, trivial tasks stay with the primary agent, and Context MCP remains optional.',
     tabs: [
       {
         id: 'curl',
