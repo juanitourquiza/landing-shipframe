@@ -54,6 +54,12 @@ describe('ShipFrame landing content', () => {
           (item) => item.q.includes('Live Docs') || item.q.includes('Live Docs'),
         )?.a,
       ).toContain('Context MCP');
+      const memoryFaq = content.faq.items.find(
+        (item) => item.q.includes('memory') || item.q.includes('memoria'),
+      );
+      expect(memoryFaq?.a).toBeTruthy();
+      expect(memoryFaq?.a).not.toContain('v0.8.0');
+      expect(memoryFaq?.a).toContain('Engram');
       expect(content.install.note).toContain('lockfile');
     }
 
