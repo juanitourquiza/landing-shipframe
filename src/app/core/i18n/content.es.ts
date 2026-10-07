@@ -352,7 +352,7 @@ export const ES: Content = {
       },
       {
         q: '¿ShipFrame necesita un sistema de memoria?',
-        a: 'No. Engram es un complemento opcional recomendado para conservar memoria entre sesiones. ShipFrame v0.8.0 también ofrece memoria Markdown del repo para colaborar con GitHub: tú decides si inicializarla y si abrir un Draft PR con archivos revisados. No publica nada sin que apruebes explícitamente el Draft PR, nunca hace merge automático y no requiere Engram ni memoria GitHub.',
+        a: 'No. Engram es un complemento opcional recomendado para conservar memoria entre sesiones. ShipFrame también ofrece memoria Markdown del repo para colaborar con GitHub: tú decides si inicializarla y si abrir un Draft PR con archivos revisados. No publica nada sin que apruebes explícitamente el Draft PR, nunca hace merge automático y no requiere Engram ni memoria GitHub.',
       },
     ],
   },

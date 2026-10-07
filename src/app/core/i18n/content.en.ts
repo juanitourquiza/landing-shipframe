@@ -333,7 +333,7 @@ export const EN: Content = {
       },
       {
         q: 'Does ShipFrame need a memory system?',
-        a: 'No. Engram is an optional recommended companion for persistent memory across sessions. ShipFrame v0.8.0 also offers opt-in repo-based Markdown memory for GitHub collaboration: you choose whether to initialize it and whether to open a Draft PR with reviewed files. Nothing is published unless you explicitly approve the GitHub Draft PR; it never auto-merges and requires neither Engram nor GitHub memory.',
+        a: 'No. Engram is an optional recommended companion for persistent memory across sessions. ShipFrame also offers opt-in repo-based Markdown memory for GitHub collaboration: you choose whether to initialize it and whether to open a Draft PR with reviewed files. Nothing is published unless you explicitly approve the GitHub Draft PR; it never auto-merges and requires neither Engram nor GitHub memory.',
       },
     ],
   },
