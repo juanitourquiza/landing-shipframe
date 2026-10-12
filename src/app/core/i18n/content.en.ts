@@ -175,7 +175,7 @@ export const EN: Content = {
     eyebrow: 'Installation',
     title: 'Up and running in one command',
     subtitle:
-      'ShipFrame v0.8.3 makes independent reviewer agents read-only by removing shell access and limiting their tools to read-only operations. Host enforcement may vary; the workflow documents that boundary and verifies generated permissions. It retains opt-in native Codex roles for read-only code exploration and independent diff review; install them with `shipframe install --codex --codex-agents`. User-owned Codex configuration remains unchanged, trivial tasks stay with the primary agent, and Context MCP remains optional.',
+      'ShipFrame v0.8.4 raises the code-review bar without turning SOLID, KISS, DRY, or YAGNI into quotas or mandatory patterns. Reviewers must identify concrete complexity or design problems, explain their impact, and recommend the smallest safe improvement—without weakening security, testing, or scope controls. It retains opt-in native Codex roles for read-only code exploration and independent diff review; install them with `shipframe install --codex --codex-agents`. User-owned Codex configuration remains unchanged, trivial tasks stay with the primary agent, and Context MCP remains optional.',
     tabs: [
       {
         id: 'curl',
