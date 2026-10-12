@@ -68,23 +68,6 @@ import { I18nService } from '../core/i18n/i18n.service';
             aria-describedby="simulation-transcript"
           >
             <source [src]="simulationVideo" type="video/mp4" />
-            @if (i18n.lang() === 'es') {
-              <track
-                kind="captions"
-                srclang="es"
-                label="Español"
-                src="/videos/shipframe-simulation.es.vtt"
-                default
-              />
-            } @else {
-              <track
-                kind="captions"
-                srclang="en"
-                label="English"
-                src="/videos/shipframe-simulation.en.vtt"
-                default
-              />
-            }
             <a [href]="simulationVideo">{{ demo().simulationPlayerLabel }}</a>
           </video>
           <figcaption class="text-fg-muted border-border-soft border-t px-5 py-4 text-sm">
