@@ -1,6 +1,37 @@
 import { describe, expect, it } from 'vitest';
 
 describe('static SEO assets', () => {
+  it('ships small, light-surface, and dark-surface logo variants', async () => {
+    const fs = await import('node:fs/promises');
+    for (const asset of [
+      'public/brand/shipframe-mark.svg',
+      'public/brand/shipframe-lockup.svg',
+      'public/brand/shipframe-lockup-dark.svg',
+    ]) {
+      const svg = await fs.readFile(asset, 'utf8');
+      expect(svg).toContain('<svg');
+      expect(svg).toContain('linearGradient');
+      expect(svg).toContain('ShipFrame');
+    }
+  });
+  it('includes the requested overview video and its poster in public assets', async () => {
+    const fs = await import('node:fs/promises');
+    const video = await fs.stat('public/videos/Shipframe.mp4');
+    const poster = await fs.stat('public/videos/shipframe-poster.jpg');
+    const simulation = await fs.stat('public/videos/Shipframe-simulation.mp4');
+    const simulationPoster = await fs.stat('public/videos/shipframe-simulation-poster.png');
+    const captionsEn = await fs.readFile('public/videos/shipframe-simulation.en.vtt', 'utf8');
+    const captionsEs = await fs.readFile('public/videos/shipframe-simulation.es.vtt', 'utf8');
+    const mimeConfig = await fs.readFile('public/.htaccess', 'utf8');
+    expect(video.size).toBeGreaterThan(1_000_000);
+    expect(poster.size).toBeGreaterThan(1_000);
+    expect(simulation.size).toBeGreaterThan(100_000);
+    expect(simulationPoster.size).toBeGreaterThan(1_000);
+    expect(captionsEn).toContain('WEBVTT');
+    expect(captionsEs).toContain('WEBVTT');
+    expect(mimeConfig).toContain('AddType text/vtt .vtt');
+  });
+
   it('keeps llms and sitemap assets in the Angular public asset list', async () => {
     const angularConfig = await import('../../../angular.json');
     const assets =

@@ -37,9 +37,10 @@ describe('InstallComponent tabs', () => {
     expect(tablist.getAttribute('aria-label')).toBeTruthy();
     expect(tabs.length).toBeGreaterThan(1);
     expect(tabs[0].getAttribute('aria-controls')).toBe(panel.id);
-    expect(panel.getAttribute('aria-labelledby')).toBe(tabs[0].id);
-    expect(tabs[0].getAttribute('tabindex')).toBe('0');
-    expect(tabs[1].getAttribute('tabindex')).toBe('-1');
+    expect(panel.getAttribute('aria-labelledby')).toBe(tabs[1].id);
+    expect(tabs[0].getAttribute('tabindex')).toBe('-1');
+    expect(tabs[1].getAttribute('tabindex')).toBe('0');
+    expect(tabs[1].getAttribute('aria-selected')).toBe('true');
   });
 
   it('moves selection and focus with the arrow keys', () => {
@@ -47,11 +48,11 @@ describe('InstallComponent tabs', () => {
     fixture.detectChanges();
     const tabs = fixture.nativeElement.querySelectorAll('[role="tab"]');
 
-    tabs[0].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+    tabs[1].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
     fixture.detectChanges();
 
-    expect(tabs[1].getAttribute('aria-selected')).toBe('true');
-    expect(tabs[1].getAttribute('tabindex')).toBe('0');
-    expect(fixture.nativeElement.ownerDocument.activeElement).toBe(tabs[1]);
+    expect(tabs[2].getAttribute('aria-selected')).toBe('true');
+    expect(tabs[2].getAttribute('tabindex')).toBe('0');
+    expect(fixture.nativeElement.ownerDocument.activeElement).toBe(tabs[2]);
   });
 });

@@ -6,6 +6,16 @@ import { SITE } from './site.config';
 describe('ShipFrame landing content', () => {
   it('keeps structured-data version on the single site constant', () => {
     expect(SITE.version).toBe('0.8.4');
+    expect(EN.demo.title).toBeTruthy();
+    expect(ES.demo.title).toBeTruthy();
+    expect(EN.demo.transcript).toHaveLength(6);
+    expect(ES.demo.transcript).toHaveLength(6);
+    expect(EN.demo.simulationTranscript).toHaveLength(4);
+    expect(ES.demo.simulationTranscript).toHaveLength(4);
+    expect(EN.demo.simulationSubtitle).toContain('not a screen recording');
+    expect(ES.demo.simulationSubtitle).toContain('no es una grabación de pantalla');
+    expect(EN.demo.transcriptNotice).toContain('not a verbatim transcript');
+    expect(ES.demo.transcriptNotice).toContain('no es una transcripción literal');
   });
 
   it('documents proof before claims without public reach metrics', () => {
@@ -68,6 +78,10 @@ describe('ShipFrame landing content', () => {
   });
 
   it('keeps CTA and SEO copy wired for both localized routes', () => {
+    expect(EN.hero.ctaPrimary).toBe('Install with Homebrew');
+    expect(EN.hero.ctaSecondary).toBe('Visit & star on GitHub');
+    expect(ES.hero.ctaPrimary).toBe('Instalar con Homebrew');
+    expect(ES.hero.ctaSecondary).toBe('Visitar y dar estrella en GitHub');
     expect(EN.cta.primary).toBeTruthy();
     expect(ES.cta.primary).toBeTruthy();
     expect(EN.seo.description).toContain('release evidence');

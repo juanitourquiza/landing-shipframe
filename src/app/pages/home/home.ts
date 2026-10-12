@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HeroComponent } from '../../sections/hero';
+import { DemoComponent } from '../../sections/demo';
 import { TrustComponent } from '../../sections/trust';
 import { LifecycleComponent } from '../../sections/lifecycle';
 import { ProblemComponent } from '../../sections/problem';
@@ -14,6 +15,7 @@ import { CtaComponent } from '../../sections/cta';
   selector: 'app-home',
   imports: [
     HeroComponent,
+    DemoComponent,
     TrustComponent,
     LifecycleComponent,
     ProblemComponent,
@@ -26,6 +28,7 @@ import { CtaComponent } from '../../sections/cta';
   ],
   template: `
     <app-hero />
+    <app-demo />
     <app-trust />
     <app-lifecycle />
     <app-problem />
