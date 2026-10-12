@@ -37,8 +37,8 @@ export const ES: Content = {
     titleTail: '.',
     subtitle:
       'ShipFrame convierte peticiones en lenguaje natural en un ciclo de entrega repetible — skills reutilizables, workflows de agentes, plantillas y evidencia de release. Dale disciplina a tus agentes de IA en lugar de improvisación.',
-    ctaPrimary: 'Empezar ahora',
-    ctaSecondary: 'Ver en GitHub',
+    ctaPrimary: 'Instalar con Homebrew',
+    ctaSecondary: 'Visitar y dar estrella en GitHub',
     copy: 'Copiar',
     copied: '¡Copiado!',
     runsWith: 'Funciona con',
@@ -47,6 +47,36 @@ export const ES: Content = {
       { value: '24', label: 'Skills curadas del plugin' },
       { value: '8', label: 'Etapas del ciclo' },
       { value: 'MIT', label: 'Open source' },
+    ],
+  },
+  demo: {
+    eyebrow: 'Mira el resumen',
+    title: 'Conoce el flujo de ShipFrame de un vistazo',
+    subtitle:
+      'Un resumen animado de 30 segundos de la landing, una terminal ilustrativa, las etapas del workflow y la evidencia de verificación.',
+    playerLabel: 'Video de presentación de ShipFrame',
+    transcriptLabel: 'Leer la descripción visual',
+    transcriptNotice:
+      'Este texto describe lo que aparece en pantalla; no es una transcripción literal ni subtítulos sincronizados del audio.',
+    transcript: [
+      '00:00 — Aparece una cuadrícula oscura con el distintivo “open source · MIT” y las palabras “Vibe coding”.',
+      '00:04 — Se muestran la landing de ShipFrame y una terminal ilustrativa con un comando curl de instalación abreviado. Usa la pestaña Homebrew de la sección de instalación para copiar los comandos.',
+      '00:10 — Una gráfica en español enumera ocho etapas: refrescar contexto, descubrir requisitos, planificar, implementar, verificar, revisar, evidencia de release y PR / MR.',
+      '00:19 — Una vista de funciones agrupa las skills de ShipFrame en flujo central, disciplina de ingeniería, release y evidencia, integración y producto, wiki y perfiles de proyecto.',
+      '00:24 — Un panel de verificación muestra ejemplos de comandos de pruebas/build con resultados aprobados.',
+      '00:28 — Aparecen el logo de ShipFrame, el lema “Planifica. Prueba. Publica.”, el comando de instalación, la licencia MIT y el sitio web.',
+    ],
+    simulationTitle: 'Animación ilustrativa del flujo',
+    simulationSubtitle:
+      'Este explicador diseñado es una simulación explícita; no es una grabación de pantalla ni una sesión real de ShipFrame. El reproductor ofrece subtítulos en español.',
+    simulationPlayerLabel: 'Explicador simulado del flujo de ShipFrame',
+    simulationCaptionLabel: 'Subtítulos en español',
+    simulationTranscriptLabel: 'Leer la transcripción en español',
+    simulationTranscript: [
+      '00:00 — Flujos de trabajo de IA para equipos que planifican, prueban y publican. Un camino repetible desde la solicitud hasta la evidencia de entrega.',
+      '00:05 — Convierte una solicitud en trabajo estructurado: Solicitud → Planificar → Implementar.',
+      '00:10 — Incorpora evidencia al proceso: Verificar → Revisar → Evidencia de publicación. Es un resumen del ciclo, no una ejecución completada.',
+      '00:15 — ShipFrame. Planifica, prueba y publica. Instala con Homebrew. Visita GitHub y deja una estrella. Estas llamadas a la acción no son interactivas en el video.',
     ],
   },
   lifecycle: {

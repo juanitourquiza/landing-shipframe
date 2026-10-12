@@ -117,7 +117,7 @@ export class InstallComponent {
   protected readonly i18n = inject(I18nService);
   protected readonly c = () => this.i18n.content().install;
 
-  protected readonly active = signal<string>('curl');
+  protected readonly active = signal<string>('brew');
   protected readonly activeCode = computed(() => {
     const tabs = this.i18n.content().install.tabs;
     return tabs.find((t) => t.id === this.active())?.code ?? tabs[0].code;

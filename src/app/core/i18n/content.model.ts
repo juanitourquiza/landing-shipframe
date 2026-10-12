@@ -30,6 +30,22 @@ export interface HeroContent {
   metrics: { value: string; label: string }[];
 }
 
+export interface DemoContent {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  playerLabel: string;
+  transcriptLabel: string;
+  transcriptNotice: string;
+  transcript: string[];
+  simulationTitle: string;
+  simulationSubtitle: string;
+  simulationPlayerLabel: string;
+  simulationCaptionLabel: string;
+  simulationTranscriptLabel: string;
+  simulationTranscript: string[];
+}
+
 export interface Step {
   title: string;
   desc: string;
@@ -137,6 +153,7 @@ export interface Content {
   seo: SeoContent;
   nav: NavContent;
   hero: HeroContent;
+  demo: DemoContent;
   lifecycle: LifecycleContent;
   problem: ProblemContent;
   features: FeaturesContent;

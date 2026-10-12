@@ -37,8 +37,8 @@ export const EN: Content = {
     titleTail: '.',
     subtitle:
       'ShipFrame turns natural-language development requests into a repeatable delivery lifecycle — reusable skills, agent workflows, templates and release evidence. Give your AI agents discipline instead of vibes.',
-    ctaPrimary: 'Get started',
-    ctaSecondary: 'View on GitHub',
+    ctaPrimary: 'Install with Homebrew',
+    ctaSecondary: 'Visit & star on GitHub',
     copy: 'Copy',
     copied: 'Copied!',
     runsWith: 'Runs with',
@@ -47,6 +47,36 @@ export const EN: Content = {
       { value: '24', label: 'Curated plugin skills' },
       { value: '8', label: 'Lifecycle stages' },
       { value: 'MIT', label: 'Open source' },
+    ],
+  },
+  demo: {
+    eyebrow: 'Watch the overview',
+    title: 'See the ShipFrame workflow at a glance',
+    subtitle:
+      'A 30-second animated overview of the landing page, an illustrative terminal, workflow stages, and verification evidence.',
+    playerLabel: 'ShipFrame product overview video',
+    transcriptLabel: 'Read the visual description',
+    transcriptNotice:
+      'This text describes what appears on screen; it is not a verbatim transcript or synchronized caption track for the audio.',
+    transcript: [
+      '00:00 — A dark grid appears with an open-source · MIT badge and the words “Vibe coding.”',
+      '00:04 — The ShipFrame landing page and a mock terminal with a shortened, illustrative curl-style install command appear side by side. Use the Homebrew tab in the installation section for copyable commands.',
+      '00:10 — A Spanish-language workflow graphic lists eight stages: refresh context, discover requirements, plan work, implement, verify, review, release evidence, and PR / MR.',
+      '00:19 — A feature overview groups ShipFrame skills into core workflow, engineering discipline, release and evidence, integrations and product, knowledge wiki, and project profiles.',
+      '00:24 — A verification panel shows example test/build commands with passing results.',
+      '00:28 — The ShipFrame logo, the Spanish tagline “Planifica. Prueba. Publica.”, the install command, MIT license, and website appear.',
+    ],
+    simulationTitle: 'An illustrative workflow animation',
+    simulationSubtitle:
+      'This designed explainer is explicitly simulated; it is not a screen recording or a live ShipFrame session. English captions are available in the player.',
+    simulationPlayerLabel: 'Simulated ShipFrame workflow explainer',
+    simulationCaptionLabel: 'English captions',
+    simulationTranscriptLabel: 'Read the English transcript',
+    simulationTranscript: [
+      '00:00 — AI coding workflows for teams that plan, prove and ship. A repeatable path from request to release evidence.',
+      '00:05 — Turn a request into structured work: Request → Plan → Implement.',
+      '00:10 — Make delivery evidence part of the work: Verify → Review → Release evidence. This is a lifecycle summary, not a completed run.',
+      '00:15 — ShipFrame. Plan, prove and ship. Install with Homebrew. Visit and star on GitHub. These calls to action are not clickable in the video.',
     ],
   },
   lifecycle: {
