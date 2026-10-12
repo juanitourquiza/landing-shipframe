@@ -5,7 +5,7 @@ import { SITE } from './site.config';
 
 describe('ShipFrame landing content', () => {
   it('keeps structured-data version on the single site constant', () => {
-    expect(SITE.version).toBe('0.8.3');
+    expect(SITE.version).toBe('0.8.4');
   });
 
   it('documents proof before claims without public reach metrics', () => {
@@ -72,5 +72,14 @@ describe('ShipFrame landing content', () => {
     expect(ES.cta.primary).toBeTruthy();
     expect(EN.seo.description).toContain('release evidence');
     expect(ES.seo.description).toContain('evidencia real de release');
+  });
+
+  it('describes the v0.8.4 code-review quality bar in both locales', () => {
+    expect(EN.install.subtitle).toContain('v0.8.4');
+    expect(EN.install.subtitle).toContain('smallest safe improvement');
+    expect(EN.install.subtitle).toContain('without weakening security, testing, or scope');
+    expect(ES.install.subtitle).toContain('v0.8.4');
+    expect(ES.install.subtitle).toContain('mejora segura más pequeña');
+    expect(ES.install.subtitle).toContain('sin debilitar los controles de seguridad');
   });
 });
