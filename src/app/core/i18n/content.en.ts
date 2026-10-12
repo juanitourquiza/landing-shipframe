@@ -68,9 +68,9 @@ export const EN: Content = {
     ],
     simulationTitle: 'An illustrative workflow animation',
     simulationSubtitle:
-      'This designed explainer is explicitly simulated; it is not a screen recording or a live ShipFrame session. English captions are available in the player.',
+      'This designed explainer is explicitly simulated; it is not a screen recording or a live ShipFrame session. It is silent; the full English transcript is available below.',
     simulationPlayerLabel: 'Simulated ShipFrame workflow explainer',
-    simulationCaptionLabel: 'English captions',
+    simulationCaptionLabel: 'Silent animation · English transcript below',
     simulationTranscriptLabel: 'Read the English transcript',
     simulationTranscript: [
       '00:00 — AI coding workflows for teams that plan, prove and ship. A repeatable path from request to release evidence.',

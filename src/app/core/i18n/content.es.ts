@@ -68,9 +68,9 @@ export const ES: Content = {
     ],
     simulationTitle: 'Animación ilustrativa del flujo',
     simulationSubtitle:
-      'Este explicador diseñado es una simulación explícita; no es una grabación de pantalla ni una sesión real de ShipFrame. El reproductor ofrece subtítulos en español.',
+      'Este explicador diseñado es una simulación explícita; no es una grabación de pantalla ni una sesión real de ShipFrame. Es una animación sin audio; la transcripción completa en español está disponible abajo.',
     simulationPlayerLabel: 'Explicador simulado del flujo de ShipFrame',
-    simulationCaptionLabel: 'Subtítulos en español',
+    simulationCaptionLabel: 'Animación sin audio · transcripción en español abajo',
     simulationTranscriptLabel: 'Leer la transcripción en español',
     simulationTranscript: [
       '00:00 — Flujos de trabajo de IA para equipos que planifican, prueban y publican. Un camino repetible desde la solicitud hasta la evidencia de entrega.',

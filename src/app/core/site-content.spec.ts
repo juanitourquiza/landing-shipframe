@@ -14,6 +14,12 @@ describe('ShipFrame landing content', () => {
     expect(ES.demo.simulationTranscript).toHaveLength(4);
     expect(EN.demo.simulationSubtitle).toContain('not a screen recording');
     expect(ES.demo.simulationSubtitle).toContain('no es una grabación de pantalla');
+    expect(EN.demo.simulationSubtitle).toContain('silent');
+    expect(EN.demo.simulationSubtitle).toContain('full English transcript is available below');
+    expect(ES.demo.simulationSubtitle).toContain('sin audio');
+    expect(ES.demo.simulationSubtitle).toContain(
+      'transcripción completa en español está disponible abajo',
+    );
     expect(EN.demo.transcriptNotice).toContain('not a verbatim transcript');
     expect(ES.demo.transcriptNotice).toContain('no es una transcripción literal');
   });
