@@ -121,7 +121,7 @@ export interface FaqContent {
   eyebrow: string;
   title: string;
   subtitle: string;
-  items: { q: string; a: string }[];
+  items: { q: string; a: string; links?: { label: string; href: string }[] }[];
 }
 
 export interface CtaContent {

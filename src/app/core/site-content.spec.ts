@@ -94,6 +94,41 @@ describe('ShipFrame landing content', () => {
     expect(ES.seo.description).toContain('evidencia real de release');
   });
 
+  it('explains how to enable the optional AI PR reviewer in both locales', async () => {
+    for (const content of [EN, ES]) {
+      const guide = content.faq.items.find(
+        (item) =>
+          item.q.toLowerCase().includes('reviewer') || item.q.toLowerCase().includes('revisor'),
+      );
+      expect(guide).toBeTruthy();
+      const guideCopy = `${guide?.a} ${guide?.links?.map((link) => link.href).join(' ')}`;
+      for (const detail of [
+        'shipframe install --codex --pr-review nan-builders',
+        'SF_REVIEW_API_KEY',
+        '--codex',
+        'custom',
+        'SF_REVIEW_BASE_URL',
+        'SF_REVIEW_MODEL',
+        'fork',
+        'contents: read',
+        'pull-requests: write',
+        'github.com/juanitourquiza/shipframe/blob/main/.github/workflows/shipframe-review.yml',
+        'github.com/juanitourquiza/shipframe#ai-pr-reviewer-opt-in',
+      ]) {
+        expect(guideCopy.toLowerCase()).toContain(detail.toLowerCase());
+      }
+      expect(guide?.a).not.toContain('PULSAI');
+    }
+
+    const fs = await import('node:fs/promises');
+    for (const path of ['public/llms.txt', 'public/llm.txt']) {
+      const summary = await fs.readFile(path, 'utf8');
+      expect(summary).toContain('shipframe install --codex --pr-review nan-builders');
+      expect(summary).toContain('SF_REVIEW_API_KEY');
+      expect(summary).not.toContain('PULSAI');
+    }
+  });
+
   it('describes the v1.0.0 opt-in AI PR reviewer and its safeguards in both locales', () => {
     expect(EN.install.subtitle).toContain('v1.0.0');
     expect(EN.install.subtitle).toContain('shipframe install --codex --pr-review <provider>');

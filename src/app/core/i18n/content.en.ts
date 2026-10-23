@@ -346,6 +346,20 @@ export const EN: Content = {
         a: 'Run the one-line installer with curl, install the base toolkit via Homebrew (brew tap juanitourquiza/shipframe && brew install shipframe), or clone the repository and run ./install.sh with --claude, --codex, --opencode or --all. Install the Herdr surface separately with herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes; docs: https://github.com/juanitourquiza/shipframe#herdr-local-workflow-plugin. Validate safely with --doctor --repo-only, restore managed files with --repair, and remove ShipFrame-managed artifacts with --uninstall.',
       },
       {
+        q: 'How do I enable the opt-in AI PR reviewer?',
+        a: 'From the root of each target Git repository, run `shipframe install --codex --pr-review nan-builders` (Homebrew) or `/path/to/shipframe/install.sh --project-dir "$PWD" --codex --pr-review nan-builders` (local checkout). `--codex` is a required install target: it also installs ShipFrame globally for Codex, while `--pr-review` generates the workflow and reviewer files in that repository. Commit those files to its base branch, then add `SF_REVIEW_API_KEY` as a repository Actions secret. Providers are `nan-builders`, `claude`, `openai`, and `custom`; custom also needs `SF_REVIEW_BASE_URL` and `SF_REVIEW_MODEL`. Fork PRs are skipped. The workflow grants `contents: read` and `pull-requests: write` so it can read code and comment.',
+        links: [
+          {
+            label: 'Public ShipFrame workflow example',
+            href: 'https://github.com/juanitourquiza/shipframe/blob/main/.github/workflows/shipframe-review.yml',
+          },
+          {
+            label: 'Full setup guide in the README',
+            href: 'https://github.com/juanitourquiza/shipframe#ai-pr-reviewer-opt-in',
+          },
+        ],
+      },
+      {
         q: 'What is Live Docs?',
         a: 'Live Docs is an optional skill that checks documentation compatible with the dependency version before an external API change. ShipFrame recommends Context MCP for local versioned docs, but installation and doctor only detect it, print commands, and continue normally without installing tools or editing MCP configuration.',
       },

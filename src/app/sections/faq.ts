@@ -37,7 +37,25 @@ import { I18nService } from '../core/i18n/i18n.service';
                   <app-icon name="chevron" [size]="20" />
                 </span>
               </summary>
-              <div class="text-fg-muted px-5 pb-5 text-sm leading-relaxed">{{ item.a }}</div>
+              <div class="text-fg-muted px-5 pb-5 text-sm leading-relaxed">
+                <p>{{ item.a }}</p>
+                @if (item.links?.length) {
+                  <ul class="mt-3 flex flex-wrap gap-x-4 gap-y-2">
+                    @for (link of item.links; track link.href) {
+                      <li>
+                        <a
+                          class="text-brand-600 dark:text-brand-400 underline underline-offset-4"
+                          [href]="link.href"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {{ link.label }}
+                        </a>
+                      </li>
+                    }
+                  </ul>
+                }
+              </div>
             </details>
           }
         </div>
