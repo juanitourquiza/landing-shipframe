@@ -205,7 +205,7 @@ export const EN: Content = {
     eyebrow: 'Installation',
     title: 'Up and running in one command',
     subtitle:
-      'ShipFrame v0.8.4 raises the code-review bar without turning SOLID, KISS, DRY, or YAGNI into quotas or mandatory patterns. Reviewers must identify concrete complexity or design problems, explain their impact, and recommend the smallest safe improvement—without weakening security, testing, or scope controls. It retains opt-in native Codex roles for read-only code exploration and independent diff review; install them with `shipframe install --codex --codex-agents`. User-owned Codex configuration remains unchanged, trivial tasks stay with the primary agent, and Context MCP remains optional.',
+      'ShipFrame v1.0.0 adds an opt-in AI PR reviewer: run `shipframe install --codex --pr-review <provider>` (or choose another install target) with nan-builders, claude, openai, or custom (use `off` to disable). Add the `SF_REVIEW_API_KEY` repository secret (custom providers also need `SF_REVIEW_BASE_URL` and `SF_REVIEW_MODEL`). Fork PRs are skipped; the workflow only comments and cannot push code. It also keeps the reviewed v0.8.4 code-review quality bar and opt-in native Codex roles.',
     tabs: [
       {
         id: 'curl',
