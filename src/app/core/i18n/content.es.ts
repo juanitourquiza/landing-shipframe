@@ -365,6 +365,20 @@ export const ES: Content = {
         a: 'Ejecuta el instalador de una línea con curl, instala el toolkit base con Homebrew (brew tap juanitourquiza/shipframe && brew install shipframe), o clona el repositorio y corre ./install.sh con --claude, --codex, --opencode o --all. Instala la superficie Herdr por separado con herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes; docs: https://github.com/juanitourquiza/shipframe#herdr-local-workflow-plugin. Valida de forma segura con --doctor --repo-only, restaura archivos gestionados con --repair y elimina artefactos de ShipFrame con --uninstall.',
       },
       {
+        q: '¿Cómo activo el revisor de PRs con IA?',
+        a: 'Desde la raíz de cada repositorio Git destino, ejecuta `shipframe install --codex --pr-review nan-builders` (Homebrew) o `/ruta/a/shipframe/install.sh --project-dir "$PWD" --codex --pr-review nan-builders` (checkout local). `--codex` es un destino obligatorio: también instala ShipFrame globalmente para Codex, mientras `--pr-review` genera los archivos del workflow y del revisor en ese repositorio. Lleva esos archivos a su rama base y agrega `SF_REVIEW_API_KEY` como secreto de Actions del repositorio. Proveedores: `nan-builders`, `claude`, `openai` y `custom`; este último también requiere `SF_REVIEW_BASE_URL` y `SF_REVIEW_MODEL`. Se omiten PRs de forks. El workflow solo tiene `contents: read` y `pull-requests: write` para leer código y comentar.',
+        links: [
+          {
+            label: 'Workflow público de ShipFrame',
+            href: 'https://github.com/juanitourquiza/shipframe/blob/main/.github/workflows/shipframe-review.yml',
+          },
+          {
+            label: 'Guía completa en el README',
+            href: 'https://github.com/juanitourquiza/shipframe#ai-pr-reviewer-opt-in',
+          },
+        ],
+      },
+      {
         q: '¿Qué es Live Docs?',
         a: 'Live Docs es una skill opcional que consulta documentación compatible con la versión de la dependencia antes de cambiar una API externa. ShipFrame recomienda Context MCP para docs locales y versionadas, pero instalación y doctor solo lo detectan, imprimen comandos y continúan normalmente sin instalar herramientas ni editar configuración MCP.',
       },
