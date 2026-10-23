@@ -216,7 +216,7 @@ export const ES: Content = {
     eyebrow: 'Instalación',
     title: 'Funcionando con un solo comando',
     subtitle:
-      'ShipFrame v0.8.4 eleva el estándar de code review sin convertir SOLID, KISS, DRY o YAGNI en cuotas ni patrones obligatorios. Quien revisa debe identificar problemas concretos de complejidad o diseño, explicar su impacto y recomendar la mejora segura más pequeña, sin debilitar los controles de seguridad, pruebas o alcance. Mantiene los roles nativos opcionales de Codex para explorar en modo de solo lectura y revisar diffs de forma independiente; instálalos con `shipframe install --codex --codex-agents`. No modifica la configuración de Codex del usuario, deja las tareas triviales en el agente principal y mantiene Context MCP como opcional.',
+      'ShipFrame v1.0.0 agrega un revisor de PR con IA opt-in: ejecuta `shipframe install --codex --pr-review <proveedor>` (o elige otro destino de instalación) con nan-builders, claude, openai o custom (usa `off` para desactivarlo). Configura el secreto de repositorio `SF_REVIEW_API_KEY` (los proveedores custom también requieren `SF_REVIEW_BASE_URL` y `SF_REVIEW_MODEL`). Se omiten los PR de forks; el workflow solo comenta y no puede subir código. También conserva el estándar de revisión de v0.8.4 y los roles nativos opcionales de Codex, instalables con `shipframe install --codex --codex-agents`.',
     tabs: [
       {
         id: 'curl',

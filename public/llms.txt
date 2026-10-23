@@ -1,12 +1,12 @@
 # ShipFrame
 
-Current version: v0.8.4
+Current version: v1.0.0
 
 > ShipFrame is an open-source AI coding workflow toolkit for teams that plan, prove and ship software changes with discipline. It turns natural-language development requests into a repeatable delivery lifecycle and works with Claude Code, Codex CLI, the curated ChatGPT/Codex plugin, OpenCode and the separate Herdr plugin. Released under the MIT License.
 
-ShipFrame v0.8.4 raises code-review quality without turning SOLID, KISS, DRY, or YAGNI into quotas or mandatory patterns. Reviewers identify concrete complexity or design problems, explain their impact, and recommend the smallest safe improvement without weakening security, testing, or scope controls. Independent reviewers remain read-only; host enforcement may vary, and the workflow documents that boundary and verifies generated permissions. Opt-in native Codex roles support read-only code exploration and independent diff review; install with `shipframe install --codex --codex-agents`.
+ShipFrame v1.0.0 adds an opt-in AI PR reviewer via `shipframe install --codex --pr-review <provider>` (or another install target). Providers: nan-builders, claude, openai, or custom; use `off` to disable. Configure the repository secret `SF_REVIEW_API_KEY`; custom providers also require `SF_REVIEW_BASE_URL` and `SF_REVIEW_MODEL`. Fork PRs are skipped; the workflow only comments and cannot push code. It retains the v0.8.4 code-review quality bar and opt-in native Codex roles, installable with `shipframe install --codex --codex-agents`.
 
-The current stable v0.8.4 release also includes opt-in Git-backed Markdown project memory with a reviewed GitHub Draft PR flow (no automatic publishing or merge), skill/agent contract checks, QA-small eligibility rules, safer installer repair and plugin-version detection, bilingual preventive security-hardening, evidence-based security review, and optional technology packs for JavaScript, TypeScript, PHP, Node.js, Python, Go, Rust, Angular, Laravel, React/Vite, Next.js, NestJS, and FastAPI. These are workflow/review guides, not installed libraries. Homebrew installs this immutable tagged release. The optional Live Docs workflow uses versions resolved from project lockfiles; Context MCP can provide matching docs when the user has configured it, while official versioned docs remain the fallback.
+The current stable v1.0.0 release also includes opt-in Git-backed Markdown project memory with a reviewed GitHub Draft PR flow (no automatic publishing or merge), skill/agent contract checks, QA-small eligibility rules, safer installer repair and plugin-version detection, bilingual preventive security-hardening, evidence-based security review, and optional technology packs for JavaScript, TypeScript, PHP, Node.js, Python, Go, Rust, Angular, Laravel, React/Vite, Next.js, NestJS, and FastAPI. These are workflow/review guides, not installed libraries. Homebrew installs this immutable tagged release. The optional Live Docs workflow uses versions resolved from project lockfiles; Context MCP can provide matching docs when the user has configured it, while official versioned docs remain the fallback.
 
 ## Key facts
 
@@ -18,7 +18,7 @@ The current stable v0.8.4 release also includes opt-in Git-backed Markdown proje
 - **Repository:** https://github.com/juanitourquiza/shipframe
 - **ChatGPT/Codex plugin:** https://chatgpt.com/plugins/plugins_6a88e6256bb48191a343d39dace5e05c
 - **Landing page:** https://shipframe.hackeruna.com
-- **Current version:** v0.8.4
+- **Current version:** v1.0.0
 - **Maintainer:** hackeruna — contact j@hackeruna.com
 - **Optional memory:** supports optional repo-based Markdown memory through reviewed GitHub Draft PRs; Engram is an optional recommended companion
 

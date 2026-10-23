@@ -5,7 +5,7 @@ import { SITE } from './site.config';
 
 describe('ShipFrame landing content', () => {
   it('keeps structured-data version on the single site constant', () => {
-    expect(SITE.version).toBe('0.8.4');
+    expect(SITE.version).toBe('1.0.0');
     expect(EN.demo.title).toBeTruthy();
     expect(ES.demo.title).toBeTruthy();
     expect(EN.demo.transcript).toHaveLength(6);
@@ -94,12 +94,14 @@ describe('ShipFrame landing content', () => {
     expect(ES.seo.description).toContain('evidencia real de release');
   });
 
-  it('describes the v0.8.4 code-review quality bar in both locales', () => {
-    expect(EN.install.subtitle).toContain('v0.8.4');
-    expect(EN.install.subtitle).toContain('smallest safe improvement');
-    expect(EN.install.subtitle).toContain('without weakening security, testing, or scope');
-    expect(ES.install.subtitle).toContain('v0.8.4');
-    expect(ES.install.subtitle).toContain('mejora segura más pequeña');
-    expect(ES.install.subtitle).toContain('sin debilitar los controles de seguridad');
+  it('describes the v1.0.0 opt-in AI PR reviewer and its safeguards in both locales', () => {
+    expect(EN.install.subtitle).toContain('v1.0.0');
+    expect(EN.install.subtitle).toContain('shipframe install --codex --pr-review <provider>');
+    expect(EN.install.subtitle).toContain('SF_REVIEW_API_KEY');
+    expect(EN.install.subtitle).toContain('Fork PRs are skipped');
+    expect(ES.install.subtitle).toContain('v1.0.0');
+    expect(ES.install.subtitle).toContain('shipframe install --codex --pr-review <proveedor>');
+    expect(ES.install.subtitle).toContain('SF_REVIEW_API_KEY');
+    expect(ES.install.subtitle).toContain('Se omiten los PR de forks');
   });
 });
