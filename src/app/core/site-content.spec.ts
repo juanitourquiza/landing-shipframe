@@ -5,7 +5,7 @@ import { SITE } from './site.config';
 
 describe('ShipFrame landing content', () => {
   it('keeps structured-data version on the single site constant', () => {
-    expect(SITE.version).toBe('1.0.0');
+    expect(SITE.version).toBe('1.1.0');
     expect(EN.demo.title).toBeTruthy();
     expect(ES.demo.title).toBeTruthy();
     expect(EN.demo.transcript).toHaveLength(6);
