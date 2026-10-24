@@ -48,10 +48,11 @@ describe('static SEO assets', () => {
     expect(crawlerSummary).toContain(`Current version: v${SITE.version}`);
     const shortCrawlerSummary = await fs.readFile('public/llm.txt', 'utf8');
     for (const summary of [crawlerSummary, shortCrawlerSummary]) {
-      expect(summary).toContain('ShipFrame v1.0.0 adds an opt-in AI PR reviewer');
+      expect(summary).toContain('ShipFrame provides an opt-in AI PR/MR reviewer');
       expect(summary).toContain('shipframe install --codex --pr-review <provider>');
       expect(summary).toContain('SF_REVIEW_API_KEY');
-      expect(summary).toContain('Fork PRs are skipped');
+      expect(summary).toContain('GitLab also needs `SF_REVIEW_GITLAB_TOKEN`');
+      expect(summary).toContain('trusted contributors');
       expect(summary).toContain('shipframe install --codex --codex-agents');
       expect(summary).toContain('Homebrew installs this immutable tagged release');
       for (const technology of [

@@ -141,6 +141,17 @@ export const EN: Content = {
         ],
       },
       {
+        icon: 'shield',
+        title: 'AI PR/MR reviewer',
+        desc: 'Continuous, opt-in AI review where your team already collaborates.',
+        items: [
+          'Detects GitHub Actions or GitLab CI from the repository remote',
+          'Use NaN Builders, Claude, OpenAI, or a custom endpoint',
+          'Choose the suggested model or override its model ID',
+          'One updating comment per request; no source-code push permissions',
+        ],
+      },
+      {
         icon: 'discipline',
         title: 'Engineering discipline',
         desc: 'The habits that keep a codebase healthy.',
@@ -205,7 +216,30 @@ export const EN: Content = {
     eyebrow: 'Installation',
     title: 'Up and running in one command',
     subtitle:
-      'ShipFrame v1.0.0 adds an opt-in AI PR reviewer: run `shipframe install --codex --pr-review <provider>` (or choose another install target) with nan-builders, claude, openai, or custom (use `off` to disable). Add the `SF_REVIEW_API_KEY` repository secret (custom providers also need `SF_REVIEW_BASE_URL` and `SF_REVIEW_MODEL`). Fork PRs are skipped; the workflow only comments and cannot push code. It also keeps the reviewed v0.8.4 code-review quality bar and opt-in native Codex roles.',
+      'Install ShipFrame once, then opt into an AI reviewer that detects GitHub Actions or GitLab CI from your repository remote. Choose an AI API provider and model; one review comment updates as your PR/MR changes.',
+    reviewGuide: {
+      title: 'Turn on AI review for every PR/MR',
+      steps: [
+        {
+          title: 'Run the setup at the repository root',
+          desc: 'ShipFrame reads origin to select GitHub Actions or GitLab CI; the agent target (Codex, Claude, OpenCode, etc.) is a separate choice.',
+          code: 'shipframe install --codex --pr-review nan-builders',
+        },
+        {
+          title: 'Choose a provider and model',
+          desc: 'Keep the suggested model or override it with --pr-review-model. NaN Builders defaults to glm5.3-flash; premium users can select glm5.3.',
+          code: 'shipframe install --codex --pr-review nan-builders --pr-review-model glm5.3',
+        },
+        {
+          title: 'Add CI secrets in the hosting platform',
+          desc: 'Set SF_REVIEW_API_KEY as a CI secret. GitLab also needs SF_REVIEW_GITLAB_TOKEN (project access token, api scope, Reporter role) as a masked CI/CD variable.',
+        },
+        {
+          title: 'Open a trusted PR or MR',
+          desc: 'Commit the generated workflow files to the base branch, then open a same-repository request. Forks are skipped; the job only comments and never pushes code. GitLab source-branch CI runs only for trusted contributors.',
+        },
+      ],
+    },
     tabs: [
       {
         id: 'curl',
@@ -346,16 +380,20 @@ export const EN: Content = {
         a: 'Run the one-line installer with curl, install the base toolkit via Homebrew (brew tap juanitourquiza/shipframe && brew install shipframe), or clone the repository and run ./install.sh with --claude, --codex, --opencode or --all. Install the Herdr surface separately with herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes; docs: https://github.com/juanitourquiza/shipframe#herdr-local-workflow-plugin. Validate safely with --doctor --repo-only, restore managed files with --repair, and remove ShipFrame-managed artifacts with --uninstall.',
       },
       {
-        q: 'How do I enable the opt-in AI PR reviewer?',
-        a: 'From the root of each target Git repository, run `shipframe install --codex --pr-review nan-builders` (Homebrew) or `/path/to/shipframe/install.sh --project-dir "$PWD" --codex --pr-review nan-builders` (local checkout). `--codex` is a required install target: it also installs ShipFrame globally for Codex, while `--pr-review` generates the workflow and reviewer files in that repository. Commit those files to its base branch, then add `SF_REVIEW_API_KEY` as a repository Actions secret. Providers are `nan-builders`, `claude`, `openai`, and `custom`; custom also needs `SF_REVIEW_BASE_URL` and `SF_REVIEW_MODEL`. Fork PRs are skipped. The workflow grants `contents: read` and `pull-requests: write` so it can read code and comment.',
+        q: 'How do I enable the opt-in AI PR/MR reviewer?',
+        a: 'From the root of each target Git repository, run `shipframe install --codex --pr-review nan-builders`. ShipFrame detects GitHub Actions or GitLab CI from origin; pass `--pr-review-platform github|gitlab` when needed. Choose the provider and override the suggested model with `--pr-review-model <model-id>`. Commit the generated files to the base branch, then add `SF_REVIEW_API_KEY` as a CI secret. GitLab also requires `SF_REVIEW_GITLAB_TOKEN` as a masked CI/CD variable. Fork PRs/MRs are skipped; the reviewer only comments and never pushes code. GitLab source-branch CI config can access secrets, so enable it only for trusted contributors.',
         links: [
           {
-            label: 'Public ShipFrame workflow example',
+            label: 'Public GitHub workflow example',
             href: 'https://github.com/juanitourquiza/shipframe/blob/main/.github/workflows/shipframe-review.yml',
           },
           {
+            label: 'GitLab CI template',
+            href: 'https://github.com/juanitourquiza/shipframe/blob/main/templates/pr-review/shipframe-review.gitlab.yml.tmpl',
+          },
+          {
             label: 'Full setup guide in the README',
-            href: 'https://github.com/juanitourquiza/shipframe#ai-pr-reviewer-opt-in',
+            href: 'https://github.com/juanitourquiza/shipframe#ai-prmr-reviewer-opt-in',
           },
         ],
       },

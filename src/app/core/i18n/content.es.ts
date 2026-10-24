@@ -153,6 +153,17 @@ export const ES: Content = {
         ],
       },
       {
+        icon: 'shield',
+        title: 'Revisor IA de PR/MR',
+        desc: 'Revisión de IA continua y opt-in donde el equipo ya colabora.',
+        items: [
+          'Detecta GitHub Actions o GitLab CI desde el remoto del repositorio',
+          'Usa NaN Builders, Claude, OpenAI o un endpoint personalizado',
+          'Conserva el modelo sugerido o cambia su identificador',
+          'Un comentario que se actualiza; sin permisos para subir código',
+        ],
+      },
+      {
         icon: 'discipline',
         title: 'Disciplina de ingeniería',
         desc: 'Los hábitos que mantienen sano el código.',
@@ -216,7 +227,30 @@ export const ES: Content = {
     eyebrow: 'Instalación',
     title: 'Funcionando con un solo comando',
     subtitle:
-      'ShipFrame v1.0.0 agrega un revisor de PR con IA opt-in: ejecuta `shipframe install --codex --pr-review <proveedor>` (o elige otro destino de instalación) con nan-builders, claude, openai o custom (usa `off` para desactivarlo). Configura el secreto de repositorio `SF_REVIEW_API_KEY` (los proveedores custom también requieren `SF_REVIEW_BASE_URL` y `SF_REVIEW_MODEL`). Se omiten los PR de forks; el workflow solo comenta y no puede subir código. También conserva el estándar de revisión de v0.8.4 y los roles nativos opcionales de Codex, instalables con `shipframe install --codex --codex-agents`.',
+      'Instala ShipFrame una vez y luego activa el revisor IA: detecta GitHub Actions o GitLab CI desde el remoto del repositorio. Elige proveedor y modelo; el comentario de revisión se actualiza cuando cambia el PR/MR.',
+    reviewGuide: {
+      title: 'Activa la revisión IA en cada PR/MR',
+      steps: [
+        {
+          title: 'Ejecuta el setup en la raíz del repositorio',
+          desc: 'ShipFrame lee origin para elegir GitHub Actions o GitLab CI; el agente objetivo (Codex, Claude, OpenCode, etc.) se elige aparte.',
+          code: 'shipframe install --codex --pr-review nan-builders',
+        },
+        {
+          title: 'Elige proveedor y modelo',
+          desc: 'Conserva el modelo sugerido o cámbialo con --pr-review-model. NaN Builders usa glm5.3-flash por defecto; el nivel premium permite elegir glm5.3.',
+          code: 'shipframe install --codex --pr-review nan-builders --pr-review-model glm5.3',
+        },
+        {
+          title: 'Añade secretos de CI en la plataforma',
+          desc: 'Configura SF_REVIEW_API_KEY como secreto. GitLab también requiere SF_REVIEW_GITLAB_TOKEN (token de proyecto, scope api, rol Reporter) como variable CI/CD enmascarada.',
+        },
+        {
+          title: 'Abre un PR o MR de un colaborador de confianza',
+          desc: 'Confirma los archivos generados en la rama base y luego abre una solicitud del mismo repositorio. Se omiten los forks; el job solo comenta y nunca sube código. En GitLab, la configuración CI de la rama fuente se ejecuta solo para colaboradores de confianza.',
+        },
+      ],
+    },
     tabs: [
       {
         id: 'curl',
@@ -365,16 +399,20 @@ export const ES: Content = {
         a: 'Ejecuta el instalador de una línea con curl, instala el toolkit base con Homebrew (brew tap juanitourquiza/shipframe && brew install shipframe), o clona el repositorio y corre ./install.sh con --claude, --codex, --opencode o --all. Instala la superficie Herdr por separado con herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes; docs: https://github.com/juanitourquiza/shipframe#herdr-local-workflow-plugin. Valida de forma segura con --doctor --repo-only, restaura archivos gestionados con --repair y elimina artefactos de ShipFrame con --uninstall.',
       },
       {
-        q: '¿Cómo activo el revisor de PRs con IA?',
-        a: 'Desde la raíz de cada repositorio Git destino, ejecuta `shipframe install --codex --pr-review nan-builders` (Homebrew) o `/ruta/a/shipframe/install.sh --project-dir "$PWD" --codex --pr-review nan-builders` (checkout local). `--codex` es un destino obligatorio: también instala ShipFrame globalmente para Codex, mientras `--pr-review` genera los archivos del workflow y del revisor en ese repositorio. Lleva esos archivos a su rama base y agrega `SF_REVIEW_API_KEY` como secreto de Actions del repositorio. Proveedores: `nan-builders`, `claude`, `openai` y `custom`; este último también requiere `SF_REVIEW_BASE_URL` y `SF_REVIEW_MODEL`. Se omiten PRs de forks. El workflow solo tiene `contents: read` y `pull-requests: write` para leer código y comentar.',
+        q: '¿Cómo activo el revisor opcional con IA para PR/MR?',
+        a: 'Desde la raíz del repositorio Git, ejecuta `shipframe install --codex --pr-review nan-builders`. ShipFrame detecta GitHub Actions o GitLab CI desde origin; si hace falta, indica `--pr-review-platform github|gitlab`. Elige proveedor y cambia el modelo sugerido con `--pr-review-model <model-id>`. Lleva los archivos generados a la rama base y agrega `SF_REVIEW_API_KEY` como secreto CI. GitLab también requiere `SF_REVIEW_GITLAB_TOKEN` como variable CI/CD enmascarada. Se omiten PRs/MRs de forks; el revisor solo comenta y nunca sube código. La configuración CI del branch fuente en GitLab puede acceder a secretos: actívalo solo para contribuidores de confianza.',
         links: [
           {
-            label: 'Workflow público de ShipFrame',
+            label: 'Ejemplo de workflow GitHub',
             href: 'https://github.com/juanitourquiza/shipframe/blob/main/.github/workflows/shipframe-review.yml',
           },
           {
+            label: 'Plantilla GitLab CI',
+            href: 'https://github.com/juanitourquiza/shipframe/blob/main/templates/pr-review/shipframe-review.gitlab.yml.tmpl',
+          },
+          {
             label: 'Guía completa en el README',
-            href: 'https://github.com/juanitourquiza/shipframe#ai-pr-reviewer-opt-in',
+            href: 'https://github.com/juanitourquiza/shipframe#ai-prmr-reviewer-opt-in',
           },
         ],
       },

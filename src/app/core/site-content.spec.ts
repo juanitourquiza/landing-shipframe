@@ -106,18 +106,19 @@ describe('ShipFrame landing content', () => {
         'shipframe install --codex --pr-review nan-builders',
         'SF_REVIEW_API_KEY',
         '--codex',
-        'custom',
-        'SF_REVIEW_BASE_URL',
-        'SF_REVIEW_MODEL',
         'fork',
-        'contents: read',
-        'pull-requests: write',
+        'SF_REVIEW_GITLAB_TOKEN',
+        'github|gitlab',
+        'pr-review-platform',
+        'pr-review-model',
         'github.com/juanitourquiza/shipframe/blob/main/.github/workflows/shipframe-review.yml',
-        'github.com/juanitourquiza/shipframe#ai-pr-reviewer-opt-in',
+        'github.com/juanitourquiza/shipframe/blob/main/templates/pr-review/shipframe-review.gitlab.yml.tmpl',
+        'github.com/juanitourquiza/shipframe#ai-prmr-reviewer-opt-in',
       ]) {
         expect(guideCopy.toLowerCase()).toContain(detail.toLowerCase());
       }
       expect(guide?.a).not.toContain('PULSAI');
+      expect(guideCopy.toLowerCase()).toMatch(/trusted|confianza/);
     }
 
     const fs = await import('node:fs/promises');
@@ -129,14 +130,25 @@ describe('ShipFrame landing content', () => {
     }
   });
 
-  it('describes the v1.0.0 opt-in AI PR reviewer and its safeguards in both locales', () => {
-    expect(EN.install.subtitle).toContain('v1.0.0');
-    expect(EN.install.subtitle).toContain('shipframe install --codex --pr-review <provider>');
-    expect(EN.install.subtitle).toContain('SF_REVIEW_API_KEY');
-    expect(EN.install.subtitle).toContain('Fork PRs are skipped');
-    expect(ES.install.subtitle).toContain('v1.0.0');
-    expect(ES.install.subtitle).toContain('shipframe install --codex --pr-review <proveedor>');
-    expect(ES.install.subtitle).toContain('SF_REVIEW_API_KEY');
-    expect(ES.install.subtitle).toContain('Se omiten los PR de forks');
+  it('prominently explains the opt-in AI PR/MR reviewer and setup steps in both locales', () => {
+    for (const content of [EN, ES]) {
+      expect(content.install.reviewGuide.steps).toHaveLength(4);
+      expect(content.install.reviewGuide.steps.map((step) => step.code ?? '').join(' ')).toContain(
+        'shipframe install --codex --pr-review nan-builders',
+      );
+      expect(content.install.reviewGuide.steps.map((step) => step.desc).join(' ')).toContain(
+        'SF_REVIEW_API_KEY',
+      );
+      expect(content.install.reviewGuide.steps.map((step) => step.desc).join(' ')).toContain(
+        'SF_REVIEW_GITLAB_TOKEN',
+      );
+      expect(content.features.groups.some((group) => group.title.includes('PR/MR'))).toBe(true);
+    }
+    expect(EN.install.reviewGuide.title).toContain('PR/MR');
+    expect(EN.install.reviewGuide.steps[0].desc).toContain('origin');
+    expect(EN.install.reviewGuide.steps[1].desc).toContain('model');
+    expect(ES.install.reviewGuide.title).toContain('PR/MR');
+    expect(ES.install.reviewGuide.steps[0].desc).toContain('origin');
+    expect(ES.install.reviewGuide.steps[1].desc).toContain('modelo');
   });
 });

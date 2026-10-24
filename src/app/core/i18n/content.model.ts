@@ -97,6 +97,10 @@ export interface InstallContent {
   targetsHead: { tool: string; skills: string; orchestration: string };
   targets: { tool: string; skills: string; orchestration: string }[];
   note: string;
+  reviewGuide: {
+    title: string;
+    steps: (Step & { code?: string })[];
+  };
 }
 
 export interface ProofContent {

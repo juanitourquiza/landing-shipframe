@@ -74,6 +74,40 @@ import { I18nService } from '../core/i18n/i18n.service';
           </div>
         </div>
 
+        <div
+          class="border-brand-400/30 bg-brand-500/5 mx-auto mt-14 max-w-4xl rounded-3xl border p-6 sm:p-9"
+          aria-labelledby="install-review-guide-title"
+          appReveal
+        >
+          <div class="mx-auto max-w-2xl text-center">
+            <h3 id="install-review-guide-title" class="text-fg text-2xl font-bold text-balance">
+              {{ c().reviewGuide.title }}
+            </h3>
+          </div>
+          <ol class="mt-7 grid gap-4 sm:grid-cols-2">
+            @for (step of c().reviewGuide.steps; track step.title; let index = $index) {
+              <li class="border-border-soft bg-surface rounded-2xl border p-5">
+                <div class="flex items-start gap-3">
+                  <span
+                    class="bg-brand-500/10 text-brand-600 dark:text-brand-400 grid size-8 shrink-0 place-items-center rounded-full text-sm font-bold"
+                    aria-hidden="true"
+                    >{{ index + 1 }}</span
+                  >
+                  <div>
+                    <h3 class="text-fg font-semibold">{{ step.title }}</h3>
+                    <p class="text-fg-muted mt-1 text-sm leading-relaxed">{{ step.desc }}</p>
+                  </div>
+                </div>
+                @if (step.code) {
+                  <pre
+                    class="bg-surface-2 text-fg mt-4 overflow-x-auto rounded-xl p-3 font-mono text-xs leading-relaxed"
+                  ><code>{{ step.code }}</code></pre>
+                }
+              </li>
+            }
+          </ol>
+        </div>
+
         <div class="mx-auto mt-12 max-w-3xl" appReveal>
           <h3 class="text-fg text-center text-lg font-semibold">{{ c().targetsTitle }}</h3>
           <div class="border-border-soft bg-surface mt-5 overflow-hidden rounded-2xl border">
