@@ -4,9 +4,9 @@ export const EN: Content = {
   seo: {
     title: 'ShipFrame — AI Coding Workflows for Teams that Plan, Prove & Ship',
     description:
-      'ShipFrame is an open-source AI coding workflow toolkit for Claude Code, Codex CLI, ChatGPT/Codex plugin and OpenCode. Turn natural-language requests into a repeatable lifecycle: plan, implement, verify, review and ship with real release evidence, with optional version-compatible live library documentation.',
+      'ShipFrame is an open-source AI coding workflow toolkit for Claude Code, Codex CLI, ChatGPT/Codex plugin, OpenCode and Hermes Agent. Turn natural-language requests into a repeatable lifecycle: plan, implement, verify, review and ship with real release evidence, with optional version-compatible live library documentation.',
     keywords:
-      'AI coding workflow, Claude Code, Codex CLI, ChatGPT plugin, OpenCode, AI agents, agentic development, release evidence, live docs, developer tools, MCP, spec-driven development',
+      'AI coding workflow, Claude Code, Codex CLI, ChatGPT plugin, OpenCode, Hermes Agent, Hermes plugin, AI agents, agentic development, release evidence, live docs, developer tools, MCP, spec-driven development',
     ogAlt: 'ShipFrame — AI coding workflows for teams that plan, prove and ship',
   },
   nav: {
@@ -31,7 +31,7 @@ export const EN: Content = {
     themeDark: 'Switch to dark mode',
   },
   hero: {
-    badge: 'Open source · MIT · ChatGPT/Codex plugin · Claude Code · OpenCode',
+    badge: 'Open source · MIT · ChatGPT/Codex plugin · Claude Code · OpenCode · Hermes plugin',
     titleLead: 'AI coding workflows for teams that ',
     titleHighlight: 'plan, prove & ship',
     titleTail: '.',
@@ -252,6 +252,11 @@ export const EN: Content = {
         code: 'brew tap juanitourquiza/shipframe\nbrew install shipframe\nshipframe install --codex\nshipframe install --codex --codex-agents\nshipframe install --doctor --repo-only\nshipframe install --doctor',
       },
       {
+        id: 'hermes',
+        label: 'Hermes plugin',
+        code: 'hermes plugins install shipframe\n# repository fallback: hermes plugins install juanitourquiza/shipframe',
+      },
+      {
         id: 'herdr',
         label: 'Herdr plugin',
         code: 'herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes',
@@ -280,12 +285,17 @@ export const EN: Content = {
       },
       { tool: 'OpenCode', skills: 'Native skill discovery', orchestration: 'OpenCode skill tool' },
       {
+        tool: 'Hermes Agent',
+        skills: 'Native plugin',
+        orchestration: 'shipframe:<skill>',
+      },
+      {
         tool: 'Herdr plugin',
         skills: 'Separate Herdr install',
         orchestration: 'Workspace/pane workflow surface',
       },
     ],
-    note: 'Native discovery, no lock-in: the ShipFrame GitHub repository includes 30+ skills and optional technology packs; Homebrew installs the stable tagged base toolkit. The Herdr plugin is installed separately with herdr plugin install, and the ChatGPT/Codex plugin packages 24 curated workflows for public plugin use. ShipFrame can also be paired optionally with Caveman for more concise internal agent responses. Live Docs uses dependency versions from project lockfiles; when connected, Context MCP can provide matching docs. init-project may suggest setup based on the detected stack, but never installs Context or edits host config. Official versioned docs remain the fallback.',
+    note: 'Native discovery, no lock-in: the ShipFrame GitHub repository includes 30+ skills and optional technology packs; Homebrew installs the stable tagged base toolkit. The Hermes Agent plugin is installed from the catalog with hermes plugins install shipframe (repository fallback: hermes plugins install juanitourquiza/shipframe). The Herdr plugin is installed separately with herdr plugin install, and the ChatGPT/Codex plugin packages 24 curated workflows for public plugin use. ShipFrame can also be paired optionally with Caveman for more concise internal agent responses. Live Docs uses dependency versions from project lockfiles; when connected, Context MCP can provide matching docs. init-project may suggest setup based on the detected stack, but never installs Context or edits host config. Official versioned docs remain the fallback.',
   },
   proof: {
     eyebrow: 'Proof before claims',
@@ -364,12 +374,12 @@ export const EN: Content = {
       },
       {
         q: 'Which AI tools does ShipFrame support?',
-        a: 'ShipFrame works with Claude Code (plugin-managed agents and hooks), Codex CLI (a routing table in AGENTS.md without changing your config.toml), the public ChatGPT/Codex plugin (24 curated workflows), OpenCode (symlinked skills plus converted agents that inherit your global/default model unless you override it), and Herdr as a separate local workflow plugin. A single base toolkit install can target one, several or all supported agent tools; Herdr uses its own plugin install command.',
+        a: 'ShipFrame works with Claude Code (plugin-managed agents and hooks), Codex CLI (a routing table in AGENTS.md without changing your config.toml), the public ChatGPT/Codex plugin (24 curated workflows), OpenCode (symlinked skills plus converted agents that inherit your global/default model unless you override it), Hermes Agent (a native plugin with read-only shipframe:<skill> entries), and Herdr as a separate local workflow plugin. A single base toolkit install can target one, several or all supported agent tools; Hermes and Herdr use their own plugin install commands.',
       },
 
       {
         q: 'Do ShipFrame skills appear in /skills?',
-        a: 'Yes in Codex after shipframe install --codex: open /skills and invoke workflows with $code-review, $plan-expert and the other installed skills. Claude Code uses the /shipframe:<skill> namespace, for example /shipframe:code-review. ChatGPT can open the curated public plugin, and OpenCode loads skills through its native skill tool after shipframe install --opencode.',
+        a: 'Yes in Codex after shipframe install --codex: open /skills and invoke workflows with $code-review, $plan-expert and the other installed skills. Claude Code uses the /shipframe:<skill> namespace, for example /shipframe:code-review. ChatGPT can open the curated public plugin, OpenCode loads skills through its native skill tool after shipframe install --opencode, and Hermes registers the same skills as shipframe:<skill>.',
       },
       {
         q: 'Is ShipFrame free and open source?',
@@ -377,7 +387,7 @@ export const EN: Content = {
       },
       {
         q: 'How do I install ShipFrame?',
-        a: 'Run the one-line installer with curl, install the base toolkit via Homebrew (brew tap juanitourquiza/shipframe && brew install shipframe), or clone the repository and run ./install.sh with --claude, --codex, --opencode or --all. Install the Herdr surface separately with herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes; docs: https://github.com/juanitourquiza/shipframe#herdr-local-workflow-plugin. Validate safely with --doctor --repo-only, restore managed files with --repair, and remove ShipFrame-managed artifacts with --uninstall.',
+        a: 'Run the one-line installer with curl, install the base toolkit via Homebrew (brew tap juanitourquiza/shipframe && brew install shipframe), or clone the repository and run ./install.sh with --claude, --codex, --opencode or --all. Install the Hermes Agent plugin from the catalog with hermes plugins install shipframe (repository fallback: hermes plugins install juanitourquiza/shipframe). Install the Herdr surface separately with herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes; docs: https://github.com/juanitourquiza/shipframe#herdr-local-workflow-plugin. Validate safely with --doctor --repo-only, restore managed files with --repair, and remove ShipFrame-managed artifacts with --uninstall.',
       },
       {
         q: 'How do I enable the opt-in AI PR/MR reviewer?',

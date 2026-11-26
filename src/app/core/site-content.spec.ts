@@ -31,6 +31,11 @@ describe('ShipFrame landing content', () => {
       expect(content.proof.commands).toHaveLength(3);
       expect(content.proof.useCases).toHaveLength(3);
       expect(content.proof.disclaimer.toLowerCase()).toContain('telemetry');
+      expect(content.install.tabs.some((tab) => tab.id === 'hermes')).toBe(true);
+      const hermesTab = content.install.tabs.find((tab) => tab.id === 'hermes');
+      expect(hermesTab?.code).toContain('hermes plugins install shipframe');
+      expect(hermesTab?.code).toContain('hermes plugins install juanitourquiza/shipframe');
+      expect(content.install.targets.some((target) => target.tool === 'Hermes Agent')).toBe(true);
       expect(content.install.tabs.some((tab) => tab.id === 'herdr')).toBe(true);
       expect(content.install.tabs.find((tab) => tab.id === 'herdr')?.code).toContain(
         'herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes',
@@ -76,6 +81,14 @@ describe('ShipFrame landing content', () => {
       expect(memoryFaq?.a).toBeTruthy();
       expect(memoryFaq?.a).not.toContain('v0.8.0');
       expect(memoryFaq?.a).toContain('Engram');
+      const toolsFaq = content.faq.items.find(
+        (item) => item.q.includes('AI tools') || item.q.includes('herramientas de IA'),
+      );
+      expect(toolsFaq?.a).toContain('Hermes Agent');
+      const installFaq = content.faq.items.find(
+        (item) => item.q.includes('How do I install') || item.q.includes('Cómo instalo'),
+      );
+      expect(installFaq?.a).toContain('hermes plugins install shipframe');
       expect(content.install.note).toContain('lockfile');
     }
 
