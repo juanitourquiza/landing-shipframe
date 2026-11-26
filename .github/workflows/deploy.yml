@@ -41,7 +41,118 @@ jobs:
       - name: Install sshpass
         run: sudo apt-get update && sudo apt-get install -y sshpass
 
-      - name: Deploy via rsync (password auth)
+      - name: Prepare remote deploy target
+        id: prepare
+        env:
+          SSHPASS: ${{ secrets.CLOUDWAYS_SSH_PASSWORD }}
+          SSH_HOST: ${{ secrets.CLOUDWAYS_SSH_HOST }}
+          SSH_USER: ${{ secrets.CLOUDWAYS_SSH_USER }}
+          SSH_PORT: ${{ secrets.CLOUDWAYS_SSH_PORT }}
+          REMOTE_PATH: ${{ secrets.CLOUDWAYS_REMOTE_PATH }}
+        run: |
+          set -euo pipefail
+          ssh_opts=(-p "${SSH_PORT:-22}" -o StrictHostKeyChecking=accept-new -o PreferredAuthentications=password -o PubkeyAuthentication=no)
+          remote="${SSH_USER}@${SSH_HOST}"
+          remote_path="${REMOTE_PATH:-public_html}"
+
+          if ! prepare_output=$(sshpass -e ssh "${ssh_opts[@]}" "$remote" \
+            "REMOTE_PATH=$(printf '%q' "$remote_path") bash -s" <<'REMOTE'
+          set -euo pipefail
+          cd "$REMOTE_PATH"
+
+          echo "Deploy user: $(id -un) ($(id -u):$(id -g))"
+          echo "Remote path: $(pwd)"
+          ls -ld . en es 2>/dev/null || true
+          stat -c '%n owner=%U group=%G mode=%a' . en es 2>/dev/null || true
+
+          # rsync creates temporary files inside every destination directory. If
+          # the deploy user cannot write inside en/ or es/, try to repair it; if
+          # only the index.html file is writable, deploy that file in place.
+          backup_root="${HOME:-}/deploy-quarantine"
+          if [ -z "${HOME:-}" ] || ! mkdir -p "$backup_root" 2>/dev/null; then
+            backup_root="$PWD/.deploy-quarantine"
+            mkdir -p "$backup_root"
+          fi
+
+          timestamp=$(date +%Y%m%d%H%M%S)
+          for dir in en es; do
+            [ -e "$dir" ] || continue
+            if [ -w "$dir" ]; then
+              echo "'$dir' is writable"
+              continue
+            fi
+
+            echo "'$dir' is not writable; attempting repair"
+
+            # The deploy user owns it but the mode lacks write permission.
+            if [ -O "$dir" ] && chmod u+rwx "$dir" 2>/dev/null && [ -w "$dir" ]; then
+              echo "Fixed mode on '$dir'"
+              continue
+            fi
+
+            # Passwordless sudo can repair ownership without manual intervention.
+            if sudo -n true 2>/dev/null; then
+              sudo -n chown -R "$(id -u):$(id -g)" "$dir" 2>/dev/null || true
+              sudo -n chmod -R u+rwX "$dir" 2>/dev/null || true
+              if [ -w "$dir" ]; then
+                echo "Fixed ownership/mode on '$dir' via sudo"
+                continue
+              fi
+            fi
+
+            # The directory is not writable, but rsync --inplace can still
+            # replace an existing writable index.html without creating temp
+            # files inside the directory.
+            index="$dir/index.html"
+            if [ -f "$index" ]; then
+              stat -c '%n owner=%U group=%G mode=%a' "$index" || true
+              if [ -w "$index" ]; then
+                echo "INPLACE:$dir"
+                echo "'$dir' directory is not writable; will update '$index' in place"
+                continue
+              fi
+            fi
+
+            # Neither the directory nor its index.html is writable, but the
+            # parent is. Swap the directory with a fresh one we own using
+            # renameat2(RENAME_EXCHANGE): it is atomic and only checks write
+            # access on the parent when both entries share it. The old content
+            # is left at a hidden .deploy-old-* path for manual cleanup.
+            if command -v python3 >/dev/null 2>&1 \
+              && python3 -c 'import ctypes; raise SystemExit(0 if hasattr(ctypes.CDLL(None), "renameat2") else 1)' 2>/dev/null; then
+              old_dir=".deploy-old-${dir}-${timestamp}"
+              mkdir "$old_dir"
+              if python3 -c 'import ctypes,os,sys; r=ctypes.CDLL(None,use_errno=True).renameat2(-100,sys.argv[1].encode(),-100,sys.argv[2].encode(),2); e=ctypes.get_errno(); print("renameat2:", "ok" if r==0 else os.strerror(e), file=sys.stderr); sys.exit(0 if r==0 else 1)' "$dir" "$old_dir"; then
+                echo "Swapped unwritable '$dir' with a fresh directory; old content at '$old_dir'"
+                continue
+              fi
+              rmdir "$old_dir" 2>/dev/null || true
+            fi
+
+            # Last resort: move it aside and let rsync recreate it. This only
+            # works when the directory itself is writable, so it usually fails
+            # for the condition we are trying to repair.
+            if mv "$dir" "${backup_root}/${dir}-${timestamp}" 2>/dev/null; then
+              echo "Quarantined '$dir' -> '${backup_root}/${dir}-${timestamp}'"
+              continue
+            fi
+
+            echo "'$dir' is not writable and '$index' is not writable either" >&2
+            echo "Fix ownership on Cloudways as the master user before deploying" >&2
+            exit 1
+          done
+
+          ls -ld . en es 2>/dev/null || true
+          REMOTE
+          ); then
+            printf '%s\n' "$prepare_output"
+            exit 1
+          fi
+          printf '%s\n' "$prepare_output"
+          inplace_dirs=$(printf '%s\n' "$prepare_output" | sed -n 's/^INPLACE://p' | tr '\n' ' ' | sed -E 's/[[:space:]]+$//')
+          echo "inplace_dirs=$inplace_dirs" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy site root via rsync
         env:
           SSHPASS: ${{ secrets.CLOUDWAYS_SSH_PASSWORD }}
           SSH_HOST: ${{ secrets.CLOUDWAYS_SSH_HOST }}
@@ -51,18 +162,78 @@ jobs:
         run: |
           rsync -rlvz --delete \
             --exclude='.well-known' \
+            --exclude='/.deploy-old-*' \
+            --exclude='/.deploy-quarantine' \
+            --exclude='/en/' \
+            --exclude='/es/' \
             -e "sshpass -e ssh -p ${SSH_PORT:-22} -o StrictHostKeyChecking=accept-new -o PreferredAuthentications=password -o PubkeyAuthentication=no" \
             dist/landing-shipframe/browser/ \
             "${SSH_USER}@${SSH_HOST}:${REMOTE_PATH:-public_html}/"
 
+      - name: Deploy locale pages
+        env:
+          SSHPASS: ${{ secrets.CLOUDWAYS_SSH_PASSWORD }}
+          SSH_HOST: ${{ secrets.CLOUDWAYS_SSH_HOST }}
+          SSH_USER: ${{ secrets.CLOUDWAYS_SSH_USER }}
+          SSH_PORT: ${{ secrets.CLOUDWAYS_SSH_PORT }}
+          REMOTE_PATH: ${{ secrets.CLOUDWAYS_REMOTE_PATH }}
+          INPLACE_DIRS: ${{ steps.prepare.outputs.inplace_dirs }}
+        run: |
+          set -euo pipefail
+          ssh_command="sshpass -e ssh -p ${SSH_PORT:-22} -o StrictHostKeyChecking=accept-new -o PreferredAuthentications=password -o PubkeyAuthentication=no"
+          for dir in en es; do
+            case " ${INPLACE_DIRS:-} " in
+              *" $dir "*)
+                echo "Updating $dir/index.html in place (directory is not writable)"
+                rsync -rlvz --inplace \
+                  -e "$ssh_command" \
+                  "dist/landing-shipframe/browser/$dir/" \
+                  "${SSH_USER}@${SSH_HOST}:${REMOTE_PATH:-public_html}/$dir/"
+                ;;
+              *)
+                rsync -rlvz --delete \
+                  -e "$ssh_command" \
+                  "dist/landing-shipframe/browser/$dir/" \
+                  "${SSH_USER}@${SSH_HOST}:${REMOTE_PATH:-public_html}/$dir/"
+                ;;
+            esac
+          done
+
       - name: Smoke check (production)
         run: |
           set -euo pipefail
-          for url in "https://shipframe.hackeruna.com/" "https://shipframe.hackeruna.com/es/" "https://shipframe.hackeruna.com/llms.txt"; do
-            code=$(curl --fail --silent --show-error -o /dev/null -w "%{http_code}" "$url")
-            echo "$code  $url"
+          base="https://shipframe.hackeruna.com"
+
+          for path in "/" "/es/" "/llms.txt"; do
+            code=$(curl --silent --show-error --max-time 30 -o /dev/null -w "%{http_code}" "$base$path")
+            echo "$code  $path"
             [ "$code" = "200" ]
           done
+
           version=$(sed -nE "s/.*version: '([^']+)'.*/\1/p" src/app/core/site.config.ts)
           test -n "$version"
-          curl --fail --silent --show-error https://shipframe.hackeruna.com/llms.txt | grep -F "Current version: v${version}"
+          curl --fail --silent --show-error "$base/llms.txt" | grep -F "Current version: v${version}"
+
+          # A 200 HTML page is not enough: verify every referenced local JS/CSS
+          # asset too, otherwise stale HTML can keep pointing at deleted hashes.
+          for path in "/" "/es/"; do
+            html=$(curl --fail --silent --show-error --max-time 30 "$base$path")
+            assets=$(printf '%s\n' "$html" \
+              | grep -oE '(src|href)="[^"]+\.(js|css)(\?[^"]*)?"' \
+              | sed -E 's/^(src|href)="//; s/"$//' \
+              | sort -u)
+            if [ -z "$assets" ]; then
+              echo "No local JS/CSS assets found on $path" >&2
+              exit 1
+            fi
+            while IFS= read -r asset; do
+              case "$asset" in
+                http*) url="$asset" ;;
+                /*) url="$base$asset" ;;
+                *) url="$base/$asset" ;;
+              esac
+              code=$(curl --silent --show-error --max-time 30 -o /dev/null -w "%{http_code}" "$url")
+              echo "$code  $url"
+              [ "$code" = "200" ]
+            done <<< "$assets"
+          done
