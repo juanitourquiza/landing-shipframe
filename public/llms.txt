@@ -2,7 +2,7 @@
 
 Current version: v1.2.0
 
-> ShipFrame is an open-source AI coding workflow toolkit for teams that plan, prove and ship software changes with discipline. It turns natural-language development requests into a repeatable delivery lifecycle and works with Claude Code, Codex CLI, the curated ChatGPT/Codex plugin, OpenCode and the separate Herdr plugin. Released under the MIT License.
+> ShipFrame is an open-source AI coding workflow toolkit for teams that plan, prove and ship software changes with discipline. It turns natural-language development requests into a repeatable delivery lifecycle and works with Claude Code, Codex CLI, the curated ChatGPT/Codex plugin, OpenCode, the separate Herdr plugin and the native Hermes Agent plugin. Released under the MIT License.
 
 ShipFrame provides an opt-in AI PR/MR reviewer, installed from the repository root with `shipframe install --codex --pr-review <provider>`. It detects GitHub Actions or GitLab CI from `origin`; use `--pr-review-platform github|gitlab` to override and `--pr-review-model <model-id>` to change the suggested model. Configure `SF_REVIEW_API_KEY`; GitLab also needs `SF_REVIEW_GITLAB_TOKEN` as a masked CI/CD variable. Fork requests are skipped; the job only comments and never pushes code. GitLab source-branch pipelines can read CI variables, so enable this only for trusted contributors. It retains the v0.8.4 code-review quality bar and opt-in native Codex roles, installable with `shipframe install --codex --codex-agents`.
 
@@ -14,7 +14,7 @@ To enable automatic AI PR/MR review, run `shipframe install --codex --pr-review 
 
 - **Name:** ShipFrame
 - **What it is:** AI coding workflow toolkit / developer tool
-- **Supported tools:** Claude Code (plugin-managed agents + hooks and /shipframe:<skill> commands), Codex CLI (/skills picker, routing table, and opt-in native subagents without changing user-owned config.toml), ChatGPT/Codex plugin (24 curated public skills), OpenCode (native skill discovery plus converted agents that inherit the global/default model unless overridden), Herdr plugin (`herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes`)
+- **Supported tools:** Claude Code (plugin-managed agents + hooks and /shipframe:<skill> commands), Codex CLI (/skills picker, routing table, and opt-in native subagents without changing user-owned config.toml), ChatGPT/Codex plugin (24 curated public skills), OpenCode (native skill discovery plus converted agents that inherit the global/default model unless overridden), Hermes Agent plugin (native, read-only `shipframe:<skill>` entries; catalog install with `hermes plugins install shipframe`), Herdr plugin (`herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes`)
 - **License:** MIT (free for personal and commercial use)
 - **Platforms:** macOS, Linux
 - **Repository:** https://github.com/juanitourquiza/shipframe
@@ -30,10 +30,12 @@ Install once. Open `/skills`. Use ShipFrame workflows directly.
 
 - One-line: `curl -fsSL https://raw.githubusercontent.com/juanitourquiza/shipframe/main/install.sh | bash`
 - Homebrew base toolkit: `brew tap juanitourquiza/shipframe && brew install shipframe && shipframe install --codex`; optional native roles: `shipframe install --codex --codex-agents`; opt-in native roles: `shipframe install --codex --codex-agents`
+- Hermes Agent plugin: `hermes plugins install shipframe` (repository fallback: `hermes plugins install juanitourquiza/shipframe`)
 - Herdr plugin: `herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes`
 - Targets: `./install.sh --claude`, `--codex`, `--opencode`, or `--all`
 - Safe checks and maintenance: `./install.sh --doctor --repo-only`, `./install.sh --repair --all`, `./install.sh --uninstall --all --yes`
-- Native discovery, no lock-in: Claude plugin marketplace support with `/shipframe:code-review`, Codex CLI `/skills` then `$code-review`, the public ChatGPT/Codex plugin with 24 curated workflows, OpenCode native skill discovery after `shipframe install --opencode`, and Herdr as a separate plugin surface.
+- Native discovery, no lock-in: Claude plugin marketplace support with `/shipframe:code-review`, Codex CLI `/skills` then `$code-review`, the public ChatGPT/Codex plugin with 24 curated workflows, OpenCode native skill discovery after `shipframe install --opencode`, Hermes Agent native `shipframe:<skill>` entries, and Herdr as a separate plugin surface.
+- Hermes docs: https://github.com/juanitourquiza/shipframe#hermes-agent
 - Herdr docs: https://github.com/juanitourquiza/shipframe#herdr-local-workflow-plugin
 - Optional companion: ShipFrame can be paired with Caveman for more concise internal agent responses, but Caveman is not required or installed automatically.
 
@@ -58,8 +60,8 @@ Install once. Open `/skills`. Use ShipFrame workflows directly.
 ## Frequently asked questions
 
 - **What is ShipFrame?** An open-source AI coding workflow toolkit that gives AI agents a repeatable delivery lifecycle so teams plan, prove and ship with discipline instead of ad-hoc prompting.
-- **Which AI tools does it support?** Claude Code, Codex CLI, the ChatGPT/Codex plugin, OpenCode and the separate Herdr plugin. Claude hooks are plugin-managed, Codex keeps config.toml user-owned, the public plugin includes 24 curated skills, and OpenCode inherits the global/default model by default.
-- **Do ShipFrame skills appear in /skills?** Yes in Codex after `shipframe install --codex`; Claude uses `/shipframe:<skill>` commands such as `/shipframe:code-review`; OpenCode loads skills through its native skill tool, and Herdr installs separately with `herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes`.
+- **Which AI tools does it support?** Claude Code, Codex CLI, the ChatGPT/Codex plugin, OpenCode, the native Hermes Agent plugin and the separate Herdr plugin. Claude hooks are plugin-managed, Codex keeps config.toml user-owned, the public plugin includes 24 curated skills, OpenCode inherits the global/default model by default, and Hermes exposes read-only `shipframe:<skill>` entries.
+- **Do ShipFrame skills appear in /skills?** Yes in Codex after `shipframe install --codex`; Claude uses `/shipframe:<skill>` commands such as `/shipframe:code-review`; OpenCode loads skills through its native skill tool, Hermes registers `shipframe:<skill>`, and Herdr installs separately with `herdr plugin install juanitourquiza/shipframe/herdr-plugin --yes`.
 - **Is it free?** Yes, it is open source under the MIT License.
 - **Does it work with GitHub and GitLab?** Yes — Draft Pull Requests on GitHub (gh CLI) and Draft Merge Requests on GitLab (glab CLI); the provider is auto-detected from the origin remote.
 - **Do I have to change my workflow?** No — it is designed around tickets, Git branches and pull/merge requests, and you adopt only the skills you want.

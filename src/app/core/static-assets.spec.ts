@@ -55,6 +55,8 @@ describe('static SEO assets', () => {
       expect(summary).toContain('trusted contributors');
       expect(summary).toContain('shipframe install --codex --codex-agents');
       expect(summary).toContain('Homebrew installs this immutable tagged release');
+      expect(summary).toContain('Hermes Agent');
+      expect(summary).toContain('hermes plugins install shipframe');
       for (const technology of [
         'JavaScript',
         'TypeScript',
