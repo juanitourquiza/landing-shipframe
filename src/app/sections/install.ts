@@ -68,7 +68,7 @@ import { I18nService } from '../core/i18n/i18n.service';
                 />
               </div>
               <pre
-                class="text-fg overflow-x-auto p-5 pt-4 font-mono text-sm leading-relaxed"
+                class="text-fg overflow-x-auto p-5 pt-12 font-mono text-sm leading-relaxed"
               ><code>{{ activeCode() }}</code></pre>
             </div>
           </div>
