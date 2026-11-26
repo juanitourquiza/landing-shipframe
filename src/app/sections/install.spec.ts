@@ -55,4 +55,16 @@ describe('InstallComponent tabs', () => {
     expect(tabs[2].getAttribute('tabindex')).toBe('0');
     expect(fixture.nativeElement.ownerDocument.activeElement).toBe(tabs[2]);
   });
+
+  it('constrains long review-guide commands to their cards', () => {
+    const fixture = TestBed.createComponent(InstallComponent);
+    fixture.detectChanges();
+
+    const steps = fixture.nativeElement.querySelectorAll('#install-review-steps > li');
+    expect(steps.length).toBe(4);
+    for (const step of steps) {
+      expect(step.classList.contains('min-w-0')).toBe(true);
+      expect(step.querySelector('.flex')?.classList.contains('min-w-0')).toBe(true);
+    }
+  });
 });

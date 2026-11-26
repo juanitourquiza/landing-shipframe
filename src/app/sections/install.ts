@@ -28,7 +28,7 @@ import { I18nService } from '../core/i18n/i18n.service';
         <div class="mx-auto mt-12 max-w-3xl" appReveal>
           <div class="border-border-soft bg-surface overflow-hidden rounded-2xl border shadow-xl">
             <div
-              class="border-border-soft flex items-center gap-1 border-b px-2 py-2"
+              class="border-border-soft flex flex-wrap items-stretch gap-1 border-b px-2 py-2"
               role="tablist"
               [attr.aria-label]="i18n.content().nav.installTabsLabel"
             >
@@ -84,16 +84,17 @@ import { I18nService } from '../core/i18n/i18n.service';
               {{ c().reviewGuide.title }}
             </h3>
           </div>
-          <ol class="mt-7 grid gap-4 sm:grid-cols-2">
+          <!-- min-w-0 lets long commands scroll inside each card instead of widening the page. -->
+          <ol id="install-review-steps" class="mt-7 grid gap-4 sm:grid-cols-2">
             @for (step of c().reviewGuide.steps; track step.title; let index = $index) {
-              <li class="border-border-soft bg-surface rounded-2xl border p-5">
-                <div class="flex items-start gap-3">
+              <li class="border-border-soft bg-surface min-w-0 rounded-2xl border p-5">
+                <div class="flex min-w-0 items-start gap-3">
                   <span
                     class="bg-brand-500/10 text-brand-600 dark:text-brand-400 grid size-8 shrink-0 place-items-center rounded-full text-sm font-bold"
                     aria-hidden="true"
                     >{{ index + 1 }}</span
                   >
-                  <div>
+                  <div class="min-w-0">
                     <h3 class="text-fg font-semibold">{{ step.title }}</h3>
                     <p class="text-fg-muted mt-1 text-sm leading-relaxed">{{ step.desc }}</p>
                   </div>
