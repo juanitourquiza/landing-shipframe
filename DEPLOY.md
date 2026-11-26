@@ -36,14 +36,16 @@ gh secret set CLOUDWAYS_SSH_PASSWORD --repo juanitourquiza/landing-shipframe   #
 ## How it works
 
 1. `npm ci` → `npm run build` produces `dist/landing-shipframe/browser/`.
-2. The output (including the hidden `.htaccess`) is synced with:
+2. A preflight SSH step checks that the deploy user can write inside `en/` and `es/`. rsync needs to create temporary files inside each destination directory, so a locale directory owned by another account blocks the whole deploy. The preflight tries, in order: `chmod` when the deploy user owns the directory, passwordless `sudo` when available, an in-place `index.html` update when only the file is writable, and finally an atomic `renameat2(RENAME_EXCHANGE)` swap with a fresh directory the deploy user owns. The swap only needs write access to the parent (`public_html`) and leaves the previous content at a hidden `.deploy-old-<dir>-<timestamp>` path, which is excluded from future rsync runs and can be removed later as the master user. If none applies, the step fails with the exact ownership it found.
+3. The site root (including the hidden `.htaccess`) is synced with:
    ```
-   rsync -rlvz --delete --exclude='.well-known' \
+   rsync -rlvz --delete --exclude='.well-known' --exclude='/.deploy-old-*' \
+     --exclude='/.deploy-quarantine' --exclude='/en/' --exclude='/es/' \
      -e "sshpass -e ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no" \
      dist/landing-shipframe/browser/ user@host:public_html/
    ```
-   `--delete` keeps the web root clean; `.well-known` is preserved for SSL/ACME.
-3. A production smoke check requires `/`, `/es/`, and `/llms.txt` to return `200`, and confirms `llms.txt` publishes the expected current version. A failed route or stale version fails the deployment workflow.
+   `--delete` keeps the web root clean; `.well-known` is preserved for SSL/ACME, and deploy backups under `.deploy-*` are protected. `en/` and `es/` are synced separately: normal rsync when writable, or `--inplace` (without `--delete`) when only the prerendered HTML can be replaced.
+4. A production smoke check requires `/`, `/es/`, and `/llms.txt` to return `200`, confirms `llms.txt` publishes the expected current version, and fetches every local JS/CSS asset referenced by `/` and `/es/` to require `200`. A failed route, stale version, or missing asset fails the deployment workflow.
 
 Pull requests run `npm ci`, `npm test -- --watch=false`, `npm run build`, and verify the prerendered English/Spanish routes plus the versioned `llms.txt` artifact before merge.
 
@@ -56,6 +58,11 @@ Pull requests run `npm ci`, `npm test -- --watch=false`, `npm run build`, and ve
 - **Canonical routes:** English is served at `/`; Spanish is served at `/es/`; legacy `/en` redirects to `/`.
 - Security headers / custom cache rules from `.htaccess` won't apply; nginx already sends
   long-lived caching for hashed assets. Add nginx-level rules via Cloudways if you need the headers.
+- The application SSH user must be able to write inside `en/` and `es/`. Manual uploads made with
+  a different account (for example the Cloudways master user or root) can leave those directories
+  owned by `master_*`, which the application user cannot fix. The preflight can still update an
+  existing writable `index.html` in place, but new locale assets require correcting ownership as
+  the Cloudways master user (or via the Cloudways panel).
 
 ## Manual deploy (no CI)
 
